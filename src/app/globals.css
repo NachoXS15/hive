@@ -1,10 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --yellow-main: #ffd836;
+  --black-main: #1E1E1E;
+  --beige: #ede5c3;
+}
+
+@theme inline {
+  --color-yellow-main: var(--yellow-main);
+  --color-black-main: var(--black-main);
+  --color-beige: var(--beige);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +22,4 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+
