@@ -4,12 +4,6 @@ export default function page() {
   return (
     <>
         <main className="w-full min-h-screen flex text-black-main">
-            <section className="w-1/2 bg-yellow-main min-h-screen flex items-center justify-start px-20">
-                <div>
-                    <span>LOGO</span>
-                    <h2 className="font-bold text-6xl leading-tight">Bienvenido, querido <br /> usuario :,)</h2>
-                </div>
-            </section>
             <section className="w-1/2 min-h-screen flex items-center justify-center">
                 <div className="w-3/5 h-fit py-10 bg-slate-50 shadow-xl flex items-center flex-col rounded-lg justify-center gap-5">
                     <div className="w-full flex items-center flex-col">
@@ -34,6 +28,12 @@ export default function page() {
                         </div>
                         <span>¿Nuevo? <Link href="/register" className="hover:underline font-bold">Creá tu usuario acá :D</Link></span>
                     </div>
+                </div>
+            </section>
+            <section className="w-1/2 bg-yellow-main min-h-screen flex items-center justify-end px-20">
+                <div className="flex flex-col justify-end">
+                    <span className="text-end">LOGO</span>
+                    <h2 className="font-bold text-6xl leading-tight text-end">¡Hola!, Encantados de conocerte :D</h2>
                 </div>
             </section>
         </main>
