@@ -19,14 +19,14 @@ export default function page() {
                             <label htmlFor="" className="px-3 font-semibold">Ingresá tu contraseña</label>
                             <input type="password" name="password" className="h-9 rounded-full px-2 border border-black-main" />
                         </div>
+                        <div className="flex flex-col gap-1 w-9/12">
+                            <label htmlFor="" className="px-3 font-semibold">Re-ingresá tu contraseña</label>
+                            <input type="password" name="password" className="h-9 rounded-full px-2 border border-black-main" />
+                        </div>
                         <button type="submit" className="w-9/12 mt-3 rounded-full h-9 bg-black-main text-yellow-main font-semibold">Acceder</button>
                     </form>
                     <div className="flex items-center flex-col gap-4">
-                        <div className="flex flex-col items-center gap-1">
-                            <span>¿Olvidaste tu usuario o contraseña?</span>
-                            <Link href="/recuperar-password" className="font-bold hover:underline cursor-pointer">Recuperarla acá</Link>
-                        </div>
-                        <span>¿Nuevo? <Link href="/register" className="hover:underline font-bold">Creá tu usuario acá :D</Link></span>
+                        <span>¿Ya tenes cuenta?<Link href="/register" className="hover:underline font-bold"> Inicia sesión acá :D</Link></span>
                     </div>
                 </div>
             </section>
