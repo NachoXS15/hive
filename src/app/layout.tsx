@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Passion_One, Open_Sans } from "next/font/google";
 import "./globals.css";
+import './loader.css'
 
 const passionOne = Passion_One({
   variable: "--font-passion-one",
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
         className={`${passionOne.variable} ${openSans.variable} antialiased`}
       >

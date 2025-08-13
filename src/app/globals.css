@@ -5,7 +5,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --yellow-main: #ffd836;
-  --black-main: #1E1E1E;
+  --black-main: #2d2d2d;
   --beige: #ede5c3;
 }
 
@@ -13,6 +13,7 @@
   --color-yellow-main: var(--yellow-main);
   --color-black-main: var(--black-main);
   --color-beige: var(--beige);
+  --font-main: var(--font-passion-one);
 }
 
 @media (prefers-color-scheme: dark) {
