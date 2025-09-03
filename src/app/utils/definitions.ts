@@ -8,11 +8,10 @@ export interface PostType{
 export interface ProfileType {
     id?: string
     name: string
+    user: string
     mail: string
-    role: string
-    status: string
+    role?: string
     img?: string
-    type: string
     created_at?: string
 }
 

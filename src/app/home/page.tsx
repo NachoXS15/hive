@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { fetchUser } from "../lib/data-server";
-import { ProfileType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server";
+import Link from "next/link";
 
 export default async function page() {
 
@@ -10,12 +10,16 @@ export default async function page() {
     if (error) {
         redirect("/404")
     }
-    const profile: ProfileType = await fetchUser(data.user?.id);
-
+    console.log(data.user.id);
+    
+    const profile = await fetchUser(data.user?.id);
+    console.log(profile);
+    
     return (
         <main className="flex w-full flex-col">
             <div className="">
-                <h2>Bienvenido, {profile.id}</h2>
+                <h2>Bienvenido, {profile?.name}</h2>
+                <Link className="text-blue-600 underline" href="/logout">Cerrar sesión</Link>
             </div>
         </main>
     )
