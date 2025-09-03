@@ -1,7 +1,9 @@
 // import Link from "next/link";
+'use client'
+import BackgroundExport from "./components/Background";
 
 export default function Home() {
     return (
-        <h2>Inicio</h2>
+        <BackgroundExport animationColor="#000"/>
     );
 }
