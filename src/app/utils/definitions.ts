@@ -10,7 +10,6 @@ export interface ProfileType {
     name: string
     user: string
     mail: string
-    role?: string
     img?: string
     created_at?: string
 }
