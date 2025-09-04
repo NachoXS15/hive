@@ -12,19 +12,19 @@ export default function page() {
         const formData = new FormData(e.currentTarget);
         const name = formData.get("name")?.toString();
         const mail = formData.get("mail")?.toString();
-        const user = formData.get("user")?.toString();
+        const username = formData.get("user")?.toString();
         const password = formData.get("password")?.toString();
         const confirmPassword = formData.get("confirm-password")?.toString();
 
         console.log({
             name,
             mail,
-            user,
+            username,
             password,
             confirmPassword
         });
 
-        if (!name || !mail || !user || !password || !confirmPassword) {
+        if (!name || !mail || !username || !password || !confirmPassword) {
             console.error("Todos los campos son obligatorios");
             return;
         }
@@ -34,7 +34,7 @@ export default function page() {
             return;
         }
 
-        let userId: string | undefined = "";
+        let usernameId: string | undefined = "";
 
         const postUser = async ({ email, password }: UserSignIn) => {
             const info = {
@@ -45,7 +45,7 @@ export default function page() {
             try {
                 const { data, error } = await supabaseClient.auth.signUp(info);
                 console.log(data);
-                userId = data.user?.id;
+                usernameId = data.user?.id;
                 if (error) {
                     console.log("error crear usuario: ", error);
                 }
@@ -58,17 +58,17 @@ export default function page() {
         const postUserDB = async ({
             name,
             mail,
-            user,
+            username,
         }: ProfileType) => {
             try {
                 const { data, error } = await supabaseClient
                     .from("profiles")
                     .insert([
                         {
-                            id: userId,
+                            id: usernameId,
                             name,
                             mail,
-                            user,
+                            username,
                         },
                     ])
                     .select();
@@ -92,7 +92,7 @@ export default function page() {
             await postUserDB({
                 name,
                 mail,
-                user
+                username
             });
             window.location.href = "/home";
         } catch (error) {
