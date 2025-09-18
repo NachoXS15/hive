@@ -12,20 +12,19 @@ export default function page() {
                         <h2 className="text-6xl leading-17">Bienvenido, querido <br /> usuario :&apos;)</h2>
                     </div>
                 </section>
-
-                <section className="w-1/2 min-h-screen flex items-center justify-center">
+                <section className="w-1/2 min-h-screen flex items-center justify-center font-second">
                     <div className="w-3/5 h-fit py-10 bg-slate-50 shadow-xl flex items-center flex-col rounded-lg justify-center gap-5">
                         <div className="w-full flex items-center flex-col">
-                            <h2 className="text-2xl">Iniciar sesión</h2>
+                            <h2 className="text-2xl font-black">Iniciar sesión</h2>
                             <hr className="border border-black-main/60 w-1/2 mt-2" />
                         </div>
                         <form action="" className="w-full flex flex-col gap-2 items-center">
                             <div className="flex flex-col gap-1 w-9/12">
-                                <label htmlFor="" className="px-3">Ingresá tu e-mail</label>
+                                <label htmlFor="" className="px-3 font-bold">Ingresá tu e-mail</label>
                                 <input type="email" name="email" className="h-9 rounded-full px-2 border border-black-main" />
                             </div>
                             <div className="flex flex-col gap-1 w-9/12">
-                                <label htmlFor="" className="px-3">Ingresá tu contraseña</label>
+                                <label htmlFor="" className="px-3 font-bold">Ingresá tu contraseña</label>
                                 <input type="password" name="password" className="h-9 rounded-full px-2 border border-black-main" />
                             </div>
                             <button formAction={login} className="w-9/12 mt-3 rounded-full h-9 bg-black-main text-yellow-main">Acceder</button>

@@ -33,7 +33,7 @@ export default function BackgroundExport(props: BackgroundExportProps) {
     const speedMultiplierSafe = typeof speedMultiplier === 'number' ? speedMultiplier : 0.8;
     return (
         <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', zIndex: -9999 }} className='export-background-root'>
-            <div style={{ position: 'absolute', inset: 0, background: "radial-gradient(ellipse at top left, #FFD54F40, transparent 20%), radial-gradient(ellipse at bottom right, #FFEB3B30, transparent 80%), linear-gradient(90deg,rgba(237, 229, 195, 1) 0%, rgba(237, 229, 195, 1) 45%, rgba(237, 229, 195, 1) 100%)"  }} />
+            <div style={{ position: 'absolute', inset: 0, background: "radial-gradient(ellipse at top left, #000, transparent 20%), radial-gradient(ellipse at bottom right, #000, transparent 80%), linear-gradient(90deg,rgba(22, 23, 23, 1) 0%, rgba(30, 31, 17, 1) 50%, rgba(33, 29, 10, 1) 100%)"  }} />
             <CrystalLayer color={color} speed={speedSafe} intensity={intensityNorm} theme={themeSafe} particleCount={particleCountSafe} speedMultiplier={speedMultiplierSafe} />
             <CodeElementsLayer color={color} speed={speedSafe} intensity={intensityNorm} theme={themeSafe} particleCount={particleCountSafe} speedMultiplier={speedMultiplierSafe} />
         </div>
