@@ -5,10 +5,10 @@ import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
 // import nacho from '../src/nacho.webp'
 export default function Profile() {
     return (
-        <article className="bg-amber-50 shadow-xl py-7 rounded-lg px-10 w-3/6 h-fit">
+        <article className="bg-amber-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
             <section className="flex gap-20 items-center justify-between">
                 <div className="h-[150px] flex items-center gap-10">
-                    <div className="rounded-full w-[150px] h-[150px] bg-cover bg-center" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
+                    <div className="rounded-full min-w-[150px] min-h-[150px] bg-cover bg-center" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
                     </div>
                     <div className="h-full flex flex-col justify-between">
                         <div className="">
@@ -37,8 +37,8 @@ export default function Profile() {
                     También me he desarrollado como Project Leader en varios equipos de trabajo.</p>
             </section>
             <section className="mt-5">
-                <h2 className="ont-bold text-xl font-second">Mis enlaces</h2>
-
+                <h2 className="font-bold text-xl font-second">Mis enlaces</h2>
+                
             </section>
         </article>
     )

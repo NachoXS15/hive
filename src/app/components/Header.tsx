@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Header() {
     return (
         <header className="w-full h-20 flex items-center bg-yellow-main justify-around">
-            <h2 className="font-main text-4xl font-black">HIVE</h2>
+            <Link href="/home" className="font-main text-4xl font-black">HIVE</Link>
             <div className="flex items-center gap-20">
                 <Link href="/" className="font-second font-bold uppercase">Explorar</Link>
                 <Link href="/" className="font-second font-bold uppercase">Contratar</Link>
