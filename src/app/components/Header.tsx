@@ -1,11 +1,11 @@
-import { Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="w-full h-20 flex items-center bg-yellow-main justify-around">
+        <header className="w-full h-20 flex items-center bg-yellow-main justify-between md:justify-around px-10">
             <Link href="/home" className="font-main text-4xl font-black">HIVE</Link>
-            <div className="flex items-center gap-20">
+            <div className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20">
                 <Link href="/" className="font-second font-bold uppercase">Explorar</Link>
                 <Link href="/" className="font-second font-bold uppercase">Contratar</Link>
                 <form action="" className="flex items-center gap-2">
@@ -13,7 +13,8 @@ export default function Header() {
                     <button type="submit"><Search /></button>
                 </form>
             </div>
-            <button className="text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl">IP</button>
+            <button className="hidden md:inline-block text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl">IP</button>
+            <button className="md:hidden inline-block "><Menu size={28} /></button>
         </header>
     )
 }
