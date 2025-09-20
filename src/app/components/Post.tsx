@@ -14,9 +14,9 @@ export default function Post() {
 				<p className="text-md">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non ut perspiciatis voluptatibus omnis. Ipsa voluptas voluptatum ipsum facere vitae maiores, provident error consequatur explicabo mollitia dicta, doloremque quisquam sequi. Ut.</p>
 			</div>
 			<div id="post-footer" className="mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-[40px]">
-				<button className="w-1/3 border-r border-r-slate-400 bg-slate-300 h-full">Me gusta</button>
-				<button className="w-1/3 border-r border-r-slate-400 bg-slate-300 h-full">Comentar</button>
-				<button className="w-1/3 bg-slate-300 h-full">Compartir</button>
+				<button className="hover:cursor-pointer hover:bg-slate-500 hover:text-slate-50 transition w-1/3 border-r border-r-slate-400 bg-slate-300 h-full">Me gusta</button>
+				<button className="hover:cursor-pointer hover:bg-slate-500 hover:text-slate-50 transition w-1/3 border-r border-r-slate-400 bg-slate-300 h-full">Comentar</button>
+				<button className="hover:cursor-pointer hover:bg-slate-500 hover:text-slate-50 transition w-1/3 bg-slate-300 h-full">Compartir</button>
 			</div>
 		</article>
 	)
