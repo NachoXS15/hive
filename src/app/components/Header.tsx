@@ -1,10 +1,12 @@
 import { FileText, LogOut, Menu, Search, SettingsIcon, Star, User2 } from "lucide-react";
 import Link from "next/link";
 import DropdownMenu from "./DropdownMenu";
+import MenuStateReset from "./MenuStateReset";
 
 export default function Header() {
     return (
         <>
+            
             <div className="relative">
                 <input type="checkbox" className="peer hidden" id="navbar-open" />
                 <header className="w-full h-20 relative flex items-center bg-yellow-main justify-between md:justify-around px-10">
