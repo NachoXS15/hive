@@ -1,8 +1,15 @@
 import Link from "next/link";
 import login from "./actions";
+import { redirect } from "next/navigation";
+import { createClient } from "../utils/supabase/server";
 
-export default function page() {
+export default async function page() {
+    const supabase = await createClient()
 
+    const { data, error } = await supabase.auth.getUser()
+    if (!error || data?.user) {
+        redirect('/home')
+    }
     return (
         <>
             <main className="w-full min-h-screen flex text-black-main font-main">

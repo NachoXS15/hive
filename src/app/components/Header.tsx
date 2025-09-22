@@ -1,12 +1,13 @@
 import { FileText, LogOut, Menu, Search, SettingsIcon, Star, User2 } from "lucide-react";
 import Link from "next/link";
+import DropdownMenu from "./DropdownMenu";
 
 export default function Header() {
     return (
         <>
             <div className="relative">
                 <input type="checkbox" className="peer hidden" id="navbar-open" />
-                <header className="w-full h-20 flex items-center bg-yellow-main justify-between md:justify-around px-10">
+                <header className="w-full h-20 relative flex items-center bg-yellow-main justify-between md:justify-around px-10">
                     <Link href="/home" className="font-main text-4xl font-black">HIVE</Link>
                     <nav className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20">
                         <Link href="/" className="font-second font-bold uppercase">Explorar</Link>
@@ -16,7 +17,9 @@ export default function Header() {
                             <button type="submit"><Search /></button>
                         </form>
                     </nav>
-                    <button className="hidden md:inline-block text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl">IP</button>
+                    <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none">IP</label>
+                    <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
+                    <DropdownMenu />
                     <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
                         <Menu size={28} />
                     </label>
