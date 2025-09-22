@@ -17,7 +17,7 @@ export default function Header() {
                             <button type="submit"><Search /></button>
                         </form>
                     </nav>
-                    <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none">IP</label>
+                    <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">IP</label>
                     <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
                     <DropdownMenu />
                     <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">

@@ -19,7 +19,6 @@ export default async function page() {
         <main className="flex w-full flex-col">
             <div className="">
                 <h2>Bienvenid@, {profile?.name}</h2>
-                <Link className="text-blue-600 underline" href="/logout">Cerrar sesión</Link>
             </div>
         </main>
     )

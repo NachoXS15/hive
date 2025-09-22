@@ -104,16 +104,17 @@ export default function page() {
         <>
             <main className="w-full min-h-screen flex-col text-black-main font-main smooth">
                 <section className="w-full bg-yellow-main min-h-screen flex items-center justify-center px-20">
-                    <div className="flex flex-col justify-center relative items-center">
-                        <span className="text-center text-2xl">HIVE</span>
-                        <h2 className="font-bold text-7xl leading-tight text-center">¡Hola!, Encantados de conocerte :D</h2>
+                    <div className="w-full flex flex-col justify-center relative items-center">
+                        <span className="font-main text-3xl font-black">HIVE</span>
+                        <h2 className="w-full text- font-bold text-3xl md:text-7xl leading-tight text-center">¡Hola!, Encantados de conocerte :D</h2>
+                        <span className="text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer hover:border font-semibold font-second px-1 py-2 mt-2 md:p-3 border rounded text-center">¿Ya tenes una cuenta? Logueate :,)</span>
                         <a href="#form" className="slide-in-bottom absolute -bottom-40 cursor-pointer"><ArrowDown size={40} /></a>
                     </div>
                 </section>
-                <div className="flex items-center justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
+                <div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
                     <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-5xl">
                         <h2 className="text-2xl font-bold mb-8 text-center">Formulario de Registro</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
                             <div>
                                 <h3 className="text-lg font-semibold mb-4 text-gray-700">Información Personal</h3>
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu Nombre</label>
@@ -144,7 +145,7 @@ export default function page() {
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition">
+                        <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
                             Registrar
                         </button>
                     </form>
