@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { supabaseClient } from "../utils/supabase/client";
 import { ProfileType, UserSignIn } from "../utils/definitions";
+import { ArrowDown } from "lucide-react";
 
 export default function page() {
 
@@ -29,7 +30,7 @@ export default function page() {
             return;
         }
 
-        if(password != confirmPassword){
+        if (password != confirmPassword) {
             console.error("Contraseñas no coinciden");
             return;
         }
@@ -101,47 +102,53 @@ export default function page() {
     };
     return (
         <>
-            <main className="w-full min-h-screen flex text-black-main font-main">
-                <section className="w-1/2 min-h-screen flex items-center justify-center">
-                    <div className="w-3/5 h-fit py-10 bg-slate-50 shadow-xl flex items-center flex-col rounded-lg justify-center gap-5">
-                        <div className="w-full flex items-center flex-col">
-                            <h2 className="font-bold text-2xl">Iniciar sesión</h2>
-                            <hr className="border border-black-main/60 w-1/2 mt-2" />
-                        </div>
-                        <form onSubmit={handleSubmit} className="w-full flex flex-col gap-2 items-center">
-                            <div className="flex flex-col gap-1 w-9/12">
-                                <label htmlFor="" className="px-3">Ingresá tu e-mail</label>
-                                <input type="email" name="mail" className="h-9 rounded-full px-2 border border-black-main" />
-                            </div>
-                            <div className="flex flex-col gap-1 w-9/12">
-                                <label htmlFor="" className="px-3">Ingresá tu nombre</label>
-                                <input type="text" name="name" className="h-9 rounded-full px-2 border border-black-main" />
-                            </div>
-                            <div className="flex flex-col gap-1 w-9/12">
-                                <label htmlFor="" className="px-3">Ingresá tu usuario</label>
-                                <input type="text" name="user" className="h-9 rounded-full px-2 border border-black-main" />
-                            </div>
-                            <div className="flex flex-col gap-1 w-9/12">
-                                <label htmlFor="" className="px-3">Ingresá tu contraseña</label>
-                                <input type="password" name="password" className="h-9 rounded-full px-2 border border-black-main" />
-                            </div>
-                            <div className="flex flex-col gap-1 w-9/12">
-                                <label htmlFor="" className="px-3">Re-ingresá tu contraseña</label>
-                                <input type="password" name="confirm-password" className="h-9 rounded-full px-2 border border-black-main" />
-                            </div>
-                            <button type="submit" className="w-9/12 mt-3 rounded-full h-9 bg-black-main text-yellow-main">Acceder</button>
-                        </form>
-                        <div className="flex items-center flex-col gap-4">
-                            <span>¿Ya tenes cuenta?<Link href="/register" className="hover:underline font-bold"> Inicia sesión acá :D</Link></span>
-                        </div>
+            <main className="w-full min-h-screen flex-col text-black-main font-main smooth">
+                <section className="w-full bg-yellow-main min-h-screen flex items-center justify-center px-20">
+                    <div className="flex flex-col justify-center relative items-center">
+                        <span className="text-center text-2xl">HIVE</span>
+                        <h2 className="font-bold text-7xl leading-tight text-center">¡Hola!, Encantados de conocerte :D</h2>
+                        <a href="#form" className="slide-in-bottom absolute -bottom-40 cursor-pointer"><ArrowDown size={40} /></a>
                     </div>
                 </section>
-                <section className="w-1/2 bg-yellow-main min-h-screen flex items-center justify-end px-20">
-                    <div className="flex flex-col justify-end">
-                        <span className="text-end">LOGO</span>
-                        <h2 className="font-bold text-6xl leading-tight text-end">¡Hola!, Encantados de conocerte :D</h2>
-                    </div>
-                </section>
+                <div className="flex items-center justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
+                    <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-5xl">
+                        <h2 className="text-2xl font-bold mb-8 text-center">Formulario de Registro</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <h3 className="text-lg font-semibold mb-4 text-gray-700">Información Personal</h3>
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu Nombre</label>
+                                <input type="text" required name="name" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu mail</label>
+                                <input type="text" required name="mail" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu usuario</label>
+                                <input type="text" required name="user" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu contraseña</label>
+                                <input type="text" required name="password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Confirmá tu contraseña</label>
+                                <input type="text" required name="confirm-password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-semibold mb-4 text-gray-700">Información Profesional</h3>
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Empresa</label>
+                                <input type="text" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Nivel Educativo</label>
+                                <select className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">Seleccionar</option>
+                                    <option value="secundario">Secundario</option>
+                                    <option value="terciario">Terciario</option>
+                                    <option value="universitario">Universitario</option>
+                                    <option value="posgrado">Posgrado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition">
+                            Registrar
+                        </button>
+                    </form>
+                </div>
             </main>
         </>
     )
