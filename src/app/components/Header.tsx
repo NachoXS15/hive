@@ -1,12 +1,10 @@
 import { FileText, LogOut, Menu, Search, SettingsIcon, Star, User2 } from "lucide-react";
 import Link from "next/link";
 import DropdownMenu from "./DropdownMenu";
-import MenuStateReset from "./MenuStateReset";
 
 export default function Header() {
     return (
         <>
-            
             <div className="relative">
                 <input type="checkbox" className="peer hidden" id="navbar-open" />
                 <header className="w-full h-20 relative flex items-center bg-yellow-main justify-between md:justify-around px-10">
@@ -29,12 +27,12 @@ export default function Header() {
                 <div className="md:hidden peer-checked:block hidden z-50 w-full absolute bg-black-main text-yellow-main top-20" id="menu-open">
                     <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
                         <nav className="w-full flex flex-col gap-4 p-5 font-medium">
-                            <span className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</span>
-                            <span className="flex items-center gap-2 font-medium active:scale-110 transition"><FileText />Proyectos</span>
+                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</Link>
+                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><FileText />Proyectos</Link>
                             <hr />
-                            <span className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</span>
-                            <span className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</span>
-                            <span className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</span>
+                            <Link href="/home/profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
+                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>
+                            <Link href="/logout" className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</Link>
                         </nav>
                     </div>
                 </div>

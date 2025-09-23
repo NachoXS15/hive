@@ -5,6 +5,16 @@ export interface PostType{
     likesCount: number
 }
 
+export interface UserPublicInfo{
+    jobAvaliable: string
+    student_status: string
+    university: string
+    degree: string
+    desc: string
+    province: string
+    birthday: string
+}
+
 export interface ProfileType {
     id?: string
     name: string
@@ -12,6 +22,7 @@ export interface ProfileType {
     mail: string
     img?: string
     created_at?: string
+    user_info: UserPublicInfo | null
 }
 
 export interface UserSignIn {

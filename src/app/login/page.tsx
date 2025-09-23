@@ -14,14 +14,14 @@ export default async function page() {
     return (
         <>
             <main className="w-full min-h-screen flex text-black-main font-main">
-                <section className="w-1/2 bg-yellow-main min-h-screen flex items-center justify-start px-20">
+                <section className="w-1/2 hidden xl:flex bg-yellow-main min-h-screen items-center justify-start px-20">
                     <div>
                         <span className="font-main text-3xl">hive.</span>
                         <h2 className="text-6xl leading-17">Bienvenido, querido <br /> usuario :&apos;)</h2>
                     </div>
                 </section>
-                <section className="w-1/2 min-h-screen flex items-center justify-center font-second">
-                    <div className="w-3/5 h-fit py-10 bg-slate-50 shadow-xl flex items-center flex-col rounded-lg justify-center gap-5">
+                <section className="w-full xl:w-1/2 min-h-screen px-5 xl:px-0  flex items-center justify-center font-second">
+                    <div className="w-full xl:w-3/5 h-fit py-15 bg-slate-50 shadow-xl flex items-center flex-col rounded-lg justify-center gap-10">
                         <div className="w-full flex items-center flex-col">
                             <h2 className="text-2xl font-black">Iniciar sesión</h2>
                             <hr className="border border-black-main/60 w-1/2 mt-2" />

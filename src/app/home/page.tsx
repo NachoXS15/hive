@@ -16,7 +16,7 @@ export default async function page() {
     console.log(profile);
     
     return (
-        <main className="flex w-full flex-col">
+        <main className="flex w-full h-[600px] flex-col">
             <div className="">
                 <h2>Bienvenid@, {profile?.name}</h2>
             </div>

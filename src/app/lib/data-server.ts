@@ -14,3 +14,16 @@ export async function fetchUser(id: string){
         console.error(error);
     }
 }
+
+export async function fetchFullUser(id: string){
+    try {
+        const supabase = await createClient();
+        const {data, error} = await supabase.from("profiles").select("*").eq("id", id).maybeSingle()
+        if (error) {
+            console.log(error.message);
+        }
+        return data as ProfileType;
+    } catch (error) {
+        console.error(error);
+    }
+}
