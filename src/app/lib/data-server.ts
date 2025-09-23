@@ -1,7 +1,6 @@
 import { ProfileType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
-
 export async function fetchUser(id: string){
     try {
         const supabase = await createClient();
@@ -16,27 +15,26 @@ export async function fetchUser(id: string){
 }
 
 export async function fetchFullUser(id: string): Promise<ProfileType | null> {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase
-  .from("profiles")
-  .select(`
-    id,
-    name,
-    username,
-    mail,
-    user_public_info (
-      job_avaliable,
-      student_status,
-      university,
-      degree,
-      desc,
-      province,
-      birthday
-    )
-  `)
-  .eq("id", id)
-  .maybeSingle();
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("profiles")
+        .select(`
+            id,
+            name,
+            username,
+            mail,
+            user_public_info (
+                job_avaliable,
+                student_status,
+                university,
+                degree,
+                desc,
+                province,
+                birthday
+            )`
+        )
+        .eq("id", id)
+        .maybeSingle();
 
     if (error) {
         console.error("Supabase error:", error.message);

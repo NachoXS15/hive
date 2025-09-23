@@ -1,9 +1,10 @@
+import ProfileSearchCard from "@/app/components/ProfileSearchCard";
 import { Search } from "lucide-react";
 
 export default function page() {
 	return (
-		<main className="w-full min-h-[600px] flex justify-center">
-			<div className="w-5/12 mt-20">
+		<main className="w-full min-h-[600px] flex flex-col items-center justify-center">
+			<div className="w-full px-5 md:w-5/12 mt-20">
 				<form action="" className="">
 					<h2 className="text-center font-bold font-second text-2xl mb-5">¡Encontrá personas maravillosas!</h2>
 					<label htmlFor="" className="w-full h-20 rounded-2xl border border-slate-400 bg-slate-50 flex justify-between items-center px-5">
@@ -11,6 +12,11 @@ export default function page() {
 						<button type="submit" className="cursor-pointer hover:scale-110 active:scale-110 transition"><Search /></button>
 					</label>
 				</form>
+			</div>
+			<div className="w-full md:w-5/12 mt-10 h-fit flex flex-col gap-5 pb-10">
+				<ProfileSearchCard />
+				<ProfileSearchCard />
+				<ProfileSearchCard />
 			</div>
 		</main>
 	)
