@@ -1,9 +1,16 @@
 // import Image from "next/image"
 
 import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
+import { fetchFullUser } from "../lib/data-server";
+type Props = {
+    id: string
+}
 
-// import nacho from '../src/nacho.webp'
-export default function Profile() {
+export default async function Profile({id}: Props) {
+
+    const profile = await fetchFullUser(id)
+    console.log(profile);
+    
     return (
         <article className="bg-amber-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
             <section className="flex gap-20 flex-col xl:flex-row items-center justify-between">
@@ -12,38 +19,32 @@ export default function Profile() {
                     </div>
                     <div className="h-full flex flex-col justify-between">
                         <div className="">
-                            <h2 className="font-normal text-3xl font-main">Ignacio Joaquín Pantoja</h2>
-                            <h3 className="">Lic. en Diseño y Producción Multimedial</h3>
+                            <h2 className="font-normal text-3xl font-main">{profile?.name}</h2>
+                            <h3 className="">{profile?.user_public_info?.degree}</h3>
                         </div>
                         <div id="info" className="hidden xl:flex w-full flex-wrap items-center gap-3 font-second">
-                            <span className="text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> Disponible para trabajar</span>
-                            <span className="text-xs text-blue-700 bg-blue-200 flex items-center gap-2 rounded px-2 py-1"><Pin /> La Rioja, Argentina</span>
-                            <span className="text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> Universidad Nacional de La Rioja</span>
+                            <span className="text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> {profile?.user_public_info?.job_avaliable}</span>
+                            <span className="text-xs text-blue-700 bg-blue-200 flex items-center gap-2 rounded px-2 py-1"><Pin /> {profile?.user_public_info?.province}, Argentina</span>
+                            <span className="text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> {profile?.user_public_info?.university}</span>
 
                         </div>
                     </div>
                 </div>
                 <div className="flex xl:self-start flex-row xl:flex-col flex-wrap xl:flex-nowrap items-center gap-3">
-                    <span className="xl:hidden text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> Disponible para trabajar</span>
-                    <span className="xl:hidden text-xs text-blue-700 bg-blue-200 flex items-center gap-2 rounded px-2 py-1"><Pin /> La Rioja, Argentina</span>
-                    <span className="xl:hidden text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> Universidad Nacional de La Rioja</span>
-                    <span className="text-xs bg-orange-200 text-orange-700 flex items-center gap-2 px-2 py-1 rounded"><School /> Estudiante</span>
-                    <span className="text-xs bg-purple-200 text-purple-700 flex items-center gap-2 px-2 py-1 rounded"><Cake /> 03/05/2002</span>
+                    <span className="xl:hidden text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> {profile?.user_public_info?.job_avaliable}</span>
+                    <span className="xl:hidden text-xs text-blue-700 bg-blue-200 flex items-center gap-2 rounded px-2 py-1"><Pin /> {profile?.user_public_info?.province}, Argentina</span>
+                    <span className="xl:hidden text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> {profile?.user_public_info?.university}</span>
+                    <span className="text-xs bg-orange-200 text-orange-700 flex items-center gap-2 px-2 py-1 rounded"><School /> {profile?.user_public_info?.student_status}</span>
+                    <span className="text-xs bg-purple-200 text-purple-700 flex items-center gap-2 px-2 py-1 rounded"><Cake /> {profile?.user_public_info?.birthday}</span>
                 </div>
             </section>
             <hr className="w-20 m-auto my-10" />
             <section className="mt-10">
                 <h2 className="font-bold text-xl font-second">Acerca de mí:</h2>
-                <p>
-                    ¡Hola! Bienvenido a mi portfolio, aquí mostraré un poco de mis trabajos, mis experiencias y mis habilidades.
-
-                    Actualmente soy tesista en la carrera de Diseño y Producción Multimedial, ejerzo como Desarrollador Front-end freelancer, realizando trabajos para empresas privadas como para eventos importantes dentro de mi ciudad.
-
-                    También me he desarrollado como Project Leader en varios equipos de trabajo.</p>
+                <p>{profile?.user_public_info?.desc}</p>
             </section>
             <section className="mt-5">
                 <h2 className="font-bold text-xl font-second">Mis enlaces</h2>
-
             </section>
         </article>
     )

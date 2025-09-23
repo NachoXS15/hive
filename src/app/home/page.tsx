@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { fetchUser } from "../lib/data-server";
 import { createClient } from "../utils/supabase/server";
-import Link from "next/link";
 
 export default async function page() {
 

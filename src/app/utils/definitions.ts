@@ -6,7 +6,9 @@ export interface PostType{
 }
 
 export interface UserPublicInfo{
-    jobAvaliable: string
+    user_id?: string
+    created_at: string
+    job_avaliable: string
     student_status: string
     university: string
     degree: string
@@ -17,12 +19,12 @@ export interface UserPublicInfo{
 
 export interface ProfileType {
     id?: string
-    name: string
-    username: string
-    mail: string
+    name?: string | null
+    username?: string | null
+    mail?: string | null
     img?: string
     created_at?: string
-    user_info: UserPublicInfo | null
+    user_public_info: UserPublicInfo | undefined | null
 }
 
 export interface UserSignIn {
