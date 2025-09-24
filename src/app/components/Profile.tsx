@@ -1,4 +1,4 @@
-import Image from "next/image"
+// import Image from "next/image"
 
 import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
 import { fetchFullUser } from "../lib/data-server";
