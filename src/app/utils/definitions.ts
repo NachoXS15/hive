@@ -1,8 +1,9 @@
 export interface PostType{
-    author: string
-    description: string
-    postDate: string
-    likesCount: number
+    id: string
+    user_id: string
+    body: string
+    created_at: string
+    likes: number
 }
 
 export interface UserPublicInfo{
@@ -25,6 +26,15 @@ export interface ProfileType {
     img?: string
     created_at?: string
     user_public_info: UserPublicInfo | undefined | null
+}
+
+export interface SimpleUserType {
+    id?: string
+    name?: string | null
+    username?: string | null
+    mail?: string | null
+    img?: string
+    created_at?: string
 }
 
 export interface UserSignIn {

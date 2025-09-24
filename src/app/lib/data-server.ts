@@ -1,4 +1,4 @@
-import { ProfileType } from "../utils/definitions";
+import { PostType, ProfileType, SimpleUserType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
 export async function fetchUsers(){
@@ -34,7 +34,20 @@ export async function fetchUserById(id: string){
         if (error) {
             console.log(error.message);
         }
-        return data as ProfileType;
+        return data as SimpleUserType;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function fetchPostsById(id: string){
+    try {
+        const supabase = await createClient();
+        const {data, error} = await supabase.from("posts").select("*").eq("id", id)
+        if (error) {
+            console.log(error.message);
+        }
+        return data as PostType[];
     } catch (error) {
         console.error(error);
     }

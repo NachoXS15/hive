@@ -1,5 +1,7 @@
+import CreatePost from "@/app/components/CreatePost";
 import Profile from "@/app/components/Profile";
 import ProfileFeed from "@/app/components/ProfileFeed";
+import { fetchPostsById } from "@/app/lib/data-server";
 import { createClient } from "@/app/utils/supabase/server";
 
 
@@ -11,11 +13,16 @@ export default async function page() {
 		return error;
 	}
 	const id = data?.user?.id
-
+	const posts = await fetchPostsById(id)
+	console.log(posts);
+	
 	return (
 		<main className="w-full h-fit flex py-10 items-center flex-col px-6 md:px-0">
 			<Profile id={id}/>
-			<ProfileFeed />
+			<section className="md:px-10 w-full mt-10 shadow-xl rounded-lg px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit bg-slate-50 flex flex-col gap-5">
+				<CreatePost />
+				<ProfileFeed posts={posts} />
+			</section>
 		</main>
 	)
 }

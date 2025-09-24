@@ -12,7 +12,7 @@ export default async function Profile({id}: Props) {
     console.log(profile);
     
     return (
-        <article className="bg-amber-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
+        <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
             <section className="flex gap-20 flex-col xl:flex-row items-center justify-between">
                 <div className="h-[200px] xl:h-[180px] flex items-center gap-10">
                     <div className="rounded-full self-start min-w-[150px] min-h-[150px] bg-cover bg-center" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
