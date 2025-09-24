@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { fetchUser } from "../lib/data-server";
+import { fetchUserById } from "../lib/data-server";
 import { createClient } from "../utils/supabase/server";
 
 export default async function page() {
@@ -11,7 +11,7 @@ export default async function page() {
     }
     console.log(data.user.id);
     
-    const profile = await fetchUser(data.user?.id);
+    const profile = await fetchUserById(data.user?.id);
     console.log(profile);
     
     return (

@@ -1,7 +1,33 @@
 import { ProfileType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
-export async function fetchUser(id: string){
+export async function fetchUsers(){
+    try {
+        const supabase = await createClient();
+        const {data, error} = await supabase.from("profiles").select(`
+            id,
+            name,
+            username,
+            mail,
+            user_public_info (
+                job_avaliable,
+                student_status,
+                university,
+                degree,
+                desc,
+                province,
+                birthday
+            )`
+        )
+        if (error) {
+            console.log(error.message);
+        }
+        return data as ProfileType[];
+    } catch (error) {
+        console.error(error);
+    }
+}
+export async function fetchUserById(id: string){
     try {
         const supabase = await createClient();
         const {data, error} = await supabase.from("profiles").select("*").eq("id", id).maybeSingle()
