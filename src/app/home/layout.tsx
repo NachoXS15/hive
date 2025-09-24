@@ -1,9 +1,9 @@
 import React from "react"
-import Header from "../components/Header"
+import Header from "../components/structures/Header"
 import { createClient } from "../utils/supabase/server"
 import { redirect } from "next/navigation"
 import MenuStateReset from "../components/MenuStateReset"
-import Footer from "../components/Footer"
+import Footer from "../components/structures/Footer"
 
 export default async function layout({ children }: { children: React.ReactNode }) {
 

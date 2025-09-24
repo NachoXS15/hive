@@ -1,5 +1,5 @@
-import { PostType } from "../utils/definitions"
-import { formatDate } from "../utils/DateFormatter"
+import { PostType } from "../../utils/definitions"
+import { formatDate } from "../../utils/DateFormatter"
 
 
 export default function Post({created_at, body, profiles}: PostType) {

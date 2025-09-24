@@ -1,6 +1,6 @@
-import CreatePost from "@/app/components/CreatePost";
-import Profile from "@/app/components/Profile";
-import ProfileFeed from "@/app/components/ProfileFeed";
+import CreatePost from "@/app/components/structures/CreatePost";
+import Profile from "@/app/components/structures/Profile";
+import ProfileFeed from "@/app/components/structures/ProfileFeed";
 import { fetchPostsById } from "@/app/lib/data-server";
 import { createClient } from "@/app/utils/supabase/server";
 

@@ -1,7 +1,8 @@
 // import Image from "next/image"
 
 import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
-import { fetchFullUser } from "../lib/data-server";
+import { fetchFullUser } from "../../lib/data-server";
+import LinksComp from "../LinksComp";
 type Props = {
     id: string
 }
@@ -43,9 +44,7 @@ export default async function Profile({id}: Props) {
                 <h2 className="font-bold text-xl font-second">Acerca de mí:</h2>
                 <p>{profile?.user_public_info?.desc}</p>
             </section>
-            <section className="mt-5">
-                <h2 className="font-bold text-xl font-second">Mis enlaces</h2>
-            </section>
+            <LinksComp />
         </article>
     )
 }

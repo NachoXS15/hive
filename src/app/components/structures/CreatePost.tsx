@@ -1,6 +1,6 @@
 'use client'
 
-import { insertPost } from "../lib/data-client";
+import { insertPost } from "../../lib/data-client";
 
 
 export default function CreatePost({ id }: { id: string | undefined }) {

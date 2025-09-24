@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { Facebook, Instagram, Twitter,} from "./Icons";
+import { Facebook, Instagram, Twitter,} from "../ui/Icons";
 
 export default function Footer() {
     return (

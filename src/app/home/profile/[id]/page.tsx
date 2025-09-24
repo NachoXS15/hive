@@ -1,5 +1,5 @@
-import Profile from "@/app/components/Profile";
-import ProfileFeed from "@/app/components/ProfileFeed";
+import Profile from "@/app/components/structures/Profile";
+import ProfileFeed from "@/app/components/structures/ProfileFeed";
 import { fetchPostsById } from "@/app/lib/data-server";
 import { InferGetServerSidePropsType } from "next";
 import { getServerSideProps } from "next/dist/build/templates/pages";

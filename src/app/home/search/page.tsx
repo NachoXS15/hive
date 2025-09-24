@@ -1,4 +1,4 @@
-import SearchFormResults from "@/app/components/SearchFormResults";
+import SearchFormResults from "@/app/components/structures/SearchFormResults";
 import { fetchUsers } from "@/app/lib/data-server";
 import { ProfileType } from "@/app/utils/definitions";
 

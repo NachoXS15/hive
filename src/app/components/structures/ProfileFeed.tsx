@@ -1,4 +1,4 @@
-import { PostType } from "../utils/definitions";
+import { PostType } from "../../utils/definitions";
 import Post from "./Post";
 
 type Props = {
