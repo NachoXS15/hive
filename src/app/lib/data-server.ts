@@ -5,18 +5,9 @@ export async function fetchUsers(){
     try {
         const supabase = await createClient();
         const {data, error} = await supabase.from("profiles").select(`
-            id,
-            name,
-            username,
-            mail,
+            *,
             user_public_info (
-                job_avaliable,
-                student_status,
-                university,
-                degree,
-                desc,
-                province,
-                birthday
+                *
             )`
         )
         if (error) {
@@ -43,7 +34,15 @@ export async function fetchUserById(id: string){
 export async function fetchPostsById(id: string){
     try {
         const supabase = await createClient();
-        const {data, error} = await supabase.from("posts").select("*").eq("id", id)
+        const { data, error } = await supabase
+        .from("posts")
+        .select(`
+            *,
+            profiles (
+                name
+            )
+        `)
+        .eq("user_id", id);
         if (error) {
             console.log(error.message);
         }

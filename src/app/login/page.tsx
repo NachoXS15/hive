@@ -29,11 +29,11 @@ export default async function page() {
                         <form action="" className="w-full flex flex-col gap-2 items-center">
                             <div className="flex flex-col gap-1 w-9/12">
                                 <label htmlFor="" className="px-3 font-bold">Ingresá tu e-mail</label>
-                                <input type="email" name="email" className="h-8 rounded-full px-3 border border-black-main" />
+                                <input type="email" name="email" className="h-10 rounded-full px-3 border border-black-main" />
                             </div>
                             <div className="flex flex-col gap-1 w-9/12">
                                 <label htmlFor="" className="px-3 font-bold">Ingresá tu contraseña</label>
-                                <input type="password" name="password" className="h-8 rounded-full px-3 border border-black-main"/>
+                                <input type="password" name="password" className="h-10 rounded-full px-3 border border-black-main"/>
                             </div>
                             <button formAction={login} className="hover:bg-yellow-main hover:text-black-main transition w-9/12 mt-3 rounded-full h-9 bg-black-main text-yellow-main cursor-pointer">Acceder</button>
                         </form>

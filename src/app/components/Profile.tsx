@@ -1,4 +1,4 @@
-// import Image from "next/image"
+import Image from "next/image"
 
 import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
 import { fetchFullUser } from "../lib/data-server";
@@ -15,7 +15,8 @@ export default async function Profile({id}: Props) {
         <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
             <section className="flex gap-20 flex-col xl:flex-row items-center justify-between">
                 <div className="h-[200px] xl:h-[180px] flex items-center gap-10">
-                    <div className="rounded-full self-start min-w-[150px] min-h-[150px] bg-cover bg-center" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
+                    <div className="rounded-full self-start min-w-[150px] min-h-[150px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
+                        {/* <Image src="" alt="" width={150} height={150} /> */}
                     </div>
                     <div className="h-full flex flex-col justify-between">
                         <div className="">

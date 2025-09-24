@@ -1,9 +1,12 @@
+type MinimalProfile = Pick<ProfileType, 'name'>;
+
 export interface PostType{
     id: string
     user_id: string
     body: string
     created_at: string
     likes: number
+    profiles: MinimalProfile
 }
 
 export interface UserPublicInfo{

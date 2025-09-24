@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${passionOne.variable} ${openSans.variable} antialiased`}
+        className={`${passionOne.variable} ${openSans.variable} antialiased scroll-smooth`}
       >
         {children}
       </body>
