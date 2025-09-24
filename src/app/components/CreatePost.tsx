@@ -13,7 +13,7 @@ export default function CreatePost({ id }: { id: string | undefined }) {
         
         try {
             await insertPost(body, id)
-            // window.location.reload();
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }

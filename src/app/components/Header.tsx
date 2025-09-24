@@ -1,4 +1,4 @@
-import { FileText, LogOut, Menu,  SettingsIcon, Star, User2 } from "lucide-react";
+import { LogOut, Menu,  Search,  SettingsIcon, Star, User2 } from "lucide-react";
 import Link from "next/link";
 import DropdownMenu from "./DropdownMenu";
 
@@ -29,7 +29,7 @@ export default function Header() {
                     <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
                         <nav className="w-full flex flex-col gap-4 p-5 font-medium">
                             <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</Link>
-                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><FileText />Proyectos</Link>
+                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Search />Buscar</Link>
                             <hr />
                             <Link href="/home/my-profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
                             <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>

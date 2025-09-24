@@ -1,15 +1,19 @@
 import { PostType } from "../utils/definitions"
+import { formatDate } from "../utils/DateFormatter"
 
 
 export default function Post({created_at, body, profiles}: PostType) {
+
+	const formatedDate = formatDate(created_at)
+
 	return (
 		<article className="w-full h-fit flex flex-col font-second bg-slate-200 rounded-lg p-5">
 			<div id="post-header" className="w-fit flex items-center gap-4">
 				<div className="rounded-full min-w-[60px] min-h-[60px] bg-cover bg-center" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
                 </div>
-				<div>
+				<div className="flex flex-col gap-1">
 					<h2 className="font-bold font-second">{profiles.name} <span className="font-normal">realizó un post</span></h2>
-					<span>{created_at}</span>
+					<span className="text-xs md:text-md">{formatedDate}</span>
 				</div>
 			</div>
 			<div id="post-body" className="mt-4">

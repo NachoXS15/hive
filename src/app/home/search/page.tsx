@@ -1,4 +1,3 @@
-import ProfileSearchCard from "@/app/components/ProfileSearchCard";
 import SearchFormResults from "@/app/components/SearchFormResults";
 import { fetchUsers } from "@/app/lib/data-server";
 import { ProfileType } from "@/app/utils/definitions";

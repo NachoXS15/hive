@@ -7,8 +7,8 @@ export default async function page() {
     if (data.user) {
         supabase.auth.signOut();
         console.log("sesion cerrada");
-        redirect("/login");
+        redirect("/auth/login");
     }else{
-        redirect("/login");
+        redirect("/auth/login");
     }
 }

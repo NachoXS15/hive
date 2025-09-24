@@ -13,7 +13,7 @@ export default async function ProfileFeed({ posts }: Props) {
             <div className="pt-5 pb-10 flex flex-col gap-5">
                 <h2 className="font-bold text-xl font-second">Publicaciones</h2>
                 {
-                    posts ? posts.map((post, i) => {
+                    posts ? posts.reverse().map((post, i) => {
                         
                         return(
                             <Post key={i} {...post} />
