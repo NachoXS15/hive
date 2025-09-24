@@ -1,10 +1,7 @@
 import { PostType } from "../utils/definitions"
 
-type Props = {
-	post: PostType
-}
 
-export default function Post({created_at, body, likes, profiles}: PostType) {
+export default function Post({created_at, body, profiles}: PostType) {
 	return (
 		<article className="w-full h-fit flex flex-col font-second bg-slate-200 rounded-lg p-5">
 			<div id="post-header" className="w-fit flex items-center gap-4">

@@ -9,7 +9,6 @@ type Props = {
 export default async function Profile({id}: Props) {
 
     const profile = await fetchFullUser(id)
-    console.log(profile);
     
     return (
         <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">

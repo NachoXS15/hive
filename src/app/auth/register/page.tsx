@@ -1,8 +1,8 @@
 'use client'
 
 import Link from "next/link";
-import { supabaseClient } from "../utils/supabase/client";
-import { ProfileType, UserSignIn } from "../utils/definitions";
+import { supabaseClient } from "../../utils/supabase/client";
+import { ProfileType, UserSignIn } from "../../utils/definitions";
 import { ArrowDown } from "lucide-react";
 
 export default function page() {
@@ -45,7 +45,6 @@ export default function page() {
 
             try {
                 const { data, error } = await supabaseClient.auth.signUp(info);
-                console.log(data);
                 usernameId = data.user?.id;
                 if (error) {
                     console.log("error crear usuario: ", error);

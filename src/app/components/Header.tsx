@@ -8,7 +8,7 @@ export default function Header() {
             <div className="relative">
                 <input type="checkbox" className="peer hidden" id="navbar-open" />
                 <header className="w-full h-20 relative flex items-center bg-yellow-main justify-between md:justify-around px-10">
-                    <Link href="/home" className="font-main text-4xl font-black hover:scale-110 transition">HIVE</Link>
+                    <Link href="/home" className="font-main text-4xl font-black hover:scale-110 transition">hive</Link>
                     <nav className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20">
                         <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Explorar</Link>
                         <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Contratar</Link>
