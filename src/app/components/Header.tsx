@@ -33,7 +33,7 @@ export default function Header() {
                             <hr />
                             <Link href="/home/my-profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
                             <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>
-                            <Link href="/logout" className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</Link>
+                            <Link href="/auth/logout" className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</Link>
                         </nav>
                     </div>
                 </div>

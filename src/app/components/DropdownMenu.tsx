@@ -7,7 +7,7 @@ export default function DropdownMenu() {
                 <nav className="w-full flex flex-col gap-2 p-3 font-medium">
                     <Link href="/home/my-profile" className="flex items-center gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><User2 /> Mi Perfil</Link>
                     <Link href="/home/profile" className="flex items-center gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><SettingsIcon /> Configuración</Link>
-                    <Link href="/logout" className="flex items-center gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><LogOut /> Cerrar sesión</Link>
+                    <Link href="/auth/logout" className="flex items-center gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><LogOut /> Cerrar sesión</Link>
                 </nav>
             </div>
         </div>

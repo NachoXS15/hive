@@ -107,7 +107,7 @@ export default function page() {
                     <div className="w-full flex flex-col justify-center relative items-center">
                         <span className="font-main text-3xl font-black">HIVE</span>
                         <h2 className="w-full text- font-bold text-3xl md:text-7xl leading-tight text-center">¡Hola!, Encantados de conocerte :D</h2>
-                        <Link href="/login" className="text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer hover:border font-semibold font-second px-1 py-2 mt-2 md:p-3 border rounded text-center">¿Ya tenes una cuenta? Logueate :,)</Link>
+                        <Link href="/auth/login" className="text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer hover:border font-semibold font-second px-1 py-2 mt-2 md:p-3 border rounded text-center">¿Ya tenes una cuenta? Logueate :,)</Link>
                         <a href="#form" className="slide-in-bottom absolute -bottom-40 cursor-pointer"><ArrowDown size={40} /></a>
                     </div>
                 </section>

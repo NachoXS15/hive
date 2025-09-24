@@ -1,7 +1,7 @@
 import Link from "next/link";
 import login from "./actions";
 import { redirect } from "next/navigation";
-import { createClient } from "../utils/supabase/server";
+import { createClient } from "../../../utils/supabase/server";
 
 export default async function page() {
     const supabase = await createClient()
@@ -42,7 +42,7 @@ export default async function page() {
                                 <span>¿Olvidaste tu usuario o contraseña?</span>
                                 <Link href="/recuperar-password" className="underline cursor-pointer">Recuperarla acá</Link>
                             </div>
-                            <span>¿Nuevo? <Link href="/register" className="hover:underline">Creá tu usuario acá :D</Link></span>
+                            <span>¿Nuevo? <Link href="/auth/register" className="hover:underline">Creá tu usuario acá :D</Link></span>
                         </div>
                     </div>
                 </section>
