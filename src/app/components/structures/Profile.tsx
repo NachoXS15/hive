@@ -2,7 +2,7 @@
 
 import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
 import { fetchFullUser } from "../../lib/data-server";
-import LinksComp from "../LinksComp";
+import LinksComp from "./LinksComp";
 type Props = {
     id: string
 }

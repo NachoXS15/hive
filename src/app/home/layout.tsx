@@ -2,7 +2,7 @@ import React from "react"
 import Header from "../components/structures/Header"
 import { createClient } from "../utils/supabase/server"
 import { redirect } from "next/navigation"
-import MenuStateReset from "../components/MenuStateReset"
+import MenuStateReset from "../components/misc/MenuStateReset"
 import Footer from "../components/structures/Footer"
 
 export default async function layout({ children }: { children: React.ReactNode }) {
@@ -11,7 +11,7 @@ export default async function layout({ children }: { children: React.ReactNode }
 
 	const { data, error } = await supabase.auth.getUser()
 	if (error || !data?.user) {
-		redirect('/login')
+		redirect('/auth/login')
 	}
 	return (
 		<>
