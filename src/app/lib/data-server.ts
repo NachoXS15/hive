@@ -1,4 +1,4 @@
-import { PostType, ProfileType, SimpleUserType } from "../utils/definitions";
+import { LinksProfileType, PostType, ProfileType, SimpleUserType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
 export async function fetchUsers(){
@@ -47,6 +47,22 @@ export async function fetchPostsById(id: string){
             console.log(error.message);
         }
         return data as PostType[];
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function fetchLinksById(id: string){
+    try {
+        const supabase = await createClient();
+        const { data, error } = await supabase
+        .from("user_links")
+        .select(`*`)
+        .eq("user_id", id).maybeSingle();
+        if (error) {
+            console.log(error.message);
+        }
+        return data as LinksProfileType;
     } catch (error) {
         console.error(error);
     }
