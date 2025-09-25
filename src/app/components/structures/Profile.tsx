@@ -1,7 +1,7 @@
 // import Image from "next/image"
 
 import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
-import { fetchFullUser } from "../../lib/data-server";
+import { fetchFullUser, fetchLinksById } from "../../lib/data-server";
 import LinksComp from "./LinksComp";
 type Props = {
     id: string
@@ -10,7 +10,7 @@ type Props = {
 export default async function Profile({id}: Props) {
 
     const profile = await fetchFullUser(id)
-    
+    const links = await fetchLinksById(id);
     return (
         <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
             <section className="flex gap-20 flex-col xl:flex-row items-center justify-between">
@@ -44,7 +44,7 @@ export default async function Profile({id}: Props) {
                 <h2 className="font-bold text-xl font-second">Acerca de mí:</h2>
                 <p>{profile?.user_public_info?.desc}</p>
             </section>
-            <LinksComp />
+            <LinksComp links={links} />
         </article>
     )
 }
