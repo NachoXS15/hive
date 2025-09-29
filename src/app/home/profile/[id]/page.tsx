@@ -1,6 +1,6 @@
 import Profile from "@/app/components/structures/Profile";
 import ProfileFeed from "@/app/components/structures/ProfileFeed";
-import { fetchPostsById } from "@/app/lib/data-server";
+import { fetchLinksById, fetchPostsById } from "@/app/lib/data-server";
 import { InferGetServerSidePropsType } from "next";
 import { getServerSideProps } from "next/dist/build/templates/pages";
 
@@ -15,7 +15,8 @@ export default async function page({
         return "No id.";
     }
     const posts = await fetchPostsById(id)
-    console.log(posts);
+    const links = await fetchLinksById(id)
+    console.log(links);
     
     
     return (

@@ -3,6 +3,7 @@ import Profile from "@/app/components/structures/Profile";
 import ProfileFeed from "@/app/components/structures/ProfileFeed";
 import { fetchLinksById, fetchPostsById } from "@/app/lib/data-server";
 import { createClient } from "@/app/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 
 export default async function page() {
@@ -10,13 +11,15 @@ export default async function page() {
 	const supabase = await createClient();
 	const {data, error} = await supabase.auth.getUser();
 	if (error) {
-		return error;
+		redirect("/error/303")
 	}
 	const id = data?.user?.id
 	const posts = await fetchPostsById(id)
 	const links = await fetchLinksById(id);
 
 	console.log(links);
+
+	
 	
 	return (
 		<main className="w-full h-fit flex py-10 items-center flex-col px-6 md:px-0">

@@ -2,7 +2,7 @@ import { PostType } from "../../utils/definitions";
 import Post from "./Post";
 
 type Props = {
-    posts: PostType[] | undefined
+    posts: PostType[] | undefined | null
 
 }
 
