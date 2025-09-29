@@ -16,7 +16,7 @@ export interface LinksProfileType {
     facebook?: string
     instagram?: string
     twitter?: string
-    portfolio?: string
+    portfolio_cv?: string
     linkedin?: string
 }
 

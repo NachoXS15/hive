@@ -1,11 +1,10 @@
-import { LogOut, Menu, Search, SettingsIcon, Star, User2 } from "lucide-react";
+import { LogIn, LogOut, Menu, Search, SettingsIcon, Star, User2, UserPlus2 } from "lucide-react";
 import Link from "next/link";
 import DropdownMenu from "../ui/DropdownMenu";
 import { User } from "@supabase/supabase-js";
 
 export default function Header({ profile }: { profile: User | null }) {
-    console.log(profile);
-    
+
     return (
         <>
             <div className="relative">
@@ -43,14 +42,27 @@ export default function Header({ profile }: { profile: User | null }) {
                 </header>
                 <div className="md:hidden peer-checked:block hidden z-50 w-full absolute bg-black-main text-yellow-main top-20" id="menu-open">
                     <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
-                        <nav className="w-full flex flex-col gap-4 p-5 font-medium">
-                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</Link>
-                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Search />Buscar</Link>
-                            <hr />
-                            <Link href="/home/my-profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
-                            <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>
-                            <Link href="/auth/logout" className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</Link>
-                        </nav>
+                        {
+                            profile ? (
+                                <nav className="w-full flex flex-col gap-4 p-5 font-medium">
+                                    <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</Link>
+                                    <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Search />Buscar</Link>
+                                    <hr />
+                                    <Link href="/home/my-profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
+                                    <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>
+                                    <Link href="/auth/logout" className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</Link>
+                                </nav>
+
+                            ) : (
+                                <nav className="w-full flex flex-col gap-4 p-5 font-medium">
+                                    <Link href="/" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><Star />Explorar</Link>
+                                    <Link href="/" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><Search />Buscar</Link>
+                                    <hr />
+                                    <Link href="/auth/login" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><LogIn /> Iniciar sesión</Link>
+                                    <Link href="/auth/register" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><UserPlus2 /> Crear cuenta</Link>
+                                </nav>
+                            )
+                        }
                     </div>
                 </div>
             </div>

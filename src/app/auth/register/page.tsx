@@ -1,8 +1,8 @@
 'use client'
 
 import Link from "next/link";
-import { supabaseClient } from "../../utils/supabase/client";
-import { ProfileType, UserSignIn } from "../../utils/definitions";
+// import { supabaseClient } from "../../utils/supabase/client";
+// import { ProfileType, UserSignIn } from "../../utils/definitions";
 import { ArrowDown } from "lucide-react";
 
 export default function page() {
@@ -25,79 +25,79 @@ export default function page() {
             confirmPassword
         });
 
-        if (!name || !mail || !username || !password || !confirmPassword) {
-            console.error("Todos los campos son obligatorios");
-            return;
-        }
+        // if (!name || !mail || !username || !password || !confirmPassword) {
+        //     console.error("Todos los campos son obligatorios");
+        //     return;
+        // }
 
-        if (password != confirmPassword) {
-            console.error("Contraseñas no coinciden");
-            return;
-        }
+        // if (password != confirmPassword) {
+        //     console.error("Contraseñas no coinciden");
+        //     return;
+        // }
 
-        let usernameId: string | undefined = "";
+        // let usernameId: string | undefined = "";
 
-        const postUser = async ({ email, password }: UserSignIn) => {
-            const info = {
-                email: email.trim(),
-                password: password,
-            };
+        // const postUser = async ({ email, password }: UserSignIn) => {
+        //     const info = {
+        //         email: email.trim(),
+        //         password: password,
+        //     };
 
-            try {
-                const { data, error } = await supabaseClient.auth.signUp(info);
-                usernameId = data.user?.id;
-                if (error) {
-                    console.log("error crear usuario: ", error);
-                }
-                return data;
-            } catch (error) {
-                console.log(error);
-            }
-        };
+        //     try {
+        //         const { data, error } = await supabaseClient.auth.signUp(info);
+        //         usernameId = data.user?.id;
+        //         if (error) {
+        //             console.log("error crear usuario: ", error);
+        //         }
+        //         return data;
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // };
 
-        const postUserDB = async ({
-            name,
-            mail,
-            username,
-        }: ProfileType) => {
-            try {
-                const { data, error } = await supabaseClient
-                    .from("profiles")
-                    .insert([
-                        {
-                            id: usernameId,
-                            name,
-                            mail,
-                            username,
-                        },
-                    ])
-                    .select();
-                console.log({ data, error });
-                if (error) {
-                    throw error;
-                }
-                console.log("Usuario: insertado:", data);
-                return data;
-            } catch (error) {
-                console.error("Error al insertar usuario:", error);
-                throw error;
-            }
-        };
+        // const postUserDB = async ({
+        //     name,
+        //     mail,
+        //     username,
+        // }: ProfileType) => {
+        //     try {
+        //         const { data, error } = await supabaseClient
+        //             .from("profiles")
+        //             .insert([
+        //                 {
+        //                     id: usernameId,
+        //                     name,
+        //                     mail,
+        //                     username,
+        //                 },
+        //             ])
+        //             .select();
+        //         console.log({ data, error });
+        //         if (error) {
+        //             throw error;
+        //         }
+        //         console.log("Usuario: insertado:", data);
+        //         return data;
+        //     } catch (error) {
+        //         console.error("Error al insertar usuario:", error);
+        //         throw error;
+        //     }
+        // };
 
-        try {
-            await postUser({
-                email: mail as string,
-                password: password as string,
-            });
-            await postUserDB({
-                name,
-                mail,
-                username
-            });
-            window.location.href = "/home";
-        } catch (error) {
-            console.log("Error: ", error);
-        }
+        // try {
+        //     await postUser({
+        //         email: mail as string,
+        //         password: password as string,
+        //     });
+        //     await postUserDB({
+        //         name,
+        //         mail,
+        //         username
+        //     });
+        //     window.location.href = "/home";
+        // } catch (error) {
+        //     console.log("Error: ", error);
+        // }
     };
     return (
         <>

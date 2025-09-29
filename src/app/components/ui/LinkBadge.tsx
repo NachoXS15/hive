@@ -1,12 +1,21 @@
-import { Facebook, Instagram, Twitter } from "./Icons"
-import { BriefcaseBusiness } from "lucide-react"
+type Props = {
+  red_social: string;
+  color: string;
+  icon: React.ReactNode;
+  link: string | undefined;
+};
 
-
-
-export default function LinkBadge() {
-    return (
-        <div className="w-full flex gap-4 flex-wrap mt-5">
-            <a href="" className="bg-blue-500 rounded-lg px-5 py-3 text-blue-100 flex items-center gap-2 font-semibold"><Facebook color="white" />Nacho Pantoja</a>
-        </div>
-    )
+export default function LinkBadge({ red_social, color, icon, link }: Props) {
+  return (
+    <div>
+      <a
+        href={link}
+        className={`bg-${color}-500 rounded-lg px-5 py-3 text-${color}-100 text-white flex items-center gap-2 font-semibold`}
+      >
+        {icon}
+        {red_social}
+      </a>
+    </div>
+  );
 }
+
