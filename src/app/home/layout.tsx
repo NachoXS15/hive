@@ -9,13 +9,13 @@ export default async function layout({ children }: { children: React.ReactNode }
 
 	const supabase = await createClient()
 
-	const { data: profile } = await supabase.auth.getUser()
-	
+	const { data: {user}} = await supabase.auth.getUser()
+
 
 	return (
 		<>
 			<MenuStateReset />
-			<Header profile={profile} />
+			<Header profile={user} />
 			{children}
 			<Footer />
 		</>

@@ -1,8 +1,9 @@
 import { LogOut, Menu, Search, SettingsIcon, Star, User2 } from "lucide-react";
 import Link from "next/link";
 import DropdownMenu from "../ui/DropdownMenu";
+import { User } from "@supabase/supabase-js";
 
-export default function Header({ profile }) {
+export default function Header({ profile }: { profile: User | null }) {
     console.log(profile);
     
     return (
@@ -21,7 +22,7 @@ export default function Header({ profile }) {
                             <>
                                 <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">IP</label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
-                                <DropdownMenu />
+                                <DropdownMenu profile={profile} />
                                 <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
                                     <Menu size={28} />
                                 </label>
@@ -30,7 +31,7 @@ export default function Header({ profile }) {
                             <>
                                 <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition"><User2 /></label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
-                                <DropdownMenu />
+                                <DropdownMenu profile={profile} />
                                 <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
                                     <Menu size={28} />
                                 </label>
