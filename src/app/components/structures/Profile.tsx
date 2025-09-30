@@ -1,13 +1,15 @@
 // import Image from "next/image"
 
-import { BriefcaseBusiness, Cake, Pin, School } from "lucide-react";
+import { BriefcaseBusiness, Cake, Pen, Pin, School, UserPlus2 } from "lucide-react";
 import { fetchFullUser, fetchLinksById } from "../../lib/data-server";
 import LinksComp from "./LinksComp";
+import Link from "next/link";
 type Props = {
     id: string
+    auth_status?: string | undefined
 }
 
-export default async function Profile({id}: Props) {
+export default async function Profile({id, auth_status}: Props) {
 
     const profile = await fetchFullUser(id)
     const links = await fetchLinksById(id);
@@ -15,8 +17,16 @@ export default async function Profile({id}: Props) {
         <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
             <section className="flex gap-20 flex-col xl:flex-row items-center justify-between">
                 <div className="h-[200px] xl:h-[180px] flex items-center gap-10">
-                    <div className="rounded-full self-start min-w-[150px] min-h-[150px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
-                        {/* <Image src="" alt="" width={150} height={150} /> */}
+                    <div className="flex flex-col items-center gap-2">
+                        <div className="rounded-full self-start min-w-[150px] min-h-[150px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
+                        </div>
+                        {
+                            auth_status == "authenticated" ? (
+                                <Link href="" className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg"><Pen />Editar perfil</Link>
+                            ) : (
+                                <button className="px-1 w-full justify-center2 flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg"><UserPlus2 />Seguir</button>
+                            )
+                        }
                     </div>
                     <div className="h-full flex flex-col justify-between">
                         <div className="">

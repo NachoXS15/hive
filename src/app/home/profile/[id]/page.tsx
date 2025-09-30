@@ -16,6 +16,7 @@ export default async function page({
     }
     const posts = await fetchPostsById(id)
     const links = await fetchLinksById(id)
+
     console.log(links);
     
     
