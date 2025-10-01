@@ -18,11 +18,11 @@ export default async function page() {
     const posts = await fetchPosts();
     return (
         profile ? (
-            <main className="flex items-center justify-center w-full h-fit">
-                <div className="w-4/12 h-fit flex flex-col items-center">
+            <main className="flex items-center justify-center w-full h-fit px-10">
+                <div className="w-full md:w-7/12 xl:w-4/12 h-fit flex flex-col items-center">
                     <h2 className="font-second font-semibold mt-7 self-start">Bienvenid@, <span className="bg-yellow-main text-black-main px-3 py-1 rounded">{profile?.name}</span></h2>
                     <CreatePost id={id} />
-                    <div className="w-full pt-5 pb-10 flex flex-col gap-5">
+                    <div className="w-full py-10 flex flex-col gap-5">
                         <h2 className="font-bold text-xl font-second">Publicaciones</h2>
                         {
                             posts ? posts.reverse().map((post, i) => {

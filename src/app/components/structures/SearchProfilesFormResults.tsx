@@ -19,7 +19,7 @@ export default function SearchFormResults({profiles}: Props) {
 
     return (
         <>
-            <div className="w-full px-5 md:w-5/12 mt-20">
+            <div className="w-full px-5 md:w-7/12 xl:w-5/12 mt-20">
                 <form action="" className="">
                     <h2 className="text-center font-bold font-second text-3xl mb-5">¡Encontrá personas maravillosas!</h2>
                     <label htmlFor="" className="w-full h-15 rounded-2xl border border-slate-400 bg-slate-50 flex justify-between items-center px-5">

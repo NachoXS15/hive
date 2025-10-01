@@ -1,4 +1,4 @@
-import { LogIn, LogOut, Menu, Search, SettingsIcon, Star, User2, UserPlus2 } from "lucide-react";
+import { BookHeart, LogIn, LogOut, Menu, Search, SettingsIcon, Star, User2, UserPlus2 } from "lucide-react";
 import Link from "next/link";
 import { User } from "@supabase/supabase-js";
 import DropdownMenuSearch from "../ui/DropdownMenuSearch";
@@ -50,7 +50,8 @@ export default function Header({ profile }: { profile: User | null }) {
                             profile ? (
                                 <nav className="w-full flex flex-col gap-4 p-5 font-medium">
                                     <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</Link>
-                                    <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Search />Buscar</Link>
+                                    <Link href="/home/search/profiles" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 /> Buscar Perfiles</Link>
+                                    <Link href="/home/search/documents" className="flex items-center gap-2 font-medium active:scale-110 transition"><BookHeart /> Buscar Documentos</Link>
                                     <hr />
                                     <Link href="/home/my-profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
                                     <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>
