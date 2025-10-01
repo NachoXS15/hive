@@ -39,7 +39,7 @@ export interface ProfileType {
     mail?: string | null
     img?: string
     created_at?: string
-    user_public_info: UserPublicInfo | undefined | null
+    user_public_info?: UserPublicInfo | undefined | null
 }
 
 export interface SimpleUserType {

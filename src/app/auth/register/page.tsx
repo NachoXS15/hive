@@ -1,8 +1,8 @@
 'use client'
 
 import Link from "next/link";
-// import { supabaseClient } from "../../utils/supabase/client";
-// import { ProfileType, UserSignIn } from "../../utils/definitions";
+import { supabaseClient } from "../../utils/supabase/client";
+import { ProfileType, UserPublicInfo, UserSignIn } from "../../utils/definitions";
 import { ArrowDown } from "lucide-react";
 
 export default function page() {
@@ -11,94 +11,162 @@ export default function page() {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
+        //column1
         const name = formData.get("name")?.toString();
         const mail = formData.get("mail")?.toString();
         const username = formData.get("user")?.toString();
         const password = formData.get("password")?.toString();
         const confirmPassword = formData.get("confirm-password")?.toString();
 
+        //column 2
+        const job_avaliable = formData.get("job_avaliable")?.toString();
+        const degree = formData.get("degree")?.toString();
+        const university = formData.get("university")?.toString();
+        const desc = formData.get("desc")?.toString();
+
+        //column3
+        const student_status = formData.get("student_status")?.toString();
+        const province = formData.get("province")?.toString();
+        const birthday = formData.get("birthday")?.toString();
+
+
         console.log({
             name,
             mail,
             username,
             password,
-            confirmPassword
+            confirmPassword,
+            job_avaliable,
+            degree,
+            university,
+            desc,
+            student_status,
+            province,
+            birthday,
         });
 
-        // if (!name || !mail || !username || !password || !confirmPassword) {
-        //     console.error("Todos los campos son obligatorios");
-        //     return;
-        // }
+        if (!name || !mail || !username || !password || !confirmPassword || !student_status || !job_avaliable || !degree || !university || !desc || !province || !birthday) {
+            console.error("Todos los campos son obligatorios");
+            return;
+        }
 
-        // if (password != confirmPassword) {
-        //     console.error("Contraseñas no coinciden");
-        //     return;
-        // }
+        if (password != confirmPassword) {
+            console.error("Contraseñas no coinciden");
+        } else {
+            console.log("Contraseñas coinciden");
+        }
 
-        // let usernameId: string | undefined = "";
+        let usernameId: string | undefined = "";
 
-        // const postUser = async ({ email, password }: UserSignIn) => {
-        //     const info = {
-        //         email: email.trim(),
-        //         password: password,
-        //     };
+        const postUser = async ({ email, password }: UserSignIn) => {
+            const info = {
+                email: email.trim(),
+                password: password,
+            };
 
-        //     try {
-        //         const { data, error } = await supabaseClient.auth.signUp(info);
-        //         usernameId = data.user?.id;
-        //         if (error) {
-        //             console.log("error crear usuario: ", error);
-        //         }
-        //         return data;
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // };
+            try {
+                const { data, error } = await supabaseClient.auth.signUp(info);
+                usernameId = data.user?.id;
+                if (error) {
+                    console.log("error crear usuario: ", error);
+                }
+                console.log("Usuario creado!");
+                
+                return data;
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
-        // const postUserDB = async ({
-        //     name,
-        //     mail,
-        //     username,
-        // }: ProfileType) => {
-        //     try {
-        //         const { data, error } = await supabaseClient
-        //             .from("profiles")
-        //             .insert([
-        //                 {
-        //                     id: usernameId,
-        //                     name,
-        //                     mail,
-        //                     username,
-        //                 },
-        //             ])
-        //             .select();
-        //         console.log({ data, error });
-        //         if (error) {
-        //             throw error;
-        //         }
-        //         console.log("Usuario: insertado:", data);
-        //         return data;
-        //     } catch (error) {
-        //         console.error("Error al insertar usuario:", error);
-        //         throw error;
-        //     }
-        // };
+        const postUserDB = async ({
+            name,
+            mail,
+            username,
+        }: ProfileType) => {
+            try {
+                const { data, error } = await supabaseClient
+                    .from("profiles")
+                    .insert([
+                        {
+                            id: usernameId,
+                            name,
+                            mail,
+                            username,
+                        },
+                    ])
+                    .select();
+                console.log({ data, error });
+                if (error) {
+                    throw error;
+                }
+                console.log("Usuario: insertado:", data);
+                return data;
+            } catch (error) {
+                console.error("Error al insertar usuario:", error);
+                throw error;
+            }
+        };
+        const postUserInfoDB = async ({
+            job_avaliable,
+            degree,
+            university,
+            desc,
+            student_status,
+            province,
+            birthday,
+        }: UserPublicInfo) => {
+            try {
+                const { data, error } = await supabaseClient
+                    .from("user_public_info")
+                    .insert([
+                        {
+                            user_id: usernameId,
+                            job_avaliable,
+                            degree,
+                            university,
+                            desc,
+                            student_status,
+                            province,
+                            birthday
+                        },
+                    ])
+                console.log({ data, error });
+                if (error) {
+                    throw error;
+                }
+                console.log("Usuario: insertado:", data);
+                return data;
+            } catch (error) {
+                console.error("Error al insertar usuario:", error);
+                throw error;
+            }
+        };
 
-        // try {
-        //     await postUser({
-        //         email: mail as string,
-        //         password: password as string,
-        //     });
-        //     await postUserDB({
-        //         name,
-        //         mail,
-        //         username
-        //     });
-        //     window.location.href = "/home";
-        // } catch (error) {
-        //     console.log("Error: ", error);
-        // }
-    };
+        try {
+            await postUser({
+                email: mail as string,
+                password: password as string,
+            });
+            await postUserDB({
+                name,
+                mail,
+                username
+            });
+            await postUserInfoDB({
+                job_avaliable,
+                degree,
+                university,
+                desc,
+                student_status,
+                province,
+                birthday,
+            });
+            window.location.href = "/auth/login";
+        } catch (error) {
+            console.log("Error: ", error);
+        }
+    }
+
     return (
         <>
             <main className="w-full min-h-screen flex-col text-black-main font-main">
@@ -138,7 +206,7 @@ export default function page() {
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Carrera, Titulo o Cargo</label>
                                 <input type="text" required name="degree" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
-                                <select required name="university" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500"  id="universidad">
+                                <select required name="university" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" id="universidad">
                                     <option value="Universidad de Buenos Aires">Universidad de Buenos Aires</option>
                                     <option value="Universidad Nacional de La Plata">Universidad Nacional de La Plata</option>
                                     <option value="Universidad Nacional de Córdoba">Universidad Nacional de Córdoba</option>
@@ -206,6 +274,6 @@ export default function page() {
             </main>
         </>
     )
-}
+};
 
 
