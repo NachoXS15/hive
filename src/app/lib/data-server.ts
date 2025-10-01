@@ -31,6 +31,24 @@ export async function fetchUserById(id: string){
     }
 }
 
+export async function fetchPosts(){
+    try {
+        const supabase = await createClient();
+        const {data, error} = await supabase.from("posts").select(`
+            *,
+            profiles (
+                name
+            )
+        `);
+        if (error) {
+            console.log(error.message);
+        }
+        return data as PostType[];
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export async function fetchPostsById(id: string){
     try {
         const supabase = await createClient();

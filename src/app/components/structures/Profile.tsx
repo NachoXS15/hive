@@ -15,23 +15,23 @@ export default async function Profile({id, auth_status}: Props) {
     const links = await fetchLinksById(id);
     return (
         <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
-            <section className="flex gap-20 flex-col xl:flex-row items-center justify-between">
-                <div className="h-[200px] xl:h-[180px] flex items-center gap-10">
+            <section className="w-full flex gap-20 flex-col xl:flex-row items-center justify-between">
+                <div className="w-full h-[200px] xl:h-[180px] flex items-center gap-10">
                     <div className="flex flex-col items-center gap-2">
-                        <div className="rounded-full self-start min-w-[150px] min-h-[150px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
+                        <div className="rounded-full self-start min-w-[130px] min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
                         </div>
                         {
                             auth_status == "authenticated" ? (
-                                <Link href="" className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg"><Pen />Editar perfil</Link>
+                                <Link href="" className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><Pen />Editar perfil</Link>
                             ) : (
-                                <button className="px-1 w-full justify-center2 flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg"><UserPlus2 />Seguir</button>
+                                <button className="px-1 w-full justify-center2 flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><UserPlus2 />Seguir</button>
                             )
                         }
                     </div>
-                    <div className="h-full flex flex-col justify-between">
-                        <div className="">
-                            <h2 className="font-normal text-3xl font-main">{profile?.name}</h2>
-                            <h3 className="">{profile?.user_public_info?.degree}</h3>
+                    <div className="w-full h-full flex flex-col justify-between">
+                        <div className="w-full">
+                            <h2 className="font-normal text-2xl font-main">{profile?.name}</h2>
+                            <h3 className="text-xs">{profile?.user_public_info?.degree}</h3>
                         </div>
                         <div id="info" className="hidden xl:flex w-full flex-wrap items-center gap-3 font-second">
                             <span className="text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> {profile?.user_public_info?.job_avaliable}</span>
@@ -52,7 +52,7 @@ export default async function Profile({id, auth_status}: Props) {
             <hr className="w-20 m-auto my-10" />
             <section className="mt-10">
                 <h2 className="font-bold text-xl font-second">Acerca de mí:</h2>
-                <p>{profile?.user_public_info?.desc}</p>
+                <p style={{ fontSize: "0.9em" }}>{profile?.user_public_info?.desc}</p>
             </section>
             <LinksComp links={links} />
         </article>

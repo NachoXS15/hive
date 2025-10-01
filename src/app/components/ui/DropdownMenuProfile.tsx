@@ -1,7 +1,7 @@
 import { User } from "@supabase/supabase-js";
 import { LogIn, LogOut, SettingsIcon, User2, UserPlus2 } from "lucide-react";
 import Link from "next/link";
-export default function DropdownMenu({ profile }: { profile: User | null }) {
+export default function DropdownMenuProfile({ profile }: { profile: User | null }) {
     return (
         <div className="hidden peer-checked:block z-50 w-52 absolute rounded-2xl bg-black-main text-yellow-main top-20 right-20" id="menu-open">
             <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">

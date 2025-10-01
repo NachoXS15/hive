@@ -3,7 +3,6 @@ import { formatDate } from "../../utils/DateFormatter"
 
 
 export default function Post({created_at, body, profiles}: PostType) {
-
 	const formatedDate = formatDate(created_at)
 
 	return (
@@ -17,7 +16,7 @@ export default function Post({created_at, body, profiles}: PostType) {
 				</div>
 			</div>
 			<div id="post-body" className="mt-4">
-				<p className="">{body}</p>
+				<p className="" style={{fontSize: '0.9em'}}>{body}</p>
 			</div>
 			<div id="post-footer" className="rounded-lg mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-[40px]">
 				<button className="hover:cursor-pointer hover:bg-slate-500 hover:text-slate-50 transition w-1/3 border-r border-r-slate-400 bg-slate-300 h-full">Me gusta</button>

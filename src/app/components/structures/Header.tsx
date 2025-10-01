@@ -1,7 +1,8 @@
 import { LogIn, LogOut, Menu, Search, SettingsIcon, Star, User2, UserPlus2 } from "lucide-react";
 import Link from "next/link";
-import DropdownMenu from "../ui/DropdownMenu";
 import { User } from "@supabase/supabase-js";
+import DropdownMenuSearch from "../ui/DropdownMenuSearch";
+import DropdownMenuProfile from "../ui/DropdownMenuProfile";
 
 export default function Header({ profile }: { profile: User | null }) {
 
@@ -14,14 +15,17 @@ export default function Header({ profile }: { profile: User | null }) {
                     <nav className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20">
                         <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Explorar</Link>
                         <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Contratar</Link>
-                        <Link href="/home/search" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Buscar</Link>
+                        <label htmlFor="dropdown-search-open" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Buscar</label>
+                        <input type="checkbox" className="peer hidden" id="dropdown-search-open" />
+                        <DropdownMenuSearch />
+
                     </nav>
                     {
                         profile ? (
                             <>
                                 <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">IP</label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
-                                <DropdownMenu profile={profile} />
+                                <DropdownMenuProfile profile={profile} />
                                 <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
                                     <Menu size={28} />
                                 </label>
@@ -30,7 +34,7 @@ export default function Header({ profile }: { profile: User | null }) {
                             <>
                                 <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition"><User2 /></label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
-                                <DropdownMenu profile={profile} />
+                                <DropdownMenuProfile profile={profile} />
                                 <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
                                     <Menu size={28} />
                                 </label>
