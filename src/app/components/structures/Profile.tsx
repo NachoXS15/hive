@@ -21,14 +21,14 @@ export default async function Profile({id, auth_status}: Props) {
     }
     return (
         <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
-            <section className="w-full flex gap-20 flex-col xl:flex-row items-center justify-between">
-                <div className="w-full h-[200px] xl:h-[180px] flex items-center gap-10">
-                    <div className="flex flex-col items-center gap-2">
+            <section className="w-full flex gap-10 md:gap-20 flex-col xl:flex-row items-center justify-between">
+                <div className="w-full h-[200px] xl:h-[180px] flex flex-col md:flex-row md:items-center gap-5 md:gap-10">
+                    <div className="flex flex-row md:flex-col items-center gap-2">
                         <div className="rounded-full self-start min-w-[130px] min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
                         </div>
                         {
                             auth_status == "authenticated" ? (
-                                <Link href="" className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><Pen />Editar perfil</Link>
+                                <Link href={`/home/my-profile/edit/${id}`} className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><Pen />Editar perfil</Link>
                             ) : (
                                 <button className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><UserPlus2 />Seguir</button>
                             )
@@ -36,8 +36,11 @@ export default async function Profile({id, auth_status}: Props) {
                     </div>
                     <div className="w-full h-full flex flex-col justify-between">
                         <div className="w-full">
-                            <h2 className="font-normal text-2xl font-main">{profile?.name}</h2>
-                            <h3 className="text-xs">{profile?.user_public_info?.degree}</h3>
+                            <div className="flex items-center gap-2">
+                                <h2 className="font-normal text-3xl md:text-2xl font-main">{profile?.name}</h2>
+                                <span className="bg-slate-200 rounded-lg px-3 py-1 font-semibold">@{profile?.username}</span>
+                            </div>
+                            <h3 className="text-md md:text-xs">{profile?.user_public_info?.degree}</h3>
                         </div>
                         <div id="info" className="hidden xl:flex w-full flex-wrap items-center gap-3 font-second">
                             <span className="text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> {profile?.user_public_info?.job_avaliable}</span>
@@ -60,7 +63,7 @@ export default async function Profile({id, auth_status}: Props) {
                 <h2 className="font-bold text-xl font-second">Acerca de mí:</h2>
                 <p style={{ fontSize: "0.9em" }}>{profile?.user_public_info?.desc}</p>
             </section>
-            <LinksComp links={links} />
+            <LinksComp auth_status={auth_status} links={links} />
         </article>
     )
 }

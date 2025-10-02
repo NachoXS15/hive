@@ -1,7 +1,7 @@
 import CreatePost from "@/app/components/structures/CreatePost";
 import Profile from "@/app/components/structures/Profile";
 import ProfileFeed from "@/app/components/structures/ProfileFeed";
-import { fetchLinksById, fetchPostsById } from "@/app/lib/data-server";
+import { fetchPostsById } from "@/app/lib/data-server";
 import { createClient } from "@/app/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -15,11 +15,7 @@ export default async function page() {
 	}
 	const id = data?.user?.id
 	const posts = await fetchPostsById(id)
-	const links = await fetchLinksById(id);
 	const auth_status = data?.user.role
-	console.log(links);
-
-	
 	
 	return (
 		<main className="w-full h-fit flex py-10 items-center flex-col px-6 md:px-0">

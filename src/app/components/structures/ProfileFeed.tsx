@@ -3,7 +3,6 @@ import Post from "./Post";
 
 type Props = {
     posts: PostType[] | undefined | null
-
 }
 
 export default async function ProfileFeed({ posts }: Props) {
@@ -11,9 +10,9 @@ export default async function ProfileFeed({ posts }: Props) {
     return (
         <>
             <div className="pt-5 pb-10 flex flex-col gap-5">
-                <h2 className="font-bold text-xl font-second">Publicaciones</h2>
+                {posts && posts.length > 0 ? <h2 className="font-bold text-xl font-second">Publicaciones</h2> : null}
                 {
-                    posts ? posts.reverse().map((post, i) => {
+                    posts && posts.length > 0 ? posts.reverse().map((post, i) => {
                         
                         return(
                             <Post key={i} {...post} />
