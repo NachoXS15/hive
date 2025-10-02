@@ -1,6 +1,7 @@
 import { LinksProfileType, PostType, ProfileType, SimpleUserType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
+//traer info básica de todos los usuarios
 export async function fetchUsers(){
     try {
         const supabase = await createClient();
@@ -18,6 +19,8 @@ export async function fetchUsers(){
         console.error(error);
     }
 }
+
+//traer un solo usuario
 export async function fetchUserById(id: string){
     try {
         const supabase = await createClient();
@@ -31,6 +34,7 @@ export async function fetchUserById(id: string){
     }
 }
 
+//traer todos los posts
 export async function fetchPosts(){
     try {
         const supabase = await createClient();
@@ -49,6 +53,7 @@ export async function fetchPosts(){
     }
 }
 
+//traer post por usuario
 export async function fetchPostsById(id: string){
     try {
         const supabase = await createClient();
@@ -70,6 +75,7 @@ export async function fetchPostsById(id: string){
     }
 }
 
+//traer links de un usuario
 export async function fetchLinksById(id: string){
     try {
         const supabase = await createClient();
@@ -86,6 +92,7 @@ export async function fetchLinksById(id: string){
     }
 }
 
+//traer toda la info de un usuario
 export async function fetchFullUser(id: string): Promise<ProfileType | null> {
     const supabase = await createClient();
     const { data, error } = await supabase
