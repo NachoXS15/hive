@@ -1,9 +1,8 @@
 'use client'
 
 import Link from "next/link";
-import { supabaseClient } from "../../utils/supabase/client";
-import { ProfileType, UserPublicInfo, UserSignIn } from "../../utils/definitions";
 import { ArrowDown } from "lucide-react";
+import { postUser, postUserDB, postUserInfoDB } from "@/app/lib/data-client";
 
 export default function page() {
 
@@ -56,102 +55,19 @@ export default function page() {
             console.log("Contraseñas coinciden");
         }
 
-        let usernameId: string | undefined = "";
-
-        const postUser = async ({ email, password }: UserSignIn) => {
-            const info = {
-                email: email.trim(),
-                password: password,
-            };
-
-            try {
-                const { data, error } = await supabaseClient.auth.signUp(info);
-                usernameId = data.user?.id;
-                if (error) {
-                    console.log("error crear usuario: ", error);
-                }
-                console.log("Usuario creado!");
-                
-                return data;
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        const postUserDB = async ({
-            name,
-            mail,
-            username,
-        }: ProfileType) => {
-            try {
-                const { data, error } = await supabaseClient
-                    .from("profiles")
-                    .insert([
-                        {
-                            id: usernameId,
-                            name,
-                            mail,
-                            username,
-                        },
-                    ])
-                    .select();
-                console.log({ data, error });
-                if (error) {
-                    throw error;
-                }
-                console.log("Usuario: insertado:", data);
-                return data;
-            } catch (error) {
-                console.error("Error al insertar usuario:", error);
-                throw error;
-            }
-        };
-        const postUserInfoDB = async ({
-            job_avaliable,
-            degree,
-            university,
-            desc,
-            student_status,
-            province,
-            birthday,
-        }: UserPublicInfo) => {
-            try {
-                const { data, error } = await supabaseClient
-                    .from("user_public_info")
-                    .insert([
-                        {
-                            user_id: usernameId,
-                            job_avaliable,
-                            degree,
-                            university,
-                            desc,
-                            student_status,
-                            province,
-                            birthday
-                        },
-                    ])
-                console.log({ data, error });
-                if (error) {
-                    throw error;
-                }
-                console.log("Usuario: insertado:", data);
-                return data;
-            } catch (error) {
-                console.error("Error al insertar usuario:", error);
-                throw error;
-            }
-        };
 
         try {
             await postUser({
                 email: mail as string,
                 password: password as string,
             });
+
             await postUserDB({
                 name,
                 mail,
                 username
             });
+
             await postUserInfoDB({
                 job_avaliable,
                 degree,
