@@ -21,16 +21,16 @@ export default async function Profile({id, auth_status}: Props) {
     }
     return (
         <article className="bg-slate-50 shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit">
-            <section className="w-full flex gap-10 md:gap-20 flex-col xl:flex-row items-center justify-between">
-                <div className="w-full h-[200px] xl:h-[180px] flex flex-col md:flex-row md:items-center gap-5 md:gap-10">
-                    <div className="flex flex-row md:flex-col items-center gap-2">
-                        <div className="rounded-full self-start min-w-[130px] min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
+            <section className="w-full flex gap-15 xl:gap-20 flex-col xl:flex-row items-center justify-between">
+                <div className="w-full h-fit xl:h-[180px] flex flex-col md:flex-row md:items-center md:gap-10">
+                    <div className="flex flex-col items-center gap-2 mb-5">
+                        <div className="rounded-full self-start min-w-[160px] min-h-[160px] md:min-w-[130px] md:min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
                         </div>
                         {
                             auth_status == "authenticated" ? (
-                                <Link href={`/home/my-profile/edit/${id}`} className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><Pen />Editar perfil</Link>
+                                <Link href={`/home/my-profile/edit/${id}`} className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><Pen />Editar perfil</Link>
                             ) : (
-                                <button className="px-1 w-full justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><UserPlus2 />Seguir</button>
+                                <button className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><UserPlus2 />Seguir</button>
                             )
                         }
                     </div>
