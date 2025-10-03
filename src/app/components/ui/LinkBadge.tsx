@@ -10,7 +10,7 @@ export default function LinkBadge({ red_social, color, icon, link }: Props) {
 		<div>
 			<a
 				href={link}
-				className={`bg-${color}-500  rounded-lg px-5 py-3 text-${color}-100 transition hover:scale-105 text-white flex items-center gap-2 font-semibold`}
+				className={`bg-${color}-500 rounded-lg px-5 py-3 text-${color}-100 transition hover:scale-105 text-white flex items-center gap-2 font-semibold`}
 				style={{ fontSize: "0.9em" }}
 			>
 				{icon}

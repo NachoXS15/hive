@@ -2,13 +2,11 @@
 
 import {updateBasicUser, updateInfoUser} from "@/app/lib/data-server";
 import { ProfileType, UserPublicInfo } from "@/app/utils/definitions";
-import { createClient } from "@/app/utils/supabase/server"
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 
 export default async function HandleSubmit(formData: FormData) {
-    const supabase = await createClient();
 
     const id = formData.get('id') as string;
     const dataBasic: ProfileType = {
