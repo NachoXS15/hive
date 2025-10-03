@@ -1,11 +1,14 @@
 import { Mail } from "lucide-react";
-import { Facebook, Instagram, Twitter,} from "../ui/Icons";
-
+import { Facebook, Instagram, Twitter, } from "../ui/Icons";
+import Link from "next/link";
+import Image from "next/image";
 export default function Footer() {
     return (
         <footer className="w-full min-h-[500px] flex items-center justify-evenly bg-yellow-main text-black-main">
             <section className="w-full px-8 md:w-3/4 h-full py-10 gap-10 md:gap-20 flex flex-col justify-between">
-                <h2 className="font-main text-4xl font-black">hive</h2>
+                <Link href="/home" className="font-main text-4xl font-black hover:scale-110 transition">
+                    <Image src="/images/hive_logo.webp" alt="" width={100} height={50} />
+                </Link>
                 <div className="flex flex-col md:flex-row flex-wrap justify-start gap-10 md:gap-56">
                     <div>
                         <h3 className="font-medium text-2xl mb-4">Info.</h3>

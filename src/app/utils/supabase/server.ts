@@ -27,3 +27,14 @@ export async function createClient() {
     }
   )
 }
+
+export async function getUserSafe() {
+  const supabase = await createClient()
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error?.message.includes("Refresh Token Not Found")) {
+    return null; // no hay sesión
+  }
+
+  return data.user;
+}

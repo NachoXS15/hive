@@ -107,9 +107,9 @@ export default function page() {
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu usuario</label>
                                 <input type="text" required name="user" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu contraseña</label>
-                                <input type="text" required name="password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                <input type="password" required name="password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Confirmá tu contraseña</label>
-                                <input type="text" required name="confirm-password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                <input type="password" required name="confirm-password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                             </div>
                             <div>
                                 <h3 className="text-lg font-semibold mb-4 text-gray-700">Información Profesional</h3>
@@ -138,8 +138,7 @@ export default function page() {
                                     <option value="Universidad Nacional del Comahue">Universidad Nacional del Comahue</option>
                                     <option value="Pontificia Universidad Católica Argentina">Pontificia Universidad Católica Argentina</option>
                                 </select>
-                                <label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
-                                <textarea required name="desc" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+
                             </div>
                             <div>
                                 <h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
@@ -181,6 +180,10 @@ export default function page() {
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Fecha de Nacimento</label>
                                 <input required name="birthday" type="date" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                             </div>
+                        </div>
+                        <div className="w-full flex flex-col">
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
+                            <textarea required name="desc" className="w-full resize-none h-36  mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                         </div>
                         <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
                             Registrar

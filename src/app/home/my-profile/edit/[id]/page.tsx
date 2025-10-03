@@ -13,40 +13,40 @@ export default async function page({
 	const { id } = params
 	const profile = await fetchFullUser(id)
 	console.log(profile);
-	
+
 
 
 	return (
 		<div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
-			<form className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-5xl">
+			<form className="bg-white shadow-lg rounded-2xl p-8 max-w-5xl">
 				<Link href="/home/my-profile" className="absolute hover:bg-black-main hover:text-yellow-main transition p-1 rounded-full"><ArrowLeft /></Link>
 				<h2 className="text-2xl font-bold mb-8 text-center">Actualizar datos de {profile?.name}</h2>
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
+				<div className="w-full grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
 					<div>
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Información Personal</h3>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu Nombre</label>
-						<input type="text" required name="name" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						<input type="text" required name="name" defaultValue={profile?.name ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 						<label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu mail</label>
-						<input type="text" required name="mail" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						<input type="text" required name="mail" defaultValue={profile?.mail ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 						<label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu usuario</label>
-						<input type="text" required name="user" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
-						<label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu contraseña</label>
-						<input type="text" required name="password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						<input type="text" required name="user" defaultValue={profile?.username ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						{/* <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu contraseña</label>
+						<input type="password" required name="password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 						<label className="block mb-2 text-sm font-medium text-gray-700">Confirmá tu contraseña</label>
-						<input type="text" required name="confirm-password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						<input type="password" required name="confirm-password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" /> */}
 					</div>
 					<div>
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Información Profesional</h3>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Disponibilidad</label>
-						<select required name="job_avaliable" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
+						<select required name="job_avaliable" defaultValue={profile?.user_public_info?.job_avaliable ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
 							<option value="" defaultValue="Seleccionar" disabled>Seleccionar</option>
 							<option value="Disponible para trabajar">Disponible para trabajar</option>
 							<option value="Trabajando">Trabajando</option>
 						</select>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Carrera, Titulo o Cargo</label>
-						<input type="text" required name="degree" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						<input type="text" required name="degree" defaultValue={profile?.user_public_info?.degree ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 						<label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
-						<select required name="university" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" id="universidad">
+						<select required name="university" defaultValue={profile?.user_public_info?.university ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" id="universidad">
 							<option value="Universidad de Buenos Aires">Universidad de Buenos Aires</option>
 							<option value="Universidad Nacional de La Plata">Universidad Nacional de La Plata</option>
 							<option value="Universidad Nacional de Córdoba">Universidad Nacional de Córdoba</option>
@@ -60,15 +60,14 @@ export default async function page({
 							<option value="Universidad Nacional del Litoral">Universidad Nacional del Litoral</option>
 							<option value="Universidad Nacional de San Luis">Universidad Nacional de San Luis</option>
 							<option value="Universidad Nacional del Comahue">Universidad Nacional del Comahue</option>
+							<option value="Universidad Nacional de La Rioja">Universidad Nacional de La Rioja</option>
 							<option value="Pontificia Universidad Católica Argentina">Pontificia Universidad Católica Argentina</option>
 						</select>
-						<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
-						<textarea required name="desc" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 					</div>
 					<div>
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
-						<select required name="student_status" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+						<select required name="student_status" defaultValue={profile?.user_public_info?.student_status ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
 							<option value="" defaultValue="Seleccionar" disabled>Estado de Estudiante</option>
 							<option value="Estudiante">Estudiante</option>
 							<option value="Freelance">Freelance</option>
@@ -76,7 +75,7 @@ export default async function page({
 							<option value="Posgrado">Posgrado</option>
 						</select>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Provincia</label>
-						<select className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" name="province" id="province">
+						<select className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" name="province" defaultValue={profile?.user_public_info?.province ?? ""} id="province">
 							<option value="Buenos Aires">Buenos Aires</option>
 							<option value="Catamarca">Catamarca</option>
 							<option value="Chaco">Chaco</option>
@@ -103,8 +102,13 @@ export default async function page({
 							<option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
 						</select>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Fecha de Nacimento</label>
-						<input required name="birthday" type="date" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						<input required name="birthday" defaultValue={profile?.user_public_info?.birthday ?? ""} type="date" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 					</div>
+				</div>
+				<input type="hidden" name="id" defaultValue={profile?.id} />
+				<div className="w-full flex flex-col">
+					<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
+					<textarea required name="desc" defaultValue={profile?.user_public_info?.desc ?? ""} className="w-full resize-none h-36  mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 				</div>
 				<button type="submit" formAction={HandleSubmit} className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
 					Registrar
