@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { LinksProfileType, PostType, ProfileType, SimpleUserType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
@@ -128,4 +129,38 @@ export async function fetchFullUser(id: string): Promise<ProfileType | null> {
     };
 
     return profile;
+}
+
+export  async function updateBasicUser({...data}: ProfileType, id: string){
+    try {
+        const supabase = await createClient();
+        const { error } = await supabase.from("profiles").update({...data}).eq("id", id.trim())
+    
+        if (error) {
+            console.error("Error en Supabase:", error.message)
+            redirect('/error')
+        }
+        console.log("Perfil actualizado");
+        
+    } catch (error) {   
+        console.log(error);
+    }
+
+}
+
+export async function updateInfoUser({...data}: ProfileType, id: string){
+    try {
+        const supabase = await createClient();
+        const { error } = await supabase.from("user_public_info").update({...data}).eq("user_id", id.trim())
+    
+        if (error) {
+            console.error("Error en Supabase:", error.message)
+            redirect('/error')
+        }
+        console.log("Perfil actualizado");
+        
+    } catch (error) {   
+        console.log(error);
+    }
+
 }

@@ -10,11 +10,8 @@ export default async function page({
 	params,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
-	const { id } = params
+	const { id } = await params
 	const profile = await fetchFullUser(id)
-	console.log(profile);
-
-
 
 	return (
 		<div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
@@ -111,7 +108,7 @@ export default async function page({
 					<textarea required name="desc" defaultValue={profile?.user_public_info?.desc ?? ""} className="w-full resize-none h-36  mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 				</div>
 				<button type="submit" formAction={HandleSubmit} className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
-					Registrar
+					Actualizar
 				</button>
 			</form>
 		</div>

@@ -4,7 +4,9 @@ import { User } from "@supabase/supabase-js";
 import DropdownMenuSearch from "../ui/DropdownMenuSearch";
 import DropdownMenuProfile from "../ui/DropdownMenuProfile";
 import Image from "next/image";
-export default function Header({ profile }: { profile: User | null }) {
+export default function Header({ profile, profileName }: { profile: User | null; profileName?: string | null}) {
+
+    const nameInitials = profileName?.slice(0, 2).toUpperCase()
 
     return (
         <>
@@ -25,7 +27,7 @@ export default function Header({ profile }: { profile: User | null }) {
                     {
                         profile ? (
                             <>
-                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">IP</label>
+                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">{nameInitials}</label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
                                 <DropdownMenuProfile profile={profile} />
                                 <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">

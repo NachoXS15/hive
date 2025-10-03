@@ -1,17 +1,23 @@
 'use server'
 
-import { ProfileType } from "@/app/utils/definitions";
+import {updateBasicUser, updateInfoUser} from "@/app/lib/data-server";
+import { ProfileType, UserPublicInfo } from "@/app/utils/definitions";
 import { createClient } from "@/app/utils/supabase/server"
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 
 export default async function HandleSubmit(formData: FormData) {
     const supabase = await createClient();
 
     const id = formData.get('id') as string;
-    const data: ProfileType = {
+    const dataBasic: ProfileType = {
         name: formData.get("name")?.toString(),
         mail: formData.get("mail")?.toString(),
         username: formData.get("user")?.toString(),
+    }
+
+    const dataInfo: UserPublicInfo = {
         job_avaliable: formData.get("job_avaliable")?.toString(),
         degree: formData.get("degree")?.toString(),
         university: formData.get("university")?.toString(),
@@ -21,10 +27,17 @@ export default async function HandleSubmit(formData: FormData) {
         birthday: formData.get("birthday")?.toString()
     }
 
-    console.log(id, data);
+    console.log(id);
 
     if (!id) {
         console.error("id invalido");
         return;
     }
+
+    await updateBasicUser(dataBasic, id)
+    await updateInfoUser(dataInfo, id)
+
+    revalidatePath('/home/my-profile');
+    redirect('/home/my-profile');
+
 }

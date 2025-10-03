@@ -24,12 +24,12 @@ export interface UserPublicInfo{
     user_id?: string
     created_at?: string
     job_avaliable?: string
-    student_status: string
-    university: string
-    degree: string
-    desc: string
-    province: string
-    birthday: string
+    student_status?: string
+    university?: string
+    degree?: string
+    desc?: string
+    province?: string
+    birthday?: string
 }
 
 export interface ProfileType {
