@@ -7,9 +7,10 @@ import AddLink from "./AddLink";
 type Props = {
 	links: LinksProfileType | undefined
 	auth_status: string | undefined
+	id: string | undefined
 }
 
-export default function LinksComp({links, auth_status}: Props) {
+export default function LinksComp({links, auth_status, id}: Props) {
 	return (
 		<section className="mt-5">
 			<h2 className="font-bold text-xl font-second">Mis enlaces</h2>
@@ -18,7 +19,9 @@ export default function LinksComp({links, auth_status}: Props) {
 				{links?.instagram && <LinkBadge color="pink" link={links.instagram} red_social="Instagram" icon={<Instagram color="white" />} /> }
 				{links?.twitter && <LinkBadge color="slate" link={links.twitter} red_social="X/Twitter" icon={<Twitter color="white" />} />}
 				{links?.portfolio_cv && <LinkBadge color="red" link={links.portfolio_cv} red_social="Portfolio/CV" icon={<BriefcaseBusiness color="white" />} />}
-				{auth_status == "authenticated" && <AddLink />}
+				{links?.linkedin && <LinkBadge color="green" link={links.portfolio_cv} red_social="LinkedIn" icon={<BriefcaseBusiness color="white" />} />}
+				{auth_status === "authenticated" && id !== "" ? <AddLink id={id} /> : null}
+
 			</div>
 		</section>
 	)

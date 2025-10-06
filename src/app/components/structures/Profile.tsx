@@ -63,7 +63,7 @@ export default async function Profile({id, auth_status}: Props) {
                 <h2 className="font-bold text-xl font-second">Acerca de mí:</h2>
                 <p style={{ fontSize: "0.9em" }}>{profile?.user_public_info?.desc}</p>
             </section>
-            <LinksComp auth_status={auth_status} links={links} />
+            <LinksComp auth_status={auth_status} links={links} id={id} />
         </article>
     )
 }

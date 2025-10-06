@@ -108,4 +108,23 @@ export const postUserInfoDB = async ({
             }
         };
 
-//actualizar info de usuario
+//agregar link de usuario
+export async function insertLink(url: string, id: string | undefined, name: string) {
+    try {
+        const userId = id;
+        if(!url || !id || !name){
+            return "Faltan datos";
+        }
+        console.log(`${name}: ${url}, ${userId}`);
+                
+        //const { error } = await supabaseClient.from("posts").insert([{ user_id: userId, name: url }]);
+
+        // if(error){
+        //     console.error(error);
+        // }else{
+        //     console.log("Enlace publicado.");
+        // }
+    } catch (error) {
+        console.log(error);
+    }
+}
