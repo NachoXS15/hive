@@ -103,10 +103,14 @@ export default async function page({
 					</div>
 				</div>
 				<input type="hidden" name="id" defaultValue={profile?.id} />
-				<div className="w-full flex flex-col">
-					<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
-					<textarea required name="desc" defaultValue={profile?.user_public_info?.desc ?? ""} className="w-full resize-none h-36  mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
-				</div>
+				<section className="flex items-center gap-5">
+					
+					<div className="w-full flex flex-col">
+						<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
+						<textarea required name="desc" className="w-full resize-none h-36 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+					</div>
+
+				</section>
 				<button type="submit" formAction={HandleSubmit} className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
 					Actualizar
 				</button>

@@ -164,3 +164,17 @@ export async function updateInfoUser({...data}: ProfileType, id: string){
     }
 
 }
+
+// export async function deleteLink(id: string, name: string){
+//     try {
+//         const supabase = await createClient();
+//         const {error} = await supabase.from("user_link").delete().eq("id", id)
+//         if (error) {
+//             console.log(error);
+//         }else{
+//             console.log("Link eliminado");
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }

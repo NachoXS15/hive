@@ -17,9 +17,10 @@ export default function AddLink({id}: AddLinkProps) {
         if (!id) {
             return;
         }
-        await insertLink(name, url, id)
+        await insertLink(url, id, name)
         setName("");
         setUrl("");
+        setShowModal(false)
     }
 
     return (

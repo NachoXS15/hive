@@ -110,21 +110,52 @@ export const postUserInfoDB = async ({
 
 //agregar link de usuario
 export async function insertLink(url: string, id: string | undefined, name: string) {
-    try {
-        const userId = id;
-        if(!url || !id || !name){
-            return "Faltan datos";
-        }
-        console.log(`${name}: ${url}, ${userId}`);
-                
-        //const { error } = await supabaseClient.from("posts").insert([{ user_id: userId, name: url }]);
+	try {
+		if (!url || !id || !name) {
+			return "Faltan datos";
+		}
 
-        // if(error){
-        //     console.error(error);
-        // }else{
-        //     console.log("Enlace publicado.");
-        // }
-    } catch (error) {
-        console.log(error);
-    }
+		console.log(`${name}: ${url}, ${id}`);
+
+		// Crear el objeto dinámicamente
+		const dataToInsert = {
+			user_id: id,
+			[name]: url, // 👈 clave dinámica
+		};
+
+		// Primero verifica si ya existe un registro para ese user_id
+		const { data: existingLinks } = await supabaseClient
+			.from("user_links")
+			.select("id")
+			.eq("user_id", id)
+			.single();
+
+			let error;
+
+		if (existingLinks) {
+		// Si ya existe, actualiza el campo correspondiente
+			({ error } = await supabaseClient
+				.from("user_links")
+				.update(dataToInsert)
+				.eq("user_id", id)
+			);
+		} else {
+		// Si no existe, crea un nuevo registro
+			({ error } = await supabaseClient
+				.from("user_links")
+				.insert([dataToInsert])
+			);
+		}
+
+		if (error) {
+			console.error("Error en Supabase:", error.message);
+			return "Error al guardar el enlace.";
+		}
+
+		console.log("✅ Enlace guardado o actualizado correctamente.");
+		return "OK";
+	} catch (error) {
+		console.error("Error general:", error);
+		return "Error interno.";
+	}
 }

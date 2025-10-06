@@ -1,10 +1,28 @@
 'use client'
 
 import Link from "next/link";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Plus } from "lucide-react";
 import { postUser, postUserDB, postUserInfoDB } from "@/app/lib/data-client";
+import { useState } from "react";
 
-export default function page() {
+export default function Page() {
+
+    const [file, setFile] = useState<File | null>(null)
+    const [fileName, setFileName] = useState("");
+    const [fileActive, setFileActive] = useState(false)
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files && files.length > 0) {
+            setFileActive(true)
+            setFileName(files[0].name);
+            setFile(files[0]);
+            console.log(files[0].name);
+        } else {
+            setFileName("");
+            setFile(null);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -48,6 +66,7 @@ export default function page() {
             console.error("Todos los campos son obligatorios");
             return;
         }
+
 
         if (password != confirmPassword) {
             console.error("Contraseñas no coinciden");
@@ -95,7 +114,7 @@ export default function page() {
                     </div>
                 </section>
                 <div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
-                    <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-5xl">
+                    <form onSubmit={handleSubmit} className="bg-white h-fit shadow-lg rounded-2xl p-8 w-full max-w-5xl">
                         <h2 className="text-2xl font-bold mb-8 text-center">Formulario de Registro</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
                             <div>
@@ -181,10 +200,36 @@ export default function page() {
                                 <input required name="birthday" type="date" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                             </div>
                         </div>
-                        <div className="w-full flex flex-col">
-                            <label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
-                            <textarea required name="desc" className="w-full resize-none h-36  mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
-                        </div>
+                        <section className="flex items-center gap-5">
+                            <div className="flex w-full gap-5 my-5">
+                                <div className="flex flex-col items-center justify-center w-full">
+                                    <span className="self-start block mb-2 text-sm font-medium text-gray-700">Foto de perfil</span>
+                                    <label
+                                        htmlFor="file-upload"
+                                        className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-bluemain rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+                                    >
+                                        <div aria-disabled={fileActive} className="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <Plus />
+                                            <p className="mb-2 text-sm text-gray-500">
+                                                <span className="font-semibold">Haz clic para subir</span> o arrastra y suelta
+                                            </p>
+                                            <p className="text-xs text-gray-500">Solo archivos .JPG, .JPEG, .PNG</p>
+                                        </div>
+                                        <input id="file-upload" type="file" accept="application/pdf" onChange={handleFileChange} className="hidden" />
+                                    </label>
+                                    {fileName && (
+                                        <p className="mt-3 text-sm text-gray-700">
+                                            Archivo seleccionado: {fileName}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="w-full flex flex-col">
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
+                                <textarea required name="desc" className="w-full resize-none h-36 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                            </div>
+
+                        </section>
                         <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
                             Registrar
                         </button>
