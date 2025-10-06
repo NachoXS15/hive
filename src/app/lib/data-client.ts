@@ -75,7 +75,7 @@ export async function postUserDB({name, mail,username,}: ProfileType){
 export const postUserInfoDB = async ({
             job_avaliable,
             degree,
-            university,
+            dept,
             desc,
             student_status,
             province,
@@ -89,7 +89,7 @@ export const postUserInfoDB = async ({
                             user_id: usernameId,
                             job_avaliable,
                             degree,
-                            university,
+                            dept,
                             desc,
                             student_status,
                             province,

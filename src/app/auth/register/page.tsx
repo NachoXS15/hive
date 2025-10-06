@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowDown, Plus } from "lucide-react";
 import { postUser, postUserDB, postUserInfoDB } from "@/app/lib/data-client";
 import { useState } from "react";
-
+import { depts } from "@/app/lib/depts";
 export default function Page() {
 
     const [file, setFile] = useState<File | null>(null)
@@ -24,6 +24,20 @@ export default function Page() {
         }
     };
 
+    const [departamento, setDepartamento] = useState("");
+    const [carrera, setCarrera] = useState("");
+
+    const handleDeptChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const dept = e.target.value;
+        setDepartamento(dept);
+        setCarrera(""); // reset del segundo select al cambiar el primero
+    };
+
+    const handleCarreraChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setCarrera(e.target.value);
+    };
+
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -38,7 +52,7 @@ export default function Page() {
         //column 2
         const job_avaliable = formData.get("job_avaliable")?.toString();
         const degree = formData.get("degree")?.toString();
-        const university = formData.get("university")?.toString();
+        const dept = formData.get("dept")?.toString();
         const desc = formData.get("desc")?.toString();
 
         //column3
@@ -55,14 +69,14 @@ export default function Page() {
             confirmPassword,
             job_avaliable,
             degree,
-            university,
+            dept,
             desc,
             student_status,
             province,
             birthday,
         });
 
-        if (!name || !mail || !username || !password || !confirmPassword || !student_status || !job_avaliable || !degree || !university || !desc || !province || !birthday) {
+        if (!name || !mail || !username || !password || !confirmPassword || !student_status || !job_avaliable || !degree || !dept || !desc || !province || !birthday) {
             console.error("Todos los campos son obligatorios");
             return;
         }
@@ -90,7 +104,7 @@ export default function Page() {
             await postUserInfoDB({
                 job_avaliable,
                 degree,
-                university,
+                dept,
                 desc,
                 student_status,
                 province,
@@ -138,26 +152,38 @@ export default function Page() {
                                     <option value="Disponible para trabajar">Disponible para trabajar</option>
                                     <option value="Trabajando">Trabajando</option>
                                 </select>
-                                <label className="block mb-2 text-sm font-medium text-gray-700">Carrera, Titulo o Cargo</label>
-                                <input type="text" required name="degree" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
-                                <label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
-                                <select required name="university" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" id="universidad">
-                                    <option value="Universidad de Buenos Aires">Universidad de Buenos Aires</option>
-                                    <option value="Universidad Nacional de La Plata">Universidad Nacional de La Plata</option>
-                                    <option value="Universidad Nacional de Córdoba">Universidad Nacional de Córdoba</option>
-                                    <option value="Universidad Nacional de Mar del Plata">Universidad Nacional de Mar del Plata</option>
-                                    <option value="Universidad Nacional del Centro de la Provincia de Buenos Aires">Universidad Nacional del Centro de la Provincia de Buenos Aires</option>
-                                    <option value="Universidad Nacional de San Martín">Universidad Nacional de San Martín</option>
-                                    <option value="Universidad Tecnológica Nacional">Universidad Tecnológica Nacional</option>
-                                    <option value="Universidad Nacional de Quilmes">Universidad Nacional de Quilmes</option>
-                                    <option value="Universidad Nacional de Tucumán">Universidad Nacional de Tucumán</option>
-                                    <option value="Universidad Nacional de Rosario">Universidad Nacional de Rosario</option>
-                                    <option value="Universidad Nacional del Litoral">Universidad Nacional del Litoral</option>
-                                    <option value="Universidad Nacional de San Luis">Universidad Nacional de San Luis</option>
-                                    <option value="Universidad Nacional del Comahue">Universidad Nacional del Comahue</option>
-                                    <option value="Pontificia Universidad Católica Argentina">Pontificia Universidad Católica Argentina</option>
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Departamento</label>
+                                <select
+                                    value={departamento}
+                                    onChange={handleDeptChange}
+                                    name="dept"
+                                    className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                >
+                                    <option value="">-- Selecciona un departamento --</option>
+                                    {Object.keys(depts).map((dept) => (
+                                        <option key={dept} value={dept}>
+                                            {dept}
+                                        </option>
+                                    ))}
                                 </select>
-
+                                <label className="block mb-2 text-sm font-medium text-gray-700">Carrera, Titulo o Cargo</label>
+                                <select
+                                    value={carrera}
+                                    onChange={handleCarreraChange}
+                                    disabled={!departamento}
+                                    name="degree"
+                                    className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                >
+                                    <option value="">
+                                        {departamento ? "-- Selecciona una carrera --" : "Selecciona un departamento primero"}
+                                    </option>
+                                    {departamento &&
+                                        depts[departamento]?.map((carr) => (
+                                            <option key={carr} value={carr}>
+                                                {carr}
+                                            </option>
+                                        ))}
+                                </select>
                             </div>
                             <div>
                                 <h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>

@@ -106,7 +106,7 @@ export async function fetchFullUser(id: string): Promise<ProfileType | null> {
             user_public_info (
                 job_avaliable,
                 student_status,
-                university,
+                dept,
                 degree,
                 desc,
                 province,

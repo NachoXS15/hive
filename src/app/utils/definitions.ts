@@ -25,7 +25,7 @@ export interface UserPublicInfo{
     created_at?: string
     job_avaliable?: string
     student_status?: string
-    university?: string
+    dept?: string
     degree?: string
     desc?: string
     province?: string

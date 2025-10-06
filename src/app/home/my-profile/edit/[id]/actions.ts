@@ -18,7 +18,7 @@ export default async function HandleSubmit(formData: FormData) {
     const dataInfo: UserPublicInfo = {
         job_avaliable: formData.get("job_avaliable")?.toString(),
         degree: formData.get("degree")?.toString(),
-        university: formData.get("university")?.toString(),
+        dept: formData.get("dept")?.toString(),
         desc: formData.get("desc")?.toString(),
         student_status: formData.get("student_status")?.toString(),
         province: formData.get("province")?.toString(),

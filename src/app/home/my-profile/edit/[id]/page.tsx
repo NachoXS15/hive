@@ -5,6 +5,8 @@ import { getServerSideProps } from "next/dist/build/templates/pages";
 import HandleSubmit from "./actions";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import CarrerasForm from "@/app/components/ui/CarrerasForm";
+import { depts } from "@/app/lib/depts";
 
 export default async function page({
 	params,
@@ -40,26 +42,7 @@ export default async function page({
 							<option value="Disponible para trabajar">Disponible para trabajar</option>
 							<option value="Trabajando">Trabajando</option>
 						</select>
-						<label className="block mb-2 text-sm font-medium text-gray-700">Carrera, Titulo o Cargo</label>
-						<input type="text" required name="degree" defaultValue={profile?.user_public_info?.degree ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
-						<label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
-						<select required name="university" defaultValue={profile?.user_public_info?.university ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" id="universidad">
-							<option value="Universidad de Buenos Aires">Universidad de Buenos Aires</option>
-							<option value="Universidad Nacional de La Plata">Universidad Nacional de La Plata</option>
-							<option value="Universidad Nacional de Córdoba">Universidad Nacional de Córdoba</option>
-							<option value="Universidad Nacional de Mar del Plata">Universidad Nacional de Mar del Plata</option>
-							<option value="Universidad Nacional del Centro de la Provincia de Buenos Aires">Universidad Nacional del Centro de la Provincia de Buenos Aires</option>
-							<option value="Universidad Nacional de San Martín">Universidad Nacional de San Martín</option>
-							<option value="Universidad Tecnológica Nacional">Universidad Tecnológica Nacional</option>
-							<option value="Universidad Nacional de Quilmes">Universidad Nacional de Quilmes</option>
-							<option value="Universidad Nacional de Tucumán">Universidad Nacional de Tucumán</option>
-							<option value="Universidad Nacional de Rosario">Universidad Nacional de Rosario</option>
-							<option value="Universidad Nacional del Litoral">Universidad Nacional del Litoral</option>
-							<option value="Universidad Nacional de San Luis">Universidad Nacional de San Luis</option>
-							<option value="Universidad Nacional del Comahue">Universidad Nacional del Comahue</option>
-							<option value="Universidad Nacional de La Rioja">Universidad Nacional de La Rioja</option>
-							<option value="Pontificia Universidad Católica Argentina">Pontificia Universidad Católica Argentina</option>
-						</select>
+						<CarrerasForm dept={depts} />
 					</div>
 					<div>
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
@@ -104,10 +87,9 @@ export default async function page({
 				</div>
 				<input type="hidden" name="id" defaultValue={profile?.id} />
 				<section className="flex items-center gap-5">
-					
 					<div className="w-full flex flex-col">
 						<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
-						<textarea required name="desc" className="w-full resize-none h-36 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+						<textarea required name="desc" value={profile?.user_public_info?.desc} className="w-full resize-none h-36 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 					</div>
 
 				</section>
