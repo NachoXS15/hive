@@ -32,7 +32,7 @@ export default async function page() {
                         <div className="flex items-center flex-col gap-4">
                             <div className="flex flex-col items-center gap-1">
                                 <span>¿Olvidaste tu usuario o contraseña?</span>
-                                <Link href="/recuperar-password" className="underline cursor-pointer">Recuperarla acá</Link>
+                                <Link href="/auth/reset-password" className="underline cursor-pointer">Recuperarla acá</Link>
                             </div>
                             <span>¿Nuevo? <Link href="/auth/register" className="hover:underline">Creá tu usuario acá :D</Link></span>
                         </div>
