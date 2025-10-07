@@ -45,7 +45,7 @@ export default async function Profile({id, auth_status}: Props) {
                         <div id="info" className="hidden xl:flex w-full flex-wrap items-center gap-3 font-second">
                             <span className="text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> {profile?.user_public_info?.job_avaliable}</span>
                             <span className="text-xs text-blue-700 bg-blue-200 flex items-center gap-2 rounded px-2 py-1"><Pin /> {profile?.user_public_info?.province}, Argentina</span>
-                            <span className="text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> {profile?.user_public_info?.university}</span>
+                            <span className="text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> {profile?.user_public_info?.dept}</span>
 
                         </div>
                     </div>
@@ -53,7 +53,7 @@ export default async function Profile({id, auth_status}: Props) {
                 <div className="flex xl:self-start flex-row xl:flex-col flex-wrap xl:flex-nowrap items-center gap-3">
                     <span className="xl:hidden text-xs bg-green-200 text-green-700 flex items-center gap-2 px-2 py-1 rounded"><BriefcaseBusiness /> {profile?.user_public_info?.job_avaliable}</span>
                     <span className="xl:hidden text-xs text-blue-700 bg-blue-200 flex items-center gap-2 rounded px-2 py-1"><Pin /> {profile?.user_public_info?.province}, Argentina</span>
-                    <span className="xl:hidden text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> {profile?.user_public_info?.university}</span>
+                    <span className="xl:hidden text-xs text-cyan-700 bg-cyan-200 flex items-center gap-2 rounded px-2 py-1"><School /> {profile?.user_public_info?.dept}</span>
                     <span className="text-xs bg-orange-200 text-orange-700 flex items-center gap-2 px-2 py-1 rounded"><School /> {profile?.user_public_info?.student_status}</span>
                     <span className="text-xs bg-purple-200 text-purple-700 flex items-center gap-2 px-2 py-1 rounded"><Cake /> {birthdayFormatted}</span>
                 </div>

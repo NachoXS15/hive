@@ -3,9 +3,10 @@ import Post from "./Post";
 
 type Props = {
     posts: PostType[] | undefined | null
+    auth_status: string | undefined
 }
 
-export default async function ProfileFeed({ posts }: Props) {
+export default async function ProfileFeed({ posts, auth_status }: Props) {
 
     return (
         <>
@@ -15,7 +16,7 @@ export default async function ProfileFeed({ posts }: Props) {
                     posts && posts.length > 0 ? posts.reverse().map((post, i) => {
                         
                         return(
-                            <Post key={i} {...post} />
+                            <Post key={i} auth_status={auth_status} post={post} />
                         )
                     }) :
                     <h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>

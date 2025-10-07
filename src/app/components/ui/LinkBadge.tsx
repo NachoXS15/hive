@@ -30,7 +30,7 @@ export default function LinkBadge({ red_social, color, icon, link, auth_status }
 				{icon}
 				{red_social}
 			</a>
-			{auth_status == "authenticated" && <button className="absolute -top-2 -right-2"><CircleMinus fill="white" stroke="red" /></button>}
+			{auth_status == "authenticated" && <button className="absolute -top-2 -right-2 hover:scale-110 transition cursor-pointer active:scale-105"><CircleMinus fill="white" stroke="red" /></button>}
 		</div>
 	);
 }

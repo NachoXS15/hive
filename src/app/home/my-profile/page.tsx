@@ -22,7 +22,7 @@ export default async function page() {
 			<Profile auth_status={auth_status} id={id}/>
 			<section className="md:px-10 w-full mt-10 shadow-xl rounded-lg 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit flex flex-col gap-5">
 				<CreatePost id={id} />
-				<ProfileFeed posts={posts} />
+				<ProfileFeed posts={posts} auth_status={auth_status} />
 			</section>
 		</main>
 	)
