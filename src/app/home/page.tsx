@@ -28,7 +28,7 @@ export default async function page() {
                             posts ? posts.reverse().map((post, i) => {
 
                                 return (
-                                    <Post key={i} {...post} />
+                                    <Post key={i} post={post} />
                                 )
                             }) :
                             <h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>

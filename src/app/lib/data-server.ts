@@ -75,6 +75,27 @@ export async function fetchPostsById(id: string){
         console.error(error);
     }
 }
+export async function fetchSinglePost(id: string){
+    try {
+        const supabase = await createClient();
+        const { data, error } = await supabase
+        .from("posts")
+        .select(`
+            *,
+            profiles (
+                name
+            )
+        `)
+        .eq("id", id)
+        .maybeSingle();
+        if (error) {
+            console.log(error.message);
+        }
+        return data as PostType;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 //traer links de un usuario
 export async function fetchLinksById(id: string){

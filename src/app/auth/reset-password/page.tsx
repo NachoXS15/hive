@@ -7,9 +7,11 @@ export default function page() {
         <main className="w-full min-h-screen flex text-black-main items-center justify-center font-main">
             <section className="w-full md:w-7/12 xl:w-1/2 min-h-screen px-5 xl:px-0 flex items-center justify-center font-second">
                 <div className="w-full xl:w-3/5 h-fit py-15 bg-slate-50 shadow-xl flex items-center flex-col rounded-lg justify-center gap-10">
-                    <div className="w-full flex items-center flex-col">
-                        <Link href="/auth/login" className="self-start absolute ml-10 hover:bg-black-main hover:text-yellow-main transition p-1 rounded-full"><ArrowLeft /></Link>
-                        <h2 className="text-2xl font-black">Recuperar Credenciales</h2>
+                    <div className="w-full flex flex-col items-center relative">
+                        <div className="flex items-center">
+                            <Link href="/auth/login" className="self-start absolute top-3 left-3 ml-10 hover:bg-black-main hover:text-yellow-main transition p-1 rounded-full"><ArrowLeft /></Link>
+                            <h2 className="text-2xl font-black">Recuperar Credenciales</h2>
+                        </div>
                         <hr className="border border-black-main/60 w-1/2 mt-2" />
                     </div>
                     <form action="" className="w-full flex flex-col gap-2 items-center">
