@@ -5,7 +5,7 @@ import { deletePost } from "@/app/lib/data-server"
 import { revalidatePath } from "next/cache"
 type Props = {
 	post: PostType,
-	auth_status: string | undefined
+	auth_status?: string | undefined
 }
 
 export default function Post({ post, auth_status }: Props) {
