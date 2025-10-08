@@ -3,7 +3,7 @@ import Post from "./Post";
 
 type Props = {
     posts: PostType[] | undefined | null
-    auth_status: string | undefined
+    auth_status?: string | undefined
 }
 
 export default async function ProfileFeed({ posts, auth_status }: Props) {

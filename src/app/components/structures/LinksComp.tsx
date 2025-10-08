@@ -11,7 +11,6 @@ type Props = {
 }
 
 export default function LinksComp({links, auth_status, id}: Props) {
-	console.log(links);
 	
 	return (
 		<section className="mt-5">

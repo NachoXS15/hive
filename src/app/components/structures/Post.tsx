@@ -7,7 +7,7 @@ import Link from "next/link"
 type Props = {
 	post: PostType,
 	auth_status?: string | undefined
-	pathname: string
+	pathname?: string
 }
 
 export default function Post({ post, auth_status, pathname }: Props) {
