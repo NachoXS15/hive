@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 export default function Footer() {
     return (
-        <footer className="w-full min-h-[500px] flex items-center justify-evenly bg-yellow-main text-black-main">
+        <footer className="w-full min-h-[600px] flex items-center justify-evenly bg-yellow-main text-black-main">
             <section className="w-full px-8 md:w-3/4 h-full py-10 gap-10 md:gap-20 flex flex-col justify-between">
-                <Link href="/home" className="font-main text-4xl font-black hover:scale-110 transition">
+                <Link href="/home" className="w-fit font-main text-4xl font-black hover:scale-110 transition">
                     <Image src="/images/hive_logo.webp" alt="" width={100} height={50} />
                 </Link>
                 <div className="flex flex-col md:flex-row flex-wrap justify-start gap-10 md:gap-56">
