@@ -7,7 +7,7 @@ export default function Footer() {
         <footer className="w-full min-h-[600px] flex items-center justify-evenly bg-yellow-main text-black-main">
             <section className="w-full px-8 md:w-3/4 h-full py-10 gap-10 md:gap-20 flex flex-col justify-between">
                 <Link href="/home" className="w-fit font-main text-4xl font-black hover:scale-110 transition">
-                    <Image src="/images/hive_logo.webp" alt="" width={100} height={50} />
+                    <Image src="/images/hive_logo.png" alt="" width={100} height={50} />
                 </Link>
                 <div className="flex flex-col md:flex-row flex-wrap justify-start gap-10 md:gap-56">
                     <div>

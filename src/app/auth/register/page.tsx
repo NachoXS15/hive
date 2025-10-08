@@ -1,28 +1,30 @@
 'use client'
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowDown, Plus } from "lucide-react";
 import { postUser, postUserDB, postUserInfoDB } from "@/app/lib/data-client";
 import { useState } from "react";
 import { depts } from "@/app/lib/depts";
 export default function Page() {
 
-    const [file, setFile] = useState<File | null>(null)
-    const [fileName, setFileName] = useState("");
-    const [fileActive, setFileActive] = useState(false)
+    //const [file, setFile] = useState<File | null>(null)
+    // const [fileName, setFileName] = useState("");
+    // const [fileActive, setFileActive] = useState(false)
+    const deptos: Record<string, string[]> = depts
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files && files.length > 0) {
-            setFileActive(true)
-            setFileName(files[0].name);
-            setFile(files[0]);
-            console.log(files[0].name);
-        } else {
-            setFileName("");
-            setFile(null);
-        }
-    };
+    // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const files = e.target.files;
+    //     if (files && files.length > 0) {
+    //         setFileActive(true)
+    //         setFileName(files[0].name);
+    //         setFile(files[0]);
+    //         console.log(files[0].name);
+    //     } else {
+    //         setFileName("");
+    //         setFile(null);
+    //     }
+    // };
 
     const [departamento, setDepartamento] = useState("");
     const [carrera, setCarrera] = useState("");
@@ -121,7 +123,9 @@ export default function Page() {
             <main className="w-full min-h-screen flex-col text-black-main font-main">
                 <section className="w-full bg-yellow-main min-h-screen flex items-center justify-center px-20">
                     <div className="w-full flex flex-col justify-center relative items-center">
-                        <span className="font-main text-3xl font-black">HIVE</span>
+                        <Link href="/home" className="w-fit font-main text-4xl font-black hover:scale-110 transition">
+                            <Image src="/images/hive_logo.png" alt="" width={100} height={50} />
+                        </Link>
                         <h2 className="w-full text- font-bold text-3xl md:text-7xl leading-tight text-center">¡Hola!, Encantados de conocerte :D</h2>
                         <Link href="/auth/login" className="text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer hover:border font-semibold font-second px-1 py-2 mt-2 md:p-3 border rounded text-center">¿Ya tenes una cuenta? Logueate :,)</Link>
                         <a href="#form" className="slide-in-bottom absolute -bottom-40 cursor-pointer"><ArrowDown size={40} /></a>
@@ -178,7 +182,7 @@ export default function Page() {
                                         {departamento ? "-- Selecciona una carrera --" : "Selecciona un departamento primero"}
                                     </option>
                                     {departamento &&
-                                        depts[departamento]?.map((carr) => (
+                                        deptos[departamento]?.map((carr) => (
                                             <option key={carr} value={carr}>
                                                 {carr}
                                             </option>
@@ -233,21 +237,28 @@ export default function Page() {
                                     <label
                                         htmlFor="file-upload"
                                         className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-bluemain rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
-                                    >
-                                        <div aria-disabled={fileActive} className="flex flex-col items-center justify-center pt-5 pb-6">
+                                    >   
+                                    {/* aria-disabled={fileActive} */}
+                                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                             <Plus />
                                             <p className="mb-2 text-sm text-gray-500">
                                                 <span className="font-semibold">Haz clic para subir</span> o arrastra y suelta
                                             </p>
                                             <p className="text-xs text-gray-500">Solo archivos .JPG, .JPEG, .PNG</p>
                                         </div>
-                                        <input id="file-upload" type="file" accept="application/pdf" onChange={handleFileChange} className="hidden" />
+                                        <input
+                                            id="file-upload"
+                                            type="file"
+                                            accept="application/pdf"
+                                            // onChange={handleFileChange}
+                                            className="hidden"
+                                        />
                                     </label>
-                                    {fileName && (
+                                    {/* {fileName && (
                                         <p className="mt-3 text-sm text-gray-700">
                                             Archivo seleccionado: {fileName}
                                         </p>
-                                    )}
+                                    )} */}
                                 </div>
                             </div>
                             <div className="w-full flex flex-col">

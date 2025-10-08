@@ -1,14 +1,16 @@
 import Link from "next/link";
 import login from "./actions";
-
+import Image from "next/image";
 export default async function page() {
-   
+
     return (
         <>
             <main className="w-full min-h-screen flex text-black-main items-center justify-center font-main">
                 <section className="w-1/2 hidden xl:flex bg-yellow-main min-h-screen items-center justify-start px-20">
                     <div>
-                        <span className="font-main text-3xl">hive.</span>
+                        <Link href="/home" className="w-fit font-main mb-10 text-4xl font-black hover:scale-110 transition">
+                            <Image src="/images/hive_logo.png" alt="" width={75} height={25} />
+                        </Link>
                         <h2 className="text-6xl leading-17">Bienvenido, querido <br /> usuario :&apos;)</h2>
                     </div>
                 </section>
@@ -25,7 +27,7 @@ export default async function page() {
                             </div>
                             <div className="flex flex-col gap-1 w-9/12">
                                 <label htmlFor="" className="px-3 font-bold">Ingresá tu contraseña</label>
-                                <input type="password" name="password" className="h-10 rounded-full px-3 border border-black-main"/>
+                                <input type="password" name="password" className="h-10 rounded-full px-3 border border-black-main" />
                             </div>
                             <button formAction={login} className="hover:bg-yellow-main hover:text-black-main transition w-9/12 mt-3 rounded-full h-9 bg-black-main text-yellow-main cursor-pointer">Acceder</button>
                         </form>

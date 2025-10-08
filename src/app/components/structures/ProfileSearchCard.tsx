@@ -5,7 +5,7 @@ type Props = {
     name: string | undefined | null
     title: string | undefined | null
     id: string | undefined | null
-    username: string | undefined | null
+    username?: string | undefined | null
 }
 
 export default function ProfileSearchCard({name, title, id, username}: Props) {

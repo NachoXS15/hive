@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, Trash2 } from "lucide-react"
+import { Trash2 } from "lucide-react"
 import { ProfileType } from "../../utils/definitions"
 import ProfileSearchCard from "./ProfileSearchCard"
 import { useMemo, useState } from "react"
