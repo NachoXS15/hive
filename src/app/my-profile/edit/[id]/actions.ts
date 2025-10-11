@@ -35,7 +35,7 @@ export default async function HandleSubmit(formData: FormData) {
     await updateBasicUser(dataBasic, id)
     await updateInfoUser(dataInfo, id)
 
-    revalidatePath('/home/my-profile');
-    redirect('/home/my-profile');
+    revalidatePath('/my-profile');
+    redirect('/my-profile');
 
 }

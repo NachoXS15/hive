@@ -28,7 +28,7 @@ export default async function Profile({id, auth_status}: Props) {
                         </div>
                         {
                             auth_status == "authenticated" ? (
-                                <Link href={`/home/my-profile/edit/${id}`} className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><Pen />Editar perfil</Link>
+                                <Link href={`/my-profile/edit/${id}`} className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><Pen />Editar perfil</Link>
                             ) : (
                                 <button className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{fontSize: "0.9em"}}><UserPlus2 />Seguir</button>
                             )

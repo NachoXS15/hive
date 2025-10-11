@@ -57,7 +57,7 @@ export default function Header({ profile, profileName }: { profile: User | null;
                                     <Link href="/home/search/profiles" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 /> Buscar Perfiles</Link>
                                     <Link href="/home/search/documents" className="flex items-center gap-2 font-medium active:scale-110 transition"><BookHeart /> Buscar Documentos</Link>
                                     <hr />
-                                    <Link href="/home/my-profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
+                                    <Link href="/my-profile" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
                                     <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>
                                     <Link href="/auth/logout" className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</Link>
                                 </nav>
