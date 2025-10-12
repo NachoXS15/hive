@@ -10,8 +10,15 @@ export default async function ProfileFeed({ posts, auth_status }: Props) {
 
     return (
         <>
-            <div className="pt-5 pb-10 flex flex-col gap-5">
-                {posts && posts.length > 0 ? <h2 className="font-bold text-xl font-second">Publicaciones</h2> : null}
+            <div className="pt-5 pb-10 flex flex-col gap-5 font-second text-black-main">
+                <div className="w-full flex items-center">
+                    <button className="w-1/2">
+                        <h2 className="font-bold hover:rounded-t-lg text-xl py-1 font-second hover:cursor-pointer hover:bg-slate-400 transition active:text-white hover:text-white">Publicaciones</h2>
+                    </button>
+                    <button className="w-1/2">
+                        <h2 className="font-bold text-xl py-1 font-second hover:rounded-t-lg hover:cursor-pointer hover:bg-slate-400 transition active:text-white hover:text-white">Documentos</h2>
+                    </button>
+                </div>
                 {
                     posts && posts.length > 0 ? posts.reverse().map((post, i) => {
                         

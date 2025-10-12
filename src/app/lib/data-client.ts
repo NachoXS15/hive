@@ -20,6 +20,44 @@ export async function insertPost(body: string, id: string | undefined) {
     }
 }
 
+//subir documento
+export async function insertDoc(fileName: string, file: File, id: string | undefined) {
+    try {
+        const filePath = `${id}/${fileName}`
+        if(!id || !filePath || !file){
+            return "Faltan datos";
+        }        
+        const {error: errorUpload} = await supabaseClient.storage.from('documents').upload(filePath, file)
+        if(errorUpload){
+            console.error(errorUpload);
+        }else{
+            console.log("Doc publicado.");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//agregar doc a la db
+export async function insertDocDB(title: string, id: string | undefined, release_year: string) {
+    try {
+        const userId = id;
+        if(!title || !id || release_year){
+            return "Faltan datos";
+        }        
+        const { error } = await supabaseClient.from("documents").insert([{ user_id: userId, title, release_year }]);
+
+        if(error){
+            console.error(error);
+        }else{
+            console.log("Post publicado.");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 let usernameId: string | undefined = "";
 
 //crear usuario

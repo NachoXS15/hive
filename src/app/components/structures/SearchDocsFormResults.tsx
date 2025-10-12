@@ -1,6 +1,5 @@
 'use client'
 
-import { Search } from "lucide-react"
 import { ProfileType } from "../../utils/definitions"
 import ProfileSearchCard from "./ProfileSearchCard"
 import { useMemo, useState } from "react"

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { LinksProfileType, PostType, ProfileType, SimpleUserType } from "../utils/definitions";
+import { DocType, LinksProfileType, PostType, ProfileType, SimpleUserType } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
 //traer info básica de todos los usuarios
@@ -75,6 +75,8 @@ export async function fetchPostsById(id: string){
         console.error(error);
     }
 }
+
+//traer un solo post
 export async function fetchSinglePost(id: string){
     try {
         const supabase = await createClient();
@@ -152,6 +154,7 @@ export async function fetchFullUser(id: string): Promise<ProfileType | null> {
     return profile;
 }
 
+//actualizar info básica del usuario
 export  async function updateBasicUser({...data}: ProfileType, id: string){
     try {
         const supabase = await createClient();
@@ -169,6 +172,7 @@ export  async function updateBasicUser({...data}: ProfileType, id: string){
 
 }
 
+//actualizar info del usuario
 export async function updateInfoUser({...data}: ProfileType, id: string){
     try {
         const supabase = await createClient();
@@ -186,6 +190,7 @@ export async function updateInfoUser({...data}: ProfileType, id: string){
 
 }
 
+//eliminar posteo
 export async function deletePost(id: string){
     try {
         const supabase = await createClient();
@@ -197,6 +202,20 @@ export async function deletePost(id: string){
         }
     } catch (error) {
         console.log(error);
+    }
+}
+
+export async function getDocsById(id: string){
+    const supabase = await createClient();
+    try {
+        const {data: docs, error } = await supabase.from("docs").select("*").eq("user_id", id);
+        if (error) {
+            console.log(error);
+        }
+        return docs as DocType[];
+    } catch (error) {
+        console.log(error);
+        
     }
 }
 // export async function deleteLink(id: string, name: string){

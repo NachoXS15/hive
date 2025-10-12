@@ -55,3 +55,11 @@ export interface UserSignIn {
     email: string
     password: string
 }
+
+export interface DocType {
+    id: string
+    user_id?: string
+    post_id?: string
+    title?: string
+    release_year?: string
+}
