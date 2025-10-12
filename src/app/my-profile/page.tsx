@@ -1,7 +1,7 @@
 import CreatePost from "@/app/components/structures/CreatePost";
 import Profile from "@/app/components/structures/Profile";
 import ProfileFeed from "@/app/components/structures/ProfileFeed";
-import { fetchPostsById, fetchUserById } from "@/app/lib/data-server";
+import { fetchPostsById, fetchUserById, getDocsById } from "@/app/lib/data-server";
 import { createClient } from "@/app/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Header from "../components/structures/Header";
@@ -19,7 +19,9 @@ export default async function page() {
 	const id: string = user?.id ?? ""
 	const posts = await fetchPostsById(id)
 	const profile = await fetchUserById(id)
+	const docs = await getDocsById(id);
 	const auth_status = user?.role
+	console.log(docs);
 	
 	return (
 		<>

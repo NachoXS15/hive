@@ -208,7 +208,7 @@ export async function deletePost(id: string){
 export async function getDocsById(id: string){
     const supabase = await createClient();
     try {
-        const {data: docs, error } = await supabase.from("docs").select("*").eq("user_id", id);
+        const {data: docs, error } = await supabase.from("documents").select("*").eq("user_id", id);
         if (error) {
             console.log(error);
         }

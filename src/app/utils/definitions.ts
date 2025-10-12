@@ -62,4 +62,5 @@ export interface DocType {
     post_id?: string
     title?: string
     release_year?: string
+    file_path: string
 }

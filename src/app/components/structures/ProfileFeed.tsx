@@ -8,6 +8,7 @@ type Props = {
 
 export default async function ProfileFeed({ posts, auth_status }: Props) {
 
+
     return (
         <>
             <div className="pt-5 pb-10 flex flex-col gap-5 font-second text-black-main">

@@ -4,6 +4,7 @@ import { CircleMinus } from "lucide-react"
 import { deletePost } from "@/app/lib/data-server"
 import { revalidatePath } from "next/cache"
 import Link from "next/link"
+import DocProfile from "../ui/DocProfile"
 type Props = {
 	post: PostType,
 	auth_status?: string | undefined
@@ -36,9 +37,14 @@ export default function Post({ post, auth_status, pathname }: Props) {
 			</div>
 
 			<div id="post-body" className="mt-4 z-20 relative">
-				<p style={{ fontSize: "0.9em" }}>{post.body}</p>
+				<p
+					//style={{ fontSize: "0.9em" }}
+				>
+					{post.body}
+				</p>
 			</div>
 
+			<DocProfile />
 			<div
 				id="post-footer"
 				className="rounded-lg mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-[40px] z-20 relative"
@@ -52,7 +58,6 @@ export default function Post({ post, auth_status, pathname }: Props) {
 					</button>
 				))}
 			</div>
-
 			{/* Botón de eliminar (solo si autenticado) */}
 			{auth_status === "authenticated" && (
 				<form
