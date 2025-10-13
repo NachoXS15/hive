@@ -1,7 +1,7 @@
 'use client'
 
 import { CircleMinus, FileText } from "lucide-react";
-import { insertDoc, insertPost } from "../../lib/data-client";
+import { insertDoc, insertDocDB, insertPost } from "../../lib/data-client";
 import { useState } from "react";
 
 
@@ -36,15 +36,17 @@ export default function CreatePost({ id }: { id: string | undefined }) {
 
         const formData = new FormData(e.currentTarget);
         const body = formData.get("body") as string
+        const title = formData.get("title") as string
+        const release_year = formData.get("year") as string
         console.log(body, id);
 
         try {
             await insertPost(body, id)
-            if (!file) {
+            if (!file || !id) {
                 alert("No hay archivo");
             } else {
                 await insertDoc(fileName, file, id)
-                // await insertDocDB()
+                await insertDocDB(id, title, release_year)
             }
             // window.location.reload();
         } catch (error) {
@@ -55,7 +57,7 @@ export default function CreatePost({ id }: { id: string | undefined }) {
     return (
         <article className="w-full h-fit rounded-lg gap-3 mt-7">
             <form onSubmit={handleSubmit} action="" className="w-full h-fit flex flex-col gap-3">
-                <textarea name="body" required id="" className="focus:outline-slate-700 min-h-28 bg-slate-200 rounded-lg p-3 resize-none" placeholder="¿Algo en lo que estes trabajado?" style={{ fontSize: "0.9em" }}></textarea>
+                <textarea name="body" id="" className="focus:outline-slate-700 min-h-28 bg-slate-200 rounded-lg p-3 resize-none" placeholder="¿Algo en lo que estes trabajado?" style={{ fontSize: "0.9em" }}></textarea>
                 <label
                     htmlFor="file-upload"
                     className="h-15 flex flex-col items-center justify-center w-full border-2 border-dashed border-black-main rounded-lg cursor-pointer bg-slate-200 hover:bg-gray-100 transition relative"
@@ -92,7 +94,22 @@ export default function CreatePost({ id }: { id: string | undefined }) {
                             </button>
                         </div>
                     )}
+                    
                 </label>
+                {
+                        fileActive && (
+                            <section className="w-full flex items-center gap-3">
+                                <div className="w-1/2">
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Titulo</label>
+                                    <input type="text" required name="title" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                </div>
+                                <div className="w-1/2">
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación</label>
+                                    <input type="text" required name="year" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                </div>
+                            </section>
+                        )
+                    }
                 <button className="w-full py-3 font-second font-black cursor-pointer bg-yellow-main  rounded-lg text-black-main hover:bg-black-main hover:text-yellow-main transition" style={{ fontSize: "0.9em" }}>¡Publicar!</button>
             </form>
         </article>
