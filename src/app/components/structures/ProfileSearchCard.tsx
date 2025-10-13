@@ -21,7 +21,7 @@ export default function ProfileSearchCard({name, title, id, username}: Props) {
                     <p className="text-xs md:text-md text-wrap">{title}</p>
                 </div>
             </div>
-            <Link href={`/home/profile/${id}`} className="flex gap-2 rounded bg-blue-200 font-semibold text-md items-center text-blue-700 px-2 py-1 hover:bg-blue-700 hover:text-blue-200"><User2 /><span className="hidden md:inline">Ver perfil</span></Link>
+            <Link href={`/home/profile/${id}/posts`} className="flex gap-2 rounded bg-blue-200 font-semibold text-md items-center text-blue-700 px-2 py-1 hover:bg-blue-700 hover:text-blue-200"><User2 /><span className="hidden md:inline">Ver perfil</span></Link>
         </article>
     )
 }

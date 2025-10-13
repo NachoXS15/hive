@@ -54,8 +54,8 @@ export default function Header({ profile, profileName }: { profile: User | null;
                             profile ? (
                                 <nav className="w-full flex flex-col gap-4 p-5 font-medium">
                                     <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</Link>
-                                    <Link href="/home/search/profiles" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 /> Buscar Perfiles</Link>
-                                    <Link href="/home/search/documents" className="flex items-center gap-2 font-medium active:scale-110 transition"><BookHeart /> Buscar Documentos</Link>
+                                    <Link href="/search/profiles" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 /> Buscar Perfiles</Link>
+                                    <Link href="/search/documents" className="flex items-center gap-2 font-medium active:scale-110 transition"><BookHeart /> Buscar Documentos</Link>
                                     <hr />
                                     <Link href="/my-profile/posts" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
                                     <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link>

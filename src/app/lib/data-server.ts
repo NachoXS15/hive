@@ -53,6 +53,18 @@ export async function fetchPosts(){
         console.log(error);
     }
 }
+export async function fetchDocs(){
+    try {
+        const supabase = await createClient();
+        const {data, error} = await supabase.from("documents").select(`*`);
+        if (error) {
+            console.log(error.message);
+        }
+        return data as DocType[];
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 //traer post por usuario
 export async function fetchPostsById(id: string){
