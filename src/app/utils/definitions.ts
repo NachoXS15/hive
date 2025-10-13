@@ -63,6 +63,7 @@ export interface DocType {
     title?: string
     author?: string
     release_year?: string
+    file_path: string
 }
 
 export interface PostFormData {

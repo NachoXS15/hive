@@ -34,15 +34,15 @@ export async function createPostWithDocument(formData: PostFormData, id: string 
             const { error: docError } = await supabaseClient.from("documents").insert([
                 {
                     user_id: userId,
-                    post_id: postData.post_id,
+                    post_id: postData.id,
                     title: formData.title,
                     release_year: formData.release_year,
                     degree: formData.degree,
-                    author: formData.author
+                    author: formData.author,
+                    file_path: filePath
                 },
             ]);
-            if (docError) console.log(docError);
-            ;
+            if (docError) console.log(docError);;
         }
 
         return {

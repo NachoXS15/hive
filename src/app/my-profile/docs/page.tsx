@@ -29,10 +29,10 @@ export default async function page() {
 					</button>
 				</div>
 				{
-					docs && docs.length > 0 ? docs.reverse().map((post, i) => {
+					docs && docs.length > 0 ? docs.reverse().map((doc, i) => {
 
 						return (
-							<DocProfile key={i} />
+							<DocProfile doc={doc} key={i} />
 						)
 					}) :
 						<h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>

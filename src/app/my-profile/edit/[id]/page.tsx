@@ -18,7 +18,7 @@ export default async function page({
 	return (
 		<div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
 			<form className="bg-white shadow-lg rounded-2xl p-8 max-w-5xl">
-				<Link href="/my-profile" className="absolute hover:bg-black-main hover:text-yellow-main transition p-1 rounded-full"><ArrowLeft /></Link>
+				<Link href="/my-profile/posts" className="absolute hover:bg-black-main hover:text-yellow-main transition p-1 rounded-full"><ArrowLeft /></Link>
 				<h2 className="text-2xl font-bold mb-8 text-center">Actualizar datos de {profile?.name}</h2>
 				<div className="w-full grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
 					<div>

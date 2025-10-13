@@ -198,7 +198,7 @@ export async function deletePost(id: string){
         if (error) {
             console.log(error);
         }else{
-            console.log("Link eliminado");
+            console.log("Post eliminado");
         }
     } catch (error) {
         console.log(error);

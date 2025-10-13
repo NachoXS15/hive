@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import Post from "@/app/components/structures/Post";
 import Link from "next/link";
-import { fetchPostsById } from "@/app/lib/data-server";
+import { fetchDocsById, fetchPostsById } from "@/app/lib/data-server";
 
 
 export default async function page() {
@@ -16,6 +16,7 @@ export default async function page() {
 	}
 	const id: string = user?.id ?? ""
 	const posts = await fetchPostsById(id)
+	const docs = await fetchDocsById(id);
 	const auth_status = user?.role
 
 	return (
@@ -33,7 +34,7 @@ export default async function page() {
 					posts && posts.length > 0 ? posts.reverse().map((post, i) => {
 
 						return (
-							<Post key={i} auth_status={auth_status} post={post} />
+							<Post key={i} docs={docs} auth_status={auth_status} post={post} />
 						)
 					}) :
 						<h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>

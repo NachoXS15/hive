@@ -15,9 +15,7 @@ export default async function layout({ children }: { children: React.ReactNode }
     }
     const id: string = user?.id ?? ""
     const profile = await fetchFullUser(id)
-    const docs = await fetchDocsById(id);
     const auth_status = user?.role
-    console.log(docs);
 
     return (
         <>

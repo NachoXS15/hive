@@ -1,4 +1,4 @@
-import { PostType } from "../../utils/definitions"
+import { DocType, PostType } from "../../utils/definitions"
 import { formatDate } from "../../utils/DateFormatterPost"
 import { CircleMinus } from "lucide-react"
 import { deletePost } from "@/app/lib/data-server"
@@ -9,10 +9,12 @@ type Props = {
 	post: PostType,
 	auth_status?: string | undefined
 	pathname?: string
+	docs: DocType[] | undefined
 }
 
-export default function Post({ post, auth_status, pathname }: Props) {
+export default function Post({ post, auth_status, pathname, docs }: Props) {
 	const formatedDate = formatDate(post.created_at)
+	const docsWithPosts = docs?.filter(doc => doc.post_id == post.id)
 
 	return (
 		<article className="w-full h-fit flex flex-col font-second bg-slate-200 rounded-lg p-5 relative group">			
@@ -37,13 +39,13 @@ export default function Post({ post, auth_status, pathname }: Props) {
 
 			<div id="post-body" className="mt-4 z-20 relative">
 				<p
-					//style={{ fontSize: "0.9em" }}
+					style={{ fontSize: "0.9em" }}
 				>
 					{post.body}
 				</p>
 			</div>
 
-			<DocProfile />
+			{docsWithPosts && docsWithPosts.length > 0 && <DocProfile doc={docsWithPosts[0]} />}
 			<div
 				id="post-footer"
 				className="rounded-lg mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-[40px] z-20 relative"
