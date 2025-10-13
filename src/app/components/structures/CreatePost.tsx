@@ -1,11 +1,16 @@
 'use client'
 
 import { CircleMinus, FileText } from "lucide-react";
-import { insertDoc, insertDocDB, insertPost } from "../../lib/data-client";
 import { useState } from "react";
+import { createPostWithDocument } from "@/app/lib/data-client";
+import { ProfileType } from "@/app/utils/definitions";
 
+type Props = {
+    id: string | undefined
+    profile: ProfileType | null
+}
 
-export default function CreatePost({ id }: { id: string | undefined }) {
+export default function CreatePost({ id, profile }: Props) {
 
     const [file, setFile] = useState<File | null>(null)
     const [fileName, setFileName] = useState("");
@@ -40,14 +45,28 @@ export default function CreatePost({ id }: { id: string | undefined }) {
         const release_year = formData.get("year") as string
         console.log(body, id);
 
+        const data = {
+            body,
+            title,
+            release_year,
+            fileActive,
+            fileName,
+            file,
+            author: profile?.username,
+            degree: profile?.user_public_info?.degree
+        }
         try {
-            await insertPost(body, id)
-            if (!file || !id) {
-                alert("No hay archivo");
-            } else {
-                await insertDoc(fileName, file, id)
-                await insertDocDB(id, title, release_year)
+            if(!id){
+                console.log("no hay id");
+            }else{
+                await createPostWithDocument(data, id)
             }
+            // if (!file || !id) {
+            //     alert("No hay archivo");
+            // } else {
+            //     await insertDoc(fileName, file, id)
+            //     await insertDocDB(id, title, release_year)
+            // }
             // window.location.reload();
         } catch (error) {
             console.log(error);
@@ -101,7 +120,7 @@ export default function CreatePost({ id }: { id: string | undefined }) {
                             <section className="w-full flex items-center gap-3">
                                 <div className="w-1/2">
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Titulo</label>
-                                    <input type="text" required name="title" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                    <input type="text" required name="title" defaultValue={fileName} className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 </div>
                                 <div className="w-1/2">
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación</label>

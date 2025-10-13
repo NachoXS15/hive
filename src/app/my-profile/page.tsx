@@ -1,7 +1,7 @@
 import CreatePost from "@/app/components/structures/CreatePost";
 import Profile from "@/app/components/structures/Profile";
 import ProfileFeed from "@/app/components/structures/ProfileFeed";
-import { fetchPostsById, fetchUserById, getDocsById } from "@/app/lib/data-server";
+import { fetchFullUser, fetchPostsById, fetchDocsById } from "@/app/lib/data-server";
 import { createClient } from "@/app/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Header from "../components/structures/Header";
@@ -18,8 +18,8 @@ export default async function page() {
 	}
 	const id: string = user?.id ?? ""
 	const posts = await fetchPostsById(id)
-	const profile = await fetchUserById(id)
-	const docs = await getDocsById(id);
+	const profile = await fetchFullUser(id)
+	const docs = await fetchDocsById(id);
 	const auth_status = user?.role
 	console.log(docs);
 	
@@ -30,7 +30,7 @@ export default async function page() {
 			<main className="w-full h-fit flex py-10 items-center flex-col px-6 md:px-0">
 				<Profile auth_status={auth_status} id={id}/>
 				<section className="md:px-10 w-full mt-10 shadow-xl rounded-lg 2xl:w-3/6 xl:w-10/12 md:w-3/4 h-fit flex flex-col gap-5">
-					<CreatePost id={id} />
+					<CreatePost profile={profile} id={id} />
 					<ProfileFeed docs={docs} posts={posts} auth_status={auth_status} />
 				</section>
 			</main>

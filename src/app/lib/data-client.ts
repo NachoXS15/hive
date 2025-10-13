@@ -1,5 +1,60 @@
 import { supabaseClient } from "@/app/utils/supabase/client";
 import { ProfileType, UserPublicInfo, UserSignIn } from "../utils/definitions";
+import { PostFormData } from "../utils/definitions";
+
+export async function createPostWithDocument(formData: PostFormData, id: string | undefined) {
+    try {
+        const userId = id;
+        if(!formData.body || !id){
+            return "Faltan datos";
+        }        
+        const { data: postData, error } = await supabaseClient.from("posts").insert([{ user_id: userId, body: formData.body }])
+        .select()
+        .single();
+
+        if(error){
+            console.error(error);
+        }else{
+            console.log("Post publicado.");
+        }
+        // 2️⃣ Crear documento si corresponde
+        if (formData.fileActive) {
+
+            const filePath = `${id}/${formData.fileName}`
+            if(!id || !filePath || !formData.file){
+                return "Faltan datos";
+            }        
+            const {error: errorUpload} = await supabaseClient.storage.from('documents').upload(filePath, formData.file)
+            if(errorUpload){
+                console.error(errorUpload);
+            }else{
+                console.log("Doc publicado.");
+            }
+
+            const { error: docError } = await supabaseClient.from("documents").insert([
+                {
+                    user_id: userId,
+                    post_id: postData.post_id,
+                    title: formData.title,
+                    release_year: formData.release_year,
+                    degree: formData.degree,
+                    author: formData.author
+                },
+            ]);
+            if (docError) console.log(docError);
+            ;
+        }
+
+        return {
+            success: true,
+            message: "Publicación creada correctamente",
+            post_id: postData.post_id,
+        };
+    } catch (error) {
+        console.error("Error en createPostWithDocument:", error);
+        return { success: false, message: "Error al crear publicación", error };
+    }
+}
 
 //crear post
 export async function insertPost(body: string, id: string | undefined) {
@@ -19,6 +74,7 @@ export async function insertPost(body: string, id: string | undefined) {
         console.log(error);
     }
 }
+
 
 //subir documento
 export async function insertDoc(fileName: string, file: File, id: string | undefined) {

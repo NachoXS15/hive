@@ -205,19 +205,23 @@ export async function deletePost(id: string){
     }
 }
 
-export async function getDocsById(id: string){
-    const supabase = await createClient();
+
+export async function fetchDocsById(id: string){
     try {
-        const {data: docs, error } = await supabase.from("documents").select("*").eq("user_id", id);
+        const supabase = await createClient();
+        const { data, error } = await supabase
+        .from("documents")
+        .select(`*`)
+        .eq("user_id", id)
         if (error) {
-            console.log(error);
+            console.log(error.message);
         }
-        return docs as DocType[];
+        return data as DocType[];
     } catch (error) {
-        console.log(error);
-        
+        console.error(error);
     }
 }
+
 // export async function deleteLink(id: string, name: string){
 //     try {
 //         const supabase = await createClient();

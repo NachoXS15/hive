@@ -61,6 +61,17 @@ export interface DocType {
     user_id?: string
     post_id?: string
     title?: string
+    author?: string
     release_year?: string
-    file_path: string
+}
+
+export interface PostFormData {
+  body: string;
+  fileActive?: boolean;
+  title?: string;
+  author?: string | null;
+  release_year?: string;
+  degree?: string;
+  file: File | null
+  fileName: string
 }

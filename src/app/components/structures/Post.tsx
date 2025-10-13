@@ -13,7 +13,6 @@ type Props = {
 
 export default function Post({ post, auth_status, pathname }: Props) {
 	const formatedDate = formatDate(post.created_at)
-	console.log(post.id);
 
 	return (
 		<article className="w-full h-fit flex flex-col font-second bg-slate-200 rounded-lg p-5 relative group">			
