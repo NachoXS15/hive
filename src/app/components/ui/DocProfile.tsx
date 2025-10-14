@@ -25,7 +25,7 @@ export default function DocProfile({doc}: Props) {
         }
     }
     return (
-        <article className="bg-slate-300 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
+        <article className="bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
             <div className="flex items-center gap-3">
                 <FileText size={30} />
                 <div className="flex flex-col">

@@ -1,7 +1,7 @@
 import { DocType, PostType } from "../../utils/definitions"
 import { formatDate } from "../../utils/DateFormatterPost"
 import { CircleMinus } from "lucide-react"
-import { deletePost } from "@/app/lib/data-server"
+import { deleteDoc, deletePost } from "@/app/lib/data-server"
 import { revalidatePath } from "next/cache"
 import Link from "next/link"
 import DocProfile from "../ui/DocProfile"
@@ -65,6 +65,9 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 					action={async () => {
 						"use server";
 						await deletePost(post.id);
+						if (docsWithPosts && docsWithPosts.length > 0) {
+							await deleteDoc([docsWithPosts[0].file_path], docsWithPosts[0].id);
+						}
 						revalidatePath("/perfil");
 					}}
 				>

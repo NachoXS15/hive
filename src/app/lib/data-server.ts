@@ -217,6 +217,27 @@ export async function deletePost(id: string){
     }
 }
 
+export async function deleteDoc(path: string[], id: string){
+    try {
+        const supabase = await createClient();
+        //borrar de storage
+        const {error} = await supabase.storage.from("documents").remove(path);
+        if (error) {
+            console.log(error);
+        }else{
+            console.log("Post eliminado");
+        }
+        //borrar de db
+        const {error: tableError} = await supabase.from('docs').delete().eq("id", id).single();
+        if (tableError) {
+            console.error(tableError);
+        }
+        location.reload()
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 export async function fetchDocsById(id: string){
     try {
