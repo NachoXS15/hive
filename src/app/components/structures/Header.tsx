@@ -18,7 +18,7 @@ export default function Header({ profile, profileName }: { profile: User | null;
                     </Link>
                     <nav className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20">
                         <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Explorar</Link>
-                        <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Contratar</Link>
+                        <Link href="/search/profiles" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Contratar</Link>
                         <label htmlFor="dropdown-search-open" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Buscar</label>
                         <input type="checkbox" className="peer hidden" id="dropdown-search-open" />
                         <DropdownMenuSearch />
@@ -65,7 +65,8 @@ export default function Header({ profile, profileName }: { profile: User | null;
                             ) : (
                                 <nav className="w-full flex flex-col gap-4 p-5 font-medium">
                                     <Link href="/" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><Star />Explorar</Link>
-                                    <Link href="/" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><Search />Buscar</Link>
+                                    <Link href="/search/profiles" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><User2 />Buscar perfiles</Link>
+                                    <Link href="/search/documents" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><BookHeart />Buscar documentos</Link>
                                     <hr />
                                     <Link href="/auth/login" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><LogIn /> Iniciar sesión</Link>
                                     <Link href="/auth/register" className="flex items-center gap-2 w-full rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition px-2 py-1"><UserPlus2 /> Crear cuenta</Link>

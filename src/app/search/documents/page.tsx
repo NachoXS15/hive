@@ -1,14 +1,13 @@
 import SearchDocsFormResults from "@/app/components/structures/SearchDocsFormResults";
-import { fetchUsers } from "@/app/lib/data-server";
-import { ProfileType } from "@/app/utils/definitions";
+import { fetchDocs, fetchUsers } from "@/app/lib/data-server";
+import { DocType } from "@/app/utils/definitions";
 
 export default async function page() {
 
-	const profiles: ProfileType[] = (await fetchUsers()) ?? [];
-	
+	const docs: DocType[] = (await fetchDocs()) ?? [];
+
 	return (
-		<main className="w-full min-h-[600px] flex flex-col items-center justify-center">
-			<SearchDocsFormResults profiles={profiles} />
-		</main>
+		<SearchDocsFormResults docs={docs} />
+
 	)
 }

@@ -18,7 +18,7 @@ export default async function layout({ children }: { children: React.ReactNode }
         <>
             <MenuStateReset />
             <Header profile={user} profileName={profile?.name} />
-            <main className="w-full h-fit flex py-10 items-center flex-col px-6 md:px-0">
+            <main className="w-full h-fit flex items-center flex-col px-6 md:px-0">
                 {children}
             </main>
             <Footer />
