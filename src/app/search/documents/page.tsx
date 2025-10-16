@@ -8,6 +8,5 @@ export default async function page() {
 
 	return (
 		<SearchDocsFormResults docs={docs} />
-
 	)
 }

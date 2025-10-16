@@ -9,6 +9,7 @@ type Props = {
 }
 
 export default function DocSearchCard({ doc }: Props) {
+
     const handleDownload = async () => {
         if (!doc?.file_path) {
             alert("No se encontró el archivo para descargar");
@@ -23,6 +24,7 @@ export default function DocSearchCard({ doc }: Props) {
             window.open(data.signedUrl, '_blank');
         }
     }
+    
     return (
         <article className="bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
             <div className="flex items-center gap-3">
@@ -32,7 +34,7 @@ export default function DocSearchCard({ doc }: Props) {
                     <span style={{ fontSize: "0.9em" }}>Año de publicación: <span>{doc?.release_year}</span></span>
                 </div>
             </div>
-            <button onClick={handleDownload} className="hover:scale-105 transition cursor-pointer">
+            <button onClick={handleDownload} className="hover:text-yellow-main hover:bg-black-main p-3 rounded-full transition cursor-pointer">
                 <ArrowUpRightFromSquare size={20} />
             </button>
         </article>

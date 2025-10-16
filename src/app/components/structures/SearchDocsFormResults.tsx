@@ -108,11 +108,17 @@ export default function SearchFormResults({ docs }: Props) {
                     </div>
                 </form>
             </div>
-            <div className="w-full h-full px-10 mt-10 flex flex-col gap-5">
+            <div className="w-full h-full px-14 mt-10 flex flex-col gap-5">
                 {query ? (
-                    filteredDocs.map((doc, i) => (
-                        <DocSearchCard key={i} doc={doc} />
-                    ))
+                    <div className="w-full h-[600px]">
+                        <h2 className="font-bold text-xl">Documentos encontrados:</h2>
+                        {
+                            filteredDocs.map((doc, i) => (
+                                <DocSearchCard key={i} doc={doc} />
+                            ))
+
+                        }
+                    </div>
                 ) : (
                     <h2 className="text-center font-bold font-second text-xl mb-5">¡Encontrá documentos de calidad!</h2>
                 )}

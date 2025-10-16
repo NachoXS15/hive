@@ -61,17 +61,10 @@ export default function CreatePost({ id, profile }: Props) {
             }else{
                 await createPostWithDocument(data, id)
             }
-            // if (!file || !id) {
-            //     alert("No hay archivo");
-            // } else {
-            //     await insertDoc(fileName, file, id)
-            //     await insertDocDB(id, title, release_year)
-            // }
-            // window.location.reload();
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
-
     }
     return (
         <article className="w-full h-fit rounded-lg gap-3 mt-7">
