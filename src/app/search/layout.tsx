@@ -12,13 +12,13 @@ export default async function layout({ children }: { children: React.ReactNode }
     const { data: { user } } = await supabase.auth.getUser()
 
     const profile = user ? await fetchUserById(user?.id) : null
-    const auth_status = user?.role
-    const id: string = user?.id ?? ""
+    // const auth_status = user?.role
+    // const id: string = user?.id ?? ""
     return (
         <>
             <MenuStateReset />
             <Header profile={user} profileName={profile?.name} />
-            <main className="w-full h-fit flex items-center flex-col px-6 md:px-0">
+            <main className="w-full h-fit flex items-center flex-col md:px-0">
                 {children}
             </main>
             <Footer />
