@@ -4,16 +4,12 @@ import MenuStateReset from "../components/misc/MenuStateReset"
 import Footer from "../components/structures/Footer"
 import { createClient } from "../utils/supabase/server"
 import { fetchUserById } from "../lib/data-server"
-import Profile from "../components/structures/Profile"
 
 export default async function layout({ children }: { children: React.ReactNode }) {
 
 	const supabase = await createClient()
 	const { data: { user } } = await supabase.auth.getUser()
-
 	const profile = user ? await fetchUserById(user?.id) : null
-	const auth_status = user?.role
-    const id: string = user?.id ?? ""
 
 	return (
 		<>
