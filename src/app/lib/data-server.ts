@@ -42,7 +42,8 @@ export async function fetchPosts(){
         const {data, error} = await supabase.from("posts").select(`
             *,
             profiles (
-                name
+                name,
+                profile_img_color
             )
         `);
         if (error) {
@@ -138,6 +139,7 @@ export async function fetchFullUser(id: string): Promise<ProfileType | null> {
             name,
             username,
             mail,
+            profile_img_color,
             user_public_info (
                 job_avaliable,
                 student_status,

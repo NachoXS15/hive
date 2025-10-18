@@ -26,7 +26,7 @@ export default async function Profile({ id, auth_status }: Props) {
             <section className="w-full flex gap-15 xl:gap-20 flex-col xl:flex-row items-center justify-between">
                 <div className="w-full h-fit xl:h-[180px] flex flex-col md:flex-row md:items-center md:gap-10">
                     <div className="flex flex-col items-center gap-2 mb-5">
-                        <div className="rounded-full self-start min-w-[160px] min-h-[160px] md:min-w-[130px] md:min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url('/images/nacho.webp')` }}>
+                        <div className="rounded-full border-black-main border-2 self-start min-w-[160px] min-h-[160px] md:min-w-[130px] md:min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundColor: `#${profile?.profile_img_color}` }}>
                         </div>
                         {
                             auth_status == "authenticated" ? (

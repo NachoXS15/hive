@@ -27,7 +27,7 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 			<div id="post-header" className="w-fit flex items-center gap-4 z-20 relative">
 				<div
 					className="rounded-full min-w-[60px] min-h-[60px] bg-cover bg-center"
-					style={{ backgroundImage: `url('/images/nacho.webp')` }}
+					style={{ backgroundColor: `#${post.profiles.profile_img_color}` }}
 				></div>
 				<div className="flex flex-col gap-1">
 					<h2 className="font-bold font-second">
