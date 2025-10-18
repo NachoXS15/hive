@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import MenuStateReset from "../components/misc/MenuStateReset";
 import Header from "../components/structures/Header";
 import { createClient } from "../utils/supabase/server";
-import { fetchDocsById, fetchFullUser } from "../lib/data-server";
+import { fetchFullUser } from "../lib/data-server";
 import Profile from "../components/structures/Profile";
 import Footer from "../components/structures/Footer";
 import CreatePost from "../components/structures/CreatePost";

@@ -1,4 +1,4 @@
-import { BookHeart, LogIn, LogOut, Menu, Search, SettingsIcon, Star, User2, UserPlus2 } from "lucide-react";
+import { BookHeart, LogIn, LogOut, Menu, SettingsIcon, Star, User2, UserPlus2 } from "lucide-react";
 import Link from "next/link";
 import { User } from "@supabase/supabase-js";
 import DropdownMenuSearch from "../ui/DropdownMenuSearch";
@@ -22,10 +22,9 @@ export default function Header({ profile, profileName }: { profile: User | null;
                         <label htmlFor="dropdown-search-open" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Buscar</label>
                         <input type="checkbox" className="peer hidden" id="dropdown-search-open" />
                         <DropdownMenuSearch />
-
                     </nav>
                     {
-                        profile ? (
+                        profile?.role == "authenticated" ? (
                             <>
                                 <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">{nameInitials}</label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
@@ -46,12 +45,11 @@ export default function Header({ profile, profileName }: { profile: User | null;
                         )
 
                     }
-
                 </header>
                 <div className="md:hidden peer-checked:block hidden z-50 w-full absolute bg-black-main text-yellow-main top-20" id="menu-open">
                     <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
                         {
-                            profile ? (
+                            profile?.role == "authenticated" ? (
                                 <nav className="w-full flex flex-col gap-4 p-5 font-medium">
                                     <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><Star />Explorar</Link>
                                     <Link href="/search/profiles" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 /> Buscar Perfiles</Link>

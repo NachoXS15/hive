@@ -7,7 +7,7 @@ export default function DropdownMenuProfile({ profile }: { profile: User | null 
             <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
                 <nav className="w-full flex flex-col gap-2 p-3 font-medium">
                     {
-                        profile ? (
+                        profile?.role == "authenticated" ? (
                             <>
                                 <Link href="/my-profile/posts" className="flex items-center gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><User2 /> Mi Perfil</Link>
                                 <Link href="/home/profile" className="flex items-center gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><SettingsIcon /> Configuración</Link>
