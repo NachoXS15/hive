@@ -1,0 +1,82 @@
+export const depts = {
+  "Ciencias Exactas, Físicas y Naturales": [
+    "Bioquímica",
+    "Farmacia",
+    "Ing. en Sistemas de Información",
+    "Lic. en Sistemas de Información",
+    "Lic. en Diseño y Producción Multimedial",
+    "Lic. en Ciencias Biológicas",
+    "Ing. Mecatrónica",
+    "Tec. Universitaria en Informática",
+    "Tec. Universitaria en Biogenética"
+  ],
+  "Ciencias Humanas y de la Educación": [
+    "Lic. en Letras",
+    "Lic. en Lengua y Literatura Inglesa",
+    "Lic. en Artes Plásticas",
+    "Lic. en Historia",
+    "Lic. en Música",
+    "Lic. en Arte Escénico",
+    "Lic. en Teología y Religiones Comparadas",
+    "Lic. en Psicopedagogía",
+    "Traductorado Público Nacional en Lengua Inglesa",
+    "Lic. en Gestión Organizacional y Recursos Humanos",
+    "Lic. en Ciencias de la Educación",
+    "Prof. Universitario en Historia para el Nivel Secundario y Superior",
+    "Prof. Universitario en Letras para el Nivel Secundario y Superior",
+    "Prof. Universitario en Lengua Inglesa",
+    "Prof. Universitario en Psicopedagogía"
+  ],
+  "Ciencias Sociales, Jurídicas y Económicas": [
+    "Abogacía",
+    "Escribanía",
+    "Contador Público",
+    "Lic. en Administración",
+    "Lic. en Economía",
+    "Lic. en Ciencia Política",
+    "Lic. en Turismo",
+    "Lic. en Comunicación Social",
+    "Lic. en Trabajo Social",
+    "Lic. en Criminalística",
+    "Tec. Universitaria en Gestión Jurídica",
+    "Tec. Universitaria en Gestión y Administración Contable",
+    "Tec. Universitaria en Subastador y Martillero Público",
+    "Tec. Universitaria en Tasador y Corredor Inmobiliario",
+    "Tec. Universitaria en Guía de Turismo",
+    "Tec. Universitaria en Seguridad Urbana",
+    "Tec. Universitaria en Televisión Digital"
+  ],
+  "Aplicadas": [
+    "Arquitectura",
+    "Geología",
+    "Ing. Industrial",
+    "Ing. Civil",
+    "Ing. Agroindustrial",
+    "Ing. en Minas",
+    "Ing. en Alimentos",
+    "Ing. Agronómica",
+    "Tec. Universitaria Agrícola",
+    "Tec. Universitaria en Minería",
+    "Tec. Universitaria en Tecnología de los Alimentos"
+  ],
+  "Sociales": [
+    "Abogacía",
+    "Escribanía",
+    "Contador Público",
+    "Lic. en Administración",
+    "Lic. en Economía",
+    "Lic. en Ciencia Política",
+    "Lic. en Turismo",
+    "Lic. en Comunicación Social",
+    "Lic. en Trabajo Social",
+    "Lic. en Criminalística"
+  ],
+  "Ciencias de la Salud": [
+    "Medicina",
+    "Odontología",
+    "Enfermería Universitaria",
+    "Lic. en Enfermería",
+    "Lic. en Producción de Bioimágenes",
+    "Lic. en Terapia Ocupacional"
+  ]
+};

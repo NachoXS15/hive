@@ -1,10 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@midudev/tailwind-animations";
+
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --yellow-main: #ffd836;
+  --black-main: #2d2d2d;
+  --beige: #ede5c3;
+}
+
+@theme inline {
+  --color-yellow-main: var(--yellow-main);
+  --color-black-main: var(--black-main);
+  --color-beige: var(--beige);
+  --font-main: var(--font-passion-one);
+  --font-second: var(--font-opensans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +25,8 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.smooth{
+  scroll-behavior: smooth;
 }
+
+
