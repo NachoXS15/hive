@@ -28,15 +28,17 @@ export default async function page() {
 						<Link href="/my-profile/docs" className="w-full font-bold text-xl py-2 px-5 rounded-lg font-second bg-black-main text-yellow-main hover:cursor-pointer transition active:text-white">Documentos</Link>
 					</button>
 				</div>
-				{
-					docs && docs.length > 0 ? docs.reverse().map((doc, i) => {
+				<div className="w-full grid gap-3 grid-cols-2">
+					{
+						docs && docs.length > 0 ? docs.reverse().map((doc, i) => {
 
-						return (
-							<DocProfile doc={doc} key={i} />
-						)
-					}) :
-						<h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
-				}
+							return (
+								<DocProfile doc={doc} key={i} />
+							)
+						}) :
+							<h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
+					}
+				</div>
 			</div>
 		</>
 	)

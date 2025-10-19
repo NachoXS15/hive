@@ -2,13 +2,13 @@
 
 import { DocType } from "@/app/utils/definitions";
 import { supabaseClient } from "@/app/utils/supabase/client";
-import { ArrowUpRightFromSquare, FileText } from "lucide-react";
+import { ArrowUpRightFromSquare  } from "lucide-react";
 
 type Props = {
     doc: DocType | null | undefined
 }
 
-export default function DocProfile({doc}: Props) {
+export default function DocProfile({ doc }: Props) {
 
     const handleDownload = async () => {
         if (!doc?.file_path) {
@@ -25,18 +25,18 @@ export default function DocProfile({doc}: Props) {
         }
     }
     return (
-        <article className="bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
-            <div className="flex items-center gap-3">
-                <FileText size={30} />
-                <div className="flex flex-col">
-                    <span className="font-semibold">{doc?.title}</span>
-                    <span style={{ fontSize: "0.9em" }}>Año de publicación: <span>{doc?.release_year}</span></span>
-                </div>
+        <article className="flex overflow-hidden bg-slate-300 z-40 mt-3 rounded-lg flex-col px-5 w-full gap-2 h-60 justify-between py-3">
+            <div className="w-full rounded-lg bg-orange-300 h-11/12"></div>
+            <div className="flex flex-col">
+                <h2 className="font-bold text-xl">{doc?.title}</h2>
+                <h3 style={{ fontSize: '0.9em' }} className="font-bold">Autor: <span className="font-normal">{doc?.author}</span></h3>
             </div>
-            <button onClick={handleDownload} className="hover:scale-105 transition cursor-pointer">
-                {/* <span className="hidden md:inline">Descargar</span> */}
-                <ArrowUpRightFromSquare size={20} />
-            </button>
+            <div className="flex items-center justify-between">
+                <span className="bg-black-main text-yellow-main px-3 py-0.5 rounded-full">{doc?.release_year}</span>
+                <button onClick={handleDownload} className="hover:text-yellow-main hover:bg-black-main p-3 rounded-full transition cursor-pointer">
+                    <ArrowUpRightFromSquare size={20} />
+                </button>
+            </div>
         </article>
     )
 }
