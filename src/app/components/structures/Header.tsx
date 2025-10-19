@@ -46,7 +46,7 @@ export default function Header({ profile, profileName }: { profile: User | null;
 
                     }
                 </header>
-                <div className="md:hidden peer-checked:block hidden z-50 w-full absolute bg-black-main text-yellow-main top-20" id="menu-open">
+                <div className="md:hidden peer-checked:block hidden text-regular z-50 w-full absolute bg-black-main text-yellow-main top-20" id="menu-open">
                     <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
                         {
                             profile?.role == "authenticated" ? (
