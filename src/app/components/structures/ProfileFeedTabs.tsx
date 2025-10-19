@@ -56,7 +56,7 @@ export default function ProfileFeedTabs({ posts, auth_status, docs }: Props) {
                 docs
                     .slice()
                     .reverse()
-                    .map((doc, i) => <DocProfile key={i}  />)
+                    .map((doc, i) => <DocProfile key={i} doc={doc}  />)
             ) : (
                 <h2 className="text-center font-second font-semibold">
                     Este usuario no ha compartido documentos todavía. <br /> Esperemos se

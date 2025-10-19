@@ -9,12 +9,14 @@ type Props = {
 	post: PostType,
 	auth_status?: string | undefined
 	pathname?: string
-	docs: DocType[] | undefined
+	docs?: DocType[] | undefined
 }
 
 export default function Post({ post, auth_status, pathname, docs }: Props) {
 	const formatedDate = formatDate(post.created_at)
 	const docsWithPosts = docs?.filter(doc => doc.post_id == post.id)
+	console.log(post.profiles.profile_img_color);
+	
 
 	return (
 		<article className="w-full h-fit flex flex-col font-second bg-slate-200 rounded-lg p-5 relative group">			

@@ -9,7 +9,8 @@ import { createClient } from "@/app/utils/supabase/server"
 
 type Props = {
   children: React.ReactNode
-  params: { id: string }
+    params: Promise<{ id: string }>
+
 }
 
 

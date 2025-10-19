@@ -15,6 +15,8 @@ export default async function Profile({ id, auth_status }: Props) {
 
     const profile = await fetchFullUser(id);
     const links = await fetchLinksById(id);
+    console.log(links);
+    
     console.log(profile);
     
     let birthdayFormatted = "";
@@ -22,7 +24,7 @@ export default async function Profile({ id, auth_status }: Props) {
         birthdayFormatted = formatDate(profile?.user_public_info?.birthday)
     }
     return (
-        <article className="bg-slate-50 font-second shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-7/12 md:w-2/4 h-fit">
+        <article className="bg-slate-50 font-second shadow-xl py-7 rounded-lg md:px-10 w-full px-5 2xl:w-3/6 xl:w-7/12 md:w-3/4 h-fit">
             <section className="w-full flex gap-15 xl:gap-20 flex-col xl:flex-row items-center justify-between">
                 <div className="w-full h-fit xl:h-[180px] flex flex-col md:flex-row md:items-center md:gap-10">
                     <div className="flex flex-col items-center gap-2 mb-5">
@@ -30,7 +32,7 @@ export default async function Profile({ id, auth_status }: Props) {
                         </div>
                         {
                             auth_status == "authenticated" ? (
-                                <Link href={`/my-profile/edit/${id}`} className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{ fontSize: "0.9em" }}><Pen />Editar perfil</Link>
+                                <Link href={`/edit-profile/${id}`} className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{ fontSize: "0.9em" }}><Pen />Editar perfil</Link>
                             ) : (
                                 <button className="px-7 md:px-1 md:w-full self-start justify-center flex items-center gap-1 py-1.5 font-semibold text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer rounded-lg" style={{ fontSize: "0.9em" }}><UserPlus2 />Seguir</button>
                             )

@@ -1,6 +1,6 @@
 import { DocType } from "@/app/utils/definitions"
 import { supabaseClient } from "@/app/utils/supabase/client"
-import { ArrowUpRightFromSquare, User2 } from "lucide-react"
+import { ArrowUpRightFromSquare } from "lucide-react"
 
 type Props = {
     doc: DocType | null | undefined

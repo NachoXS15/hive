@@ -14,7 +14,7 @@ export default async function page({
 
 	const { id } = await params
 	const profile = await fetchFullUser(id)
-
+	const selectedColor = profile?.profile_img_color
 	return (
 		<div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
 			<form className="bg-white shadow-lg rounded-2xl p-8 max-w-5xl">
@@ -87,7 +87,17 @@ export default async function page({
 				</div>
 				<input type="hidden" name="id" defaultValue={profile?.id} />
 				<section className="flex items-center gap-5">
-					<div className="w-full flex flex-col">
+					<div className="w-1/2 flex flex-col">
+						<label className="block mb-2 text-sm font-medium text-gray-700">Color de Foto de Perfil</label>
+						<div className="h-full w-full flex justify-between flex-col gap-1.5">
+							<div className="w-full h-[100px] rounded-lg" style={{backgroundColor: `#${selectedColor}`}}></div>
+							<div className="flex items-center justify-between px-2 py-1 border rounded-lg">
+								<span>Seleccionar color:	</span>
+								<input type="color" name="color_img" className="w-1/4 rounded-lg" defaultValue={selectedColor}  />
+							</div>
+						</div>
+					</div>
+					<div className="w-1/2 flex flex-col">
 						<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
 						<textarea required name="desc" defaultValue={profile?.user_public_info?.desc} className="w-full resize-none h-36 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 					</div>

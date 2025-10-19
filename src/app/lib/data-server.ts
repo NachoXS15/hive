@@ -76,7 +76,8 @@ export async function fetchPostsById(id: string){
         .select(`
             *,
             profiles (
-                name
+                name,
+                profile_img_color
             )
         `)
         .eq("user_id", id);

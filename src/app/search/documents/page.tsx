@@ -1,5 +1,5 @@
 import SearchDocsFormResults from "@/app/components/structures/SearchDocsFormResults";
-import { fetchDocs, fetchUsers } from "@/app/lib/data-server";
+import { fetchDocs } from "@/app/lib/data-server";
 import { DocType } from "@/app/utils/definitions";
 
 export default async function page() {
