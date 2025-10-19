@@ -14,9 +14,9 @@ export default function Header({ profile, profileName }: { profile: User | null;
                 <input type="checkbox" className="peer hidden" id="navbar-open" />
                 <header className="w-full h-20 relative flex items-center bg-yellow-main justify-between md:justify-around px-10">
                     <Link href="/home" className="font-main text-4xl font-black hover:scale-110 transition">
-                        <Image src="/images/hive_logo.png" alt="" width={100} height={50} />
+                        <Image src="/images/hive_logo.png" alt="" width={80} height={30} />
                     </Link>
-                    <nav className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20">
+                    <nav className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20" style={{fontSize: '0.9em'}}>
                         <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Explorar</Link>
                         <Link href="/search/profiles" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Contratar</Link>
                         <label htmlFor="dropdown-search-open" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Buscar</label>
@@ -26,20 +26,20 @@ export default function Header({ profile, profileName }: { profile: User | null;
                     {
                         profile?.role == "authenticated" ? (
                             <>
-                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">{nameInitials}</label>
+                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-11 h-11 hover:cursor-pointer font-bold select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">{nameInitials}</label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
                                 <DropdownMenuProfile profile={profile} />
                                 <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
-                                    <Menu size={28} />
+                                    <Menu size={24} />
                                 </label>
                             </>
                         ) : (
                             <>
-                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-12 h-12 hover:cursor-pointer font-bold text-xl select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition"><User2 /></label>
+                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-11 h-11 hover:cursor-pointer font-bold select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition"><User2 /></label>
                                 <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
                                 <DropdownMenuProfile profile={profile} />
                                 <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
-                                    <Menu size={28} />
+                                    <Menu size={24} />
                                 </label>
                             </>
                         )

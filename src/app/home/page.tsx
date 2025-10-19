@@ -18,8 +18,8 @@ export default async function page() {
     return (
         loggedProfile.user?.role == "authenticated" ? (
             <main className="flex items-center justify-center w-full h-fit px-10">
-                <div className="w-full md:w-7/12 xl:w-4/12 h-fit flex flex-col items-center">
-                    <h2 className="font-second font-semibold mt-7 self-start">Bienvenid@, <span className="bg-yellow-main text-black-main px-3 py-1 rounded">{profile?.name}</span></h2>
+                <div className="w-full md:w-7/12 xl:w-6/12 h-fit flex flex-col items-center">
+                    <h2 className="font-second font-semibold mt-7 self-start text-regular">Bienvenid@, <span className="bg-yellow-main text-black-main px-3 py-1 rounded">{profile?.name}</span></h2>
                     <CreatePost id={id} profile={null} />
                     <div className="w-full py-10 flex flex-col gap-5">
                         <h2 className="font-bold text-xl font-second">Publicaciones</h2>
