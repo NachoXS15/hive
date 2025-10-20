@@ -29,11 +29,11 @@ export default function DocProfile({ doc }: Props) {
             <div className="flex items-center gap-3">
                 <FileText size={30} />
                 <div className="flex flex-col">
-                    <span className="font-semibold">{doc?.title}</span>
-                    <span style={{ fontSize: "0.9em" }}>Año de publicación: <span>{doc?.release_year}</span></span>
+                    <span className="font-semibold text-regular">{doc?.title}</span>
+                    <span className="text-xs md:text-regular">Año de publicación: <span>{doc?.release_year}</span></span>
                 </div>
             </div>
-            <button onClick={handleDownload} className="hover:scale-105 transition cursor-pointer">
+            <button onClick={handleDownload} className="hover:scale-105 transition cursor-pointer rounded-full p-2 hover:text-yellow-main hover:bg-black-main">
                 {/* <span className="hidden md:inline">Descargar</span> */}
                 <ArrowUpRightFromSquare size={20} />
             </button>

@@ -28,11 +28,11 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 
 			<div id="post-header" className="w-fit flex items-center gap-4 z-20 relative">
 				<div
-					className="rounded-full min-w-[60px] min-h-[60px] bg-cover bg-center"
+					className="rounded-full xl:min-w-[60px] min-w-[50px] xl:min-h-[60px] min-h-[50px] bg-cover bg-center"
 					style={{ backgroundColor: `#${post.profiles.profile_img_color}` }}
 				></div>
 				<div className="flex flex-col gap-1">
-					<h2 className="font-bold font-second">
+					<h2 className="font-bold text-regular xl:text-md font-second">
 						{post.profiles.name} <span className="font-normal">realizó un post</span>
 					</h2>
 					<span className="text-xs md:text-md">{formatedDate}</span>

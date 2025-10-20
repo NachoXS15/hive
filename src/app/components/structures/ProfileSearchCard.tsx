@@ -10,12 +10,12 @@ type Props = {
 
 export default function ProfileSearchCard({name, title, id, username}: Props) {
     return (
-        <article className="w-full h-fit px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
+        <article className="w-full h-fit px-2 md:px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
             <div className="flex gap-3 items-center">
                 <div className="h-10 w-10 md:min-w-18 md:min-h-18 bg-slate-700 rounded-full"></div>
                 <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
-                        <h2 className="md:text-xl font-bold">{name}</h2>
+                        <h2 className="text-regular md:text-xl font-bold">{name}</h2>
                         <span className="bg-slate-200 rounded-lg px-3 py-1 text-xs font-semibold">@{username}</span>
                     </div>
                     <p className="text-xs md:text-md text-wrap">{title}</p>

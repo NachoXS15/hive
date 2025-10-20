@@ -16,10 +16,10 @@ export default async function page({
 	const profile = await fetchFullUser(id)
 	const selectedColor = profile?.profile_img_color
 	return (
-		<div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
-			<form className="bg-white shadow-lg rounded-2xl p-8 max-w-5xl">
+		<div className="flex items-center py-20 justify-center px-3 md:px-10 min-h-screen bg-gray-100 font-second" id="form">
+			<form className="bg-white shadow-lg rounded-2xl p-5 md:p-8 max-w-5xl">
 				<Link href="/my-profile/posts" className="absolute hover:bg-black-main hover:text-yellow-main transition p-1 rounded-full"><ArrowLeft /></Link>
-				<h2 className="text-2xl font-bold mb-8 text-center">Actualizar datos de {profile?.name}</h2>
+				<h2 className="text-2xl font-bold my-10 text-center">Actualizar datos de {profile?.name}</h2>
 				<div className="w-full grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
 					<div>
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Información Personal</h3>
@@ -86,10 +86,10 @@ export default async function page({
 					</div>
 				</div>
 				<input type="hidden" name="id" defaultValue={profile?.id} />
-				<section className="flex items-center gap-5">
-					<div className="w-1/2 flex flex-col">
+				<section className="flex flex-col md:flex-row items-center gap-5">
+					<div className="w-full xl:w-1/2 flex flex-col">
 						<label className="block mb-2 text-sm font-medium text-gray-700">Color de Foto de Perfil</label>
-						<div className="h-full w-full flex justify-between flex-col gap-1.5">
+						<div className="h-full w-full flex justify-between flex-col gap-2 xl:gap-1.5">
 							<div className="w-full h-[100px] rounded-lg" style={{backgroundColor: `#${selectedColor}`}}></div>
 							<div className="flex items-center justify-between px-2 py-1 border rounded-lg">
 								<span>Seleccionar color:	</span>
@@ -97,7 +97,7 @@ export default async function page({
 							</div>
 						</div>
 					</div>
-					<div className="w-1/2 flex flex-col">
+					<div className="w-full xl:w-1/2 flex flex-col">
 						<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
 						<textarea required name="desc" defaultValue={profile?.user_public_info?.desc} className="w-full resize-none h-36 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 					</div>
