@@ -7,7 +7,7 @@ export default async function page() {
 	const profiles: ProfileType[] = (await fetchUsers()) ?? [];
 	
 	return (
-		<main className="w-full min-h-[600px] px-7 flex flex-col items-center justify-center">
+		<main className="w-full min-h-[600px] px-1 md:px-7 flex flex-col items-center justify-center">
 			<SearchProfilesFormResults profiles={profiles} />
 		</main>
 	)

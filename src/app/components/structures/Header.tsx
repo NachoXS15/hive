@@ -12,7 +12,7 @@ export default function Header({ profile, profileName }: { profile: User | null;
         <>
             <div className="relative">
                 <input type="checkbox" className="peer hidden" id="navbar-open" />
-                <header className="w-full h-20 relative flex items-center bg-yellow-main justify-between md:justify-around px-10">
+                <header className="w-full h-17 relative flex items-center bg-yellow-main justify-between md:justify-around px-10">
                     <Link href="/home" className="font-main text-4xl font-black hover:scale-110 transition">
                         <Image src="/images/hive_logo.png" alt="" width={80} height={30} />
                     </Link>
@@ -46,7 +46,7 @@ export default function Header({ profile, profileName }: { profile: User | null;
 
                     }
                 </header>
-                <div className="md:hidden peer-checked:block hidden text-regular z-50 w-full absolute bg-black-main text-yellow-main top-20" id="menu-open">
+                <div className="md:hidden peer-checked:block hidden text-regular z-50 w-full absolute bg-black-main text-yellow-main top-17" id="menu-open">
                     <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
                         {
                             profile?.role == "authenticated" ? (

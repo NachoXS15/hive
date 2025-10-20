@@ -106,18 +106,18 @@ export default function Page() {
     return (
         <>
             <main className="w-full min-h-screen flex-col text-black-main font-main">
-                <section className="w-full bg-yellow-main min-h-screen flex items-center justify-center px-20">
-                    <div className="w-full flex flex-col justify-center relative items-center">
+                <section className="w-full bg-yellow-main min-h-screen flex items-center justify-center md:px-20">
+                    <div className="w-full flex flex-col gap-3 justify-center relative items-center">
                         <Link href="/home" className="w-fit font-main text-4xl font-black hover:scale-110 transition">
-                            <Image src="/images/hive_logo.png" alt="" width={100} height={50} />
+                            <Image src="/images/hive_logo.png" alt="" width={80} height={30} />
                         </Link>
-                        <h2 className="w-full text- font-bold text-3xl md:text-7xl leading-tight text-center">¡Hola!, Encantados de conocerte :D</h2>
-                        <Link href="/auth/login" className="text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer hover:border font-semibold font-second px-1 py-2 mt-2 md:p-3 border rounded text-center">¿Ya tenes una cuenta? Logueate :,)</Link>
+                        <h2 className="w-full font-bold text-3xl text-black-main md:text-7xl leading-tight text-center">¡Hola!, Encantados de conocerte :D</h2>
+                        <Link href="/auth/login" className="text-yellow-main bg-black-main hover:text-black-main hover:bg-yellow-main transition cursor-pointer hover:border font-semibold font-second text-regular px-3 py-2 mt-2 md:p-3 border rounded text-center">¿Ya tenes una cuenta? Logueate :,)</Link>
                         <a href="#form" className="slide-in-bottom absolute -bottom-40 cursor-pointer"><ArrowDown size={40} /></a>
                     </div>
                 </section>
-                <div className="flex items-center py-20 justify-center px-10 min-h-screen bg-gray-100 font-second" id="form">
-                    <form onSubmit={handleSubmit} className="bg-white h-fit shadow-lg rounded-2xl p-8 w-full max-w-5xl">
+                <div className="flex items-center py-20 justify-center px-3 md:px-10 min-h-screen bg-gray-100 font-second" id="form">
+                    <form onSubmit={handleSubmit} className="bg-white h-fit shadow-lg rounded-2xl p-6 md:p-8 w-full max-w-5xl">
                         <h2 className="text-2xl font-bold mb-8 text-center">Formulario de Registro</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
                             <div>
@@ -215,11 +215,11 @@ export default function Page() {
                                 <input required name="birthday" type="date" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                             </div>
                         </div>
-                        <section className="flex items-center gap-5">
-                            <div className="w-1/2 flex flex-col">
+                        <section className="flex flex-col md:flex-row items-center gap-5">
+                            <div className="w-full xl:w-1/2 flex flex-col">
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Color de Foto de Perfil</label>
-                                <div className="h-full w-full flex justify-between flex-col gap-1.5">
-                                    <div className="w-full h-[100px] rounded-lg" style={{ backgroundColor: `#${selectedColor}` }}></div>
+                                <div className="h-full w-full flex justify-between flex-col gap-2 xl:gap-1.5">
+                                    <div className="w-full h-[100px] rounded-lg border" style={{ backgroundColor: `#${selectedColor}` }}></div>
                                     <div className="flex items-center justify-between px-2 py-1 border rounded-lg">
                                         <span>Seleccionar color:	</span>
                                         <input type="color" name="color_img" value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)} className="w-1/4 rounded-lg" defaultValue={selectedColor} />

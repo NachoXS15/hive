@@ -24,10 +24,10 @@ export default async function page() {
 			<div className="w-full pt-5 pb-10 flex flex-col gap-5 font-second text-black-main">
 				<div className="w-full flex items-center">
 					<button className="w-full">
-						<Link href="/my-profile/posts" className="w-full font-bold bg-black-main text-yellow-main text-xl py-2 px-5 rounded-lg font-second hover:cursor-pointer transition active:text-white">Publicaciones</Link>
+						<Link href="/my-profile/posts" className="w-full font-bold bg-black-main text-yellow-main text-xl py-2 px-2 xl:px-5 rounded-lg font-second hover:cursor-pointer transition active:text-white">Publicaciones</Link>
 					</button>
 					<button className="w-full">
-						<Link href="/my-profile/docs" className="w-full font-bold text-xl py-2 px-5 rounded-lg font-second hover:bg-black-main hover:text-yellow-main hover:cursor-pointer transition active:text-white">Documentos</Link>
+						<Link href="/my-profile/docs" className="w-full font-bold text-xl py-2 px-2 xl:px-5 rounded-lg font-second hover:bg-black-main hover:text-yellow-main hover:cursor-pointer transition active:text-white">Documentos</Link>
 					</button>
 				</div>
 				{

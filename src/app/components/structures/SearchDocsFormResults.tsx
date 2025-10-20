@@ -47,8 +47,8 @@ export default function SearchFormResults({ docs }: Props) {
 
     return (
         <main className="w-full min-h-[700px] font-second flex flex-col xl:flex-row justify-center items-center">
-            <div className="w-full h-fit xl:min-h-[700px] xl:py-10 py-2 px-10 md:w-full xl:w-3/12 bg-slate-200" style={{ fontSize: '0.9em' }}>
-                <div className="w-full flex items-center justify-between py-3">
+            <div className="w-full h-fit xl:min-h-[700px] xl:py-10 px-7 md:w-full xl:w-3/12 bg-slate-200 text-regular">
+                <div className="w-full flex items-center px-3 justify-between py-5">
                     <h2 className="font-bold text-xl">Filtros</h2>
                     <button onClick={collapseForm} className="xl:hidden">{collapsedForm ? <ArrowUp /> : <ArrowDown />}</button>
                 </div>
@@ -63,7 +63,7 @@ export default function SearchFormResults({ docs }: Props) {
                             value={departamento}
                             name="dept"
                             onChange={handleDepartamentoChange}
-                            className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            className="w-full h-9 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
                         >
                             <option value="">Seleccioná un departamento</option>
                             {Object.keys(deptos).map((d) => (
@@ -80,7 +80,7 @@ export default function SearchFormResults({ docs }: Props) {
                             name="degree"
                             onChange={(e) => setCarrera(e.target.value)}
                             disabled={!departamento}
-                            className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            className="w-full h-9 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
                         >
                             <option value="" disabled>
                                 {departamento ? "Seleccioná una carrera" : "Seleccioná un departamento"}
@@ -98,7 +98,7 @@ export default function SearchFormResults({ docs }: Props) {
                         <select
                             value={releaseYear}
                             onChange={(e) => setReleaseYear(e.target.value)}
-                            className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            className="w-full h-9 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
                         >
                             <option value="" disabled>Selecciona un año</option>
                             <option value="2025">2025</option>
@@ -127,7 +127,7 @@ export default function SearchFormResults({ docs }: Props) {
                             value={departamento}
                             name="dept"
                             onChange={handleDepartamentoChange}
-                            className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            className="w-full h-9 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
                         >
                             <option value="">Seleccioná un departamento</option>
                             {Object.keys(deptos).map((d) => (
@@ -181,11 +181,11 @@ export default function SearchFormResults({ docs }: Props) {
                     {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}
                 </form>
             </div>
-            <div className="w-full h-full px-6 xl:px-14 mt-10 flex flex-col gap-5">
+            <div className="w-full h-full px-6 pb-7 xl:px-8 mt-10 flex flex-col gap-5">
                 {filteredDocs.length > 0 ? (
                     <div className="w-full min-h-[600px]">
                         <h2 className="font-bold text-xl">¡Encontrá documentos de calidad!</h2>
-                        <div className="grid w-full h-fit gap-5 grid-cols-1 md:grid-cols-3 xl:grid-cols-5">
+                        <div className="grid w-full h-fit gap-2 md:gap-5 grid-cols-1 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                             {
                                 filteredDocs.map((doc, i) => (
                                     <DocSearchCard key={i} doc={doc} />
