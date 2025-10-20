@@ -40,7 +40,7 @@ export default function SearchFormResults({ profiles }: Props) {
 
     return (
         <>
-            <div className="w-full px-3 md:w-7/12 xl:w-8/12 mt-20">
+            <div className="w-full px-3 md:w-10/12 xl:w-8/12 mt-20">
                 <form action="" className="w-full m-auto">
                     <h2 className="w-full text-center font-bold font-second text-3xl mb-5">¡Encontrá personas maravillosas!</h2>
                     <div className="w-full grid grid-cols-1 xl:grid-cols-3 gap-3">
@@ -87,7 +87,7 @@ export default function SearchFormResults({ profiles }: Props) {
                     </div>
                 </form>
             </div>
-            <div className="w-full md:w-5/12 px-3 xl:w-8/12 mt-10 h-fit flex flex-col gap-5 font-second pb-10">
+            <div className="w-full md:w-10/12 px-3 xl:w-8/12 mt-10 h-fit flex flex-col gap-5 font-second pb-10">
                 <div className="flex items-center justify-between">
                     {query || departamento || carrera ? <h2 className="font-bold">Perfiles encontrados</h2> : null}
                     {query || departamento || carrera ? <button onClick={(e) => limpiarFiltros(e)} className="w-fit self-start flex items-center gap-2 text-regular bg-red-500 text-white rounded-lg px-2 py-1"><Trash2 />Limpiar filtros</button> : ""}
