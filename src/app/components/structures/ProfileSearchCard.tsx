@@ -10,7 +10,7 @@ type Props = {
 
 export default function ProfileSearchCard({name, title, id, username}: Props) {
     return (
-        <article className="w-full h-fit px-2 md:px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
+        <Link href={`/profile/${id}/posts`} className="w-full h-fit px-2 md:px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
             <div className="flex gap-3 items-center">
                 <div className="h-10 w-10 md:min-w-18 md:min-h-18 bg-slate-700 rounded-full"></div>
                 <div className="flex flex-col gap-1">
@@ -22,6 +22,6 @@ export default function ProfileSearchCard({name, title, id, username}: Props) {
                 </div>
             </div>
             <Link href={`/profile/${id}/posts`} className="flex gap-2 rounded bg-blue-200 font-semibold text-md items-center text-blue-700 px-2 py-1 hover:bg-blue-700 hover:text-blue-200"><User2 /><span className="hidden md:inline">Ver perfil</span></Link>
-        </article>
+        </Link>
     )
 }
