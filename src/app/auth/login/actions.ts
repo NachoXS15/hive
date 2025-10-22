@@ -15,7 +15,7 @@ export default async function login(formData: FormData){
     })
     if(error){
         console.log(error);
-        redirect('/error')
+        redirect('/error/404')
     }
     console.log(data);
     revalidatePath('/home')

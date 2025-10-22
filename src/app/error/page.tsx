@@ -1,6 +1,8 @@
 
 export default function page() {
   return (
-    <div>page</div>
+    <main>
+        <h2>Usuario no encontrado</h2>
+    </main>
   )
 }

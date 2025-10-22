@@ -9,14 +9,14 @@ import { depts } from "@/app/lib/depts";
 export default function Page() {
     const [selectedColor, setSelectedColor] = useState("#fff")
     const deptos: Record<string, string[]> = depts
-
+    const [passMatch, setPassMatch] = useState(true)
     const [departamento, setDepartamento] = useState("");
     const [carrera, setCarrera] = useState("");
 
     const handleDeptChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const dept = e.target.value;
         setDepartamento(dept);
-        setCarrera(""); // reset del segundo select al cambiar el primero
+        setCarrera(""); 
     };
 
 
@@ -24,10 +24,10 @@ export default function Page() {
         setCarrera(e.target.value);
     };
 
-
+    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        setPassMatch(true);
         const formData = new FormData(e.currentTarget);
         //column1
         const name = formData.get("name")?.toString();
@@ -71,10 +71,12 @@ export default function Page() {
 
         if (password != confirmPassword) {
             console.error("Contraseñas no coinciden");
+            setPassMatch(false)
+
+            return;
         } else {
             console.log("Contraseñas coinciden");
         }
-
 
         try {
             await postUser({
@@ -97,7 +99,7 @@ export default function Page() {
                 province,
                 birthday,
             });
-            window.location.href = "/auth/login";
+          window.location.href = "/auth/login";
         } catch (error) {
             console.log("Error: ", error);
         }
@@ -235,6 +237,7 @@ export default function Page() {
                         <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
                             Registrar
                         </button>
+                        {!passMatch && <h2 className="text-red-500 mt-5 font-semibold text-center">Error: Contraseñas no coindicen! Intente de nuevo.</h2>}
                     </form>
                 </div>
             </main >
