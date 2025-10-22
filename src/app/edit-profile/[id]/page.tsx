@@ -41,16 +41,16 @@ export default async function page({
 							<option value="" defaultValue="Seleccionar" disabled>Seleccionar</option>
 							<option value="Disponible para trabajar">Disponible para trabajar</option>
 							<option value="Trabajando">Trabajando</option>
+							<option value="Freelance">Freelance</option>
 						</select>
-						<CarrerasForm dept={depts} />
+						<CarrerasForm dept={depts} deptoDato={profile?.user_public_info?.dept} carreraDato={profile?.user_public_info?.degree} />
 					</div>
 					<div>
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
-						<label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
+						<label className="block mb-2 text-sm font-medium text-gray-700">Estado de Estudiante</label>
 						<select required name="student_status" defaultValue={profile?.user_public_info?.student_status ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-							<option value="" defaultValue="Seleccionar" disabled>Estado de Estudiante</option>
+							<option value="" defaultValue="Seleccionar" disabled>Seleccionar</option>
 							<option value="Estudiante">Estudiante</option>
-							<option value="Freelance">Freelance</option>
 							<option value="Graduado">Graduado</option>
 							<option value="Posgrado">Posgrado</option>
 						</select>

@@ -25,11 +25,11 @@ export default function DocProfile({ doc }: Props) {
         }
     }
     return (
-        <article className="bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
+        <button onClick={handleDownload} className="active:scale-105 transition bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
             <div className="flex items-center gap-3">
                 <FileText size={30} />
                 <div className="flex flex-col">
-                    <span className="font-semibold text-regular">{doc?.title}</span>
+                    <span className="text-start font-semibold text-regular">{doc?.title}</span>
                     <span className="text-xs md:text-regular">Año de publicación: <span>{doc?.release_year}</span></span>
                 </div>
             </div>
@@ -37,6 +37,6 @@ export default function DocProfile({ doc }: Props) {
                 {/* <span className="hidden md:inline">Descargar</span> */}
                 <ArrowUpRightFromSquare size={20} />
             </button>
-        </article>
+        </button>
     )
 }
