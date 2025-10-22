@@ -3,8 +3,8 @@ import { useState } from "react";
 
 interface Props {
     dept: Record<string, string[]>;
-    deptoDato: string | undefined
-    carreraDato: string | undefined
+    deptoDato?: string | undefined
+    carreraDato?: string | undefined
 }
 
 export default function CarrerasForm({ dept, carreraDato, deptoDato }: Props) {
