@@ -38,7 +38,7 @@ export default function DocSearchCard({ doc }: Props) {
                     <ArrowUpRightFromSquare size={20} />
                 </button>
             </article> */}
-            <article className="flex overflow-hidden bg-slate-300 z-40 mt-3 rounded-lg flex-col px-5 w-full gap-2 h-60 justify-between py-3">
+            <button onClick={handleDownload} className="flex overflow-hidden bg-slate-300 z-40 mt-3 rounded-lg flex-col px-5 w-full gap-2 h-60 justify-between py-3">
                 <div className="w-full rounded-lg bg-orange-300 h-11/12"></div>
                 <div className="flex flex-col">
                     <h2 className="font-bold">{doc?.title}</h2>
@@ -50,7 +50,7 @@ export default function DocSearchCard({ doc }: Props) {
                         <ArrowUpRightFromSquare size={20} />
                     </button>
                 </div>
-            </article>
+            </button>
         </>
     )
 }
