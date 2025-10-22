@@ -3,11 +3,13 @@ import { useState } from "react";
 
 interface Props {
     dept: Record<string, string[]>;
+    deptoDato: string | undefined
+    carreraDato: string | undefined
 }
 
-export default function CarrerasForm({ dept }: Props) {
-    const [departamento, setDepartamento] = useState("");
-    const [carrera, setCarrera] = useState("");
+export default function CarrerasForm({ dept, carreraDato, deptoDato }: Props) {
+    const [departamento, setDepartamento] = useState<string>(deptoDato ?? "");
+    const [carrera, setCarrera] = useState<string>(carreraDato ?? "");
 
     const handleDepartamentoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setDepartamento(e.target.value);
