@@ -28,7 +28,7 @@ export default async function page({
 						<Link href={`/profile/${id}/posts`} className="w-full font-bold text-xl py-2 px-3 md:px-5 rounded-lg font-second bg-black-main text-yellow-main hover:cursor-pointer transition active:text-white">Documentos</Link>
 					</button>
 				</div>
-				<div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+				<div className="w-full grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
 					{
 						docs && docs.length > 0 ? docs.reverse().map((doc, i) => {
 

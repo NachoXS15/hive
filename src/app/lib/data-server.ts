@@ -42,6 +42,7 @@ export async function fetchPosts(){
         const {data, error} = await supabase.from("posts").select(`
             *,
             profiles (
+                id,
                 name,
                 profile_img_color
             )
@@ -76,6 +77,7 @@ export async function fetchPostsById(id: string){
         .select(`
             *,
             profiles (
+                id,
                 name,
                 profile_img_color
             )

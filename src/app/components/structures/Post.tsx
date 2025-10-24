@@ -32,9 +32,9 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 					style={{ backgroundColor: `#${post.profiles.profile_img_color}` }}
 				></div>
 				<div className="flex flex-col gap-1">
-					<h2 className="font-bold text-regular xl:text-md font-second">
-						{post.profiles.name} <span className="font-normal">realizó un post</span>
-					</h2>
+					<Link href={`/profile/${post.profiles.id}/posts`} target="_blank" className="font-bold hover:underline text-regular xl:text-md font-second">
+						{post.profiles.name} <span className="font-normal no-underline">realizó un post</span>
+					</Link>
 					<span className="text-xs md:text-md">{formatedDate}</span>
 				</div>
 			</div>

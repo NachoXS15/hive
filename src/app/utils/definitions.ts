@@ -1,4 +1,4 @@
-type MinimalProfilePost = Pick<ProfileType, 'name' | 'profile_img_color'>;
+type MinimalProfilePost = Pick<ProfileType, 'name' | 'profile_img_color' | 'id'>;
 // type MinimalProfileLink = Pick<ProfileType, 'name'>;
 
 export interface PostType{
