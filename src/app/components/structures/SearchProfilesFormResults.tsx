@@ -94,7 +94,7 @@ export default function SearchFormResults({ profiles }: Props) {
                 </div>
                 {(query || departamento || carrera) && (
                     filteredProfiles.map((profile, i) => (
-                        <ProfileSearchCard key={i} id={profile.id} username={profile.username} name={profile.name} title={profile.user_public_info?.degree} />
+                        <ProfileSearchCard key={i} color_img={profile.profile_img_color} id={profile.id} username={profile.username} name={profile.name} title={profile.user_public_info?.degree} />
                     ))
                 )}
             </div>

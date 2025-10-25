@@ -25,7 +25,7 @@ export default function DocProfile({ doc }: Props) {
         }
     }
     return (
-        <button onClick={handleDownload} className="active:scale-105 transition bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
+        <div onClick={handleDownload} className="active:scale-105 transition bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
             <div className="flex items-center gap-3">
                 <FileText size={30} />
                 <div className="flex flex-col">
@@ -37,6 +37,6 @@ export default function DocProfile({ doc }: Props) {
                 {/* <span className="hidden md:inline">Descargar</span> */}
                 <ArrowUpRightFromSquare size={20} />
             </button>
-        </button>
+        </div>
     )
 }
