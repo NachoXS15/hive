@@ -36,7 +36,7 @@ export default async function page() {
 								<DocProfile doc={doc} key={i} />
 							)
 						}) :
-							<h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
+							<h2 className="text-center font-second font-semibold">Todavia no compartiste ningún documento.<br />¡No tengas vergüenza! :D</h2>
 					}
 				</div>
 			</div>

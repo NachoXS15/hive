@@ -36,7 +36,7 @@ export default async function page({
 								<DocProfile doc={doc} key={i} />
 							)
 						}) :
-							<h2 className="col-span-full place-self-center text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
+							<h2 className="col-span-full place-self-center py-10 text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
 					}
 				</div>
 			</div>
