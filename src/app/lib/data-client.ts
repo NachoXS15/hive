@@ -140,7 +140,7 @@ export async function postUser({ email, password }: UserSignIn){
 };
 
 //agregar usuario a db
-export async function postUserDB({name, mail,username,}: ProfileType){
+export async function postUserDB({name, mail,username, profile_img_color}: ProfileType){
     try {
         const { data, error } = await supabaseClient
             .from("profiles")
@@ -150,6 +150,7 @@ export async function postUserDB({name, mail,username,}: ProfileType){
                     name,
                     mail,
                     username,
+                    profile_img_color
                 },
             ])
             .select();

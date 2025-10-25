@@ -28,7 +28,7 @@ export default async function Profile({ id, auth_status }: Props) {
             <section className="w-full flex gap-8 md:gap-15 xl:gap-20 flex-col xl:flex-row items-center justify-between">
                 <div className="w-full h-fit xl:h-[180px] flex flex-col md:flex-row md:items-center md:gap-10">
                     <div className="flex flex-col items-center gap-2 mb-3 md:mb-5">
-                        <div className="rounded-full border-black-main border-2 self-start min-w-[120px] min-h-[120px] md:min-w-[130px] md:min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundColor: `#${profile?.profile_img_color}` }}>
+                        <div className="rounded-full border-black-main border self-start min-w-[120px] min-h-[120px] md:min-w-[130px] md:min-h-[130px] bg-cover bg-center overflow-hidden" style={{ backgroundColor: `${profile?.profile_img_color}` }}>
                         </div>
                         {
                             auth_status == "authenticated" ? (

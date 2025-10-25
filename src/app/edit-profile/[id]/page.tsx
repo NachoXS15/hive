@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import CarrerasForm from "@/app/components/ui/CarrerasForm";
 import { depts } from "@/app/lib/depts";
+import EditColor from "@/app/components/ui/EditColor";
 
 export default async function page({
 	params,
@@ -88,14 +89,11 @@ export default async function page({
 				<input type="hidden" name="id" defaultValue={profile?.id} />
 				<section className="flex flex-col md:flex-row items-center gap-5">
 					<div className="w-full xl:w-1/2 flex flex-col">
-						<label className="block mb-2 text-sm font-medium text-gray-700">Color de Foto de Perfil</label>
-						<div className="h-full w-full flex justify-between flex-col gap-2 xl:gap-1.5">
-							<div className="w-full h-[100px] rounded-lg" style={{backgroundColor: `#${selectedColor}`}}></div>
-							<div className="flex items-center justify-between px-2 py-1 border rounded-lg">
-								<span>Seleccionar color:	</span>
-								<input type="color" name="color_img" className="w-1/4 rounded-lg" defaultValue={selectedColor}  />
-							</div>
+						<div className="flex md:items-center mb-2  gap-2">
+							<label className="block text-sm font-medium text-gray-700">Color de Foto de Perfil</label>
+							<span className="text-gray-500 font-medium" style={{ fontSize: '0.8em' }}>(Pronto fotos de perfil :D)</span>
 						</div>
+						<EditColor color={profile?.profile_img_color} />
 					</div>
 					<div className="w-full xl:w-1/2 flex flex-col">
 						<label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
