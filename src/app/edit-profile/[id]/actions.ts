@@ -13,6 +13,7 @@ export default async function HandleSubmit(formData: FormData) {
         name: formData.get("name")?.toString(),
         mail: formData.get("mail")?.toString(),
         username: formData.get("user")?.toString(),
+        profile_img_color: formData.get("color_img")?.toString()
     }
 
     const dataInfo: UserPublicInfo = {

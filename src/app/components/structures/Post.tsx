@@ -15,9 +15,7 @@ type Props = {
 export default function Post({ post, auth_status, pathname, docs }: Props) {
 	const formatedDate = formatDate(post.created_at)
 	const docsWithPosts = docs?.filter(doc => doc.post_id == post.id)
-	console.log(post.profiles.profile_img_color);
 	
-
 	return (
 		<article className="w-full h-fit flex flex-col font-second bg-slate-200 rounded-lg p-5 relative group">			
 			<Link
@@ -29,12 +27,12 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 			<div id="post-header" className="w-fit flex items-center gap-4 z-20 relative">
 				<div
 					className="rounded-full xl:min-w-[60px] min-w-[50px] xl:min-h-[60px] min-h-[50px] bg-cover bg-center"
-					style={{ backgroundColor: `#${post.profiles.profile_img_color}` }}
+					style={{ backgroundColor: `${post.profiles.profile_img_color}` }}
 				></div>
 				<div className="flex flex-col gap-1">
-					<h2 className="font-bold text-regular xl:text-md font-second">
-						{post.profiles.name} <span className="font-normal">realizó un post</span>
-					</h2>
+					<Link href={`/profile/${post.profiles.id}/posts`} target="_blank" className="font-bold hover:underline text-regular xl:text-md font-second">
+						{post.profiles.name} <span className="font-normal no-underline">realizó un post</span>
+					</Link>
 					<span className="text-xs md:text-md">{formatedDate}</span>
 				</div>
 			</div>
