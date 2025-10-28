@@ -1,6 +1,7 @@
 import { User } from "@supabase/supabase-js";
 import { LogIn, LogOut, User2, UserPlus2 } from "lucide-react";
 import Link from "next/link";
+import LinkButton from "./LinkButton";
 export default function DropdownMenuProfile({ profile }: { profile: User | null }) {
     return (
         <div className="hidden peer-checked:block z-50 w-52 absolute rounded-2xl bg-black-main text-yellow-main top-20 right-20" id="menu-open">
@@ -15,8 +16,8 @@ export default function DropdownMenuProfile({ profile }: { profile: User | null 
                             </>
                         ): (
                             <>
-                                <Link href="/auth/login" className="flex items-center text-regular gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><LogIn /> Iniciar sesión</Link>
-                                <Link href="/auth/register" className="flex items-center text-regular gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><UserPlus2 /> Crear cuenta</Link>
+                                <LinkButton href="/auth/login" className="flex items-center text-regular gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><LogIn /> Iniciar sesión</LinkButton>
+                                <LinkButton href="/auth/register" className="flex items-center text-regular gap-2 py-2 w-full px-2 rounded hover:text-black-main hover:bg-yellow-main font-medium active:scale-110 transition"><UserPlus2 /> Crear cuenta</LinkButton>
                             </>
                         )
                     }
