@@ -1,14 +1,25 @@
-type MinimalProfilePost = Pick<ProfileType, 'name' | 'profile_img_color' | 'id'>;
-// type MinimalProfileLink = Pick<ProfileType, 'name'>;
-
-export interface PostType{
-    id: string
-    user_id: string
-    body: string
-    created_at: string
-    likes: number
-    profiles: MinimalProfilePost
+//profiles
+export interface ProfileType {
+    id?: string
+    name?: string | null
+    username?: string | null
+    mail?: string | null
+    img?: string
+    created_at?: string
+    profile_img_color?: string
+    user_public_info?: UserPublicInfo | undefined | null
 }
+
+export interface SimpleUserType {
+    id?: string
+    name?: string | null
+    username?: string | null
+    mail?: string | null
+    img?: string
+    created_at?: string
+}
+
+type MinimalProfilePost = Pick<ProfileType, 'name' | 'profile_img_color' | 'id'>;
 
 export interface LinksProfileType {
     id: string
@@ -32,31 +43,24 @@ export interface UserPublicInfo{
     birthday?: string
 }
 
-export interface ProfileType {
-    id?: string
-    name?: string | null
-    username?: string | null
-    mail?: string | null
-    img?: string
-    created_at?: string
-    profile_img_color?: string
-    user_public_info?: UserPublicInfo | undefined | null
+//Post
+
+export interface PostType{
+    id: string
+    user_id: string
+    body: string
+    created_at: string
+    likes: number
+    profiles: MinimalProfilePost
 }
 
-export interface SimpleUserType {
-    id?: string
-    name?: string | null
-    username?: string | null
-    mail?: string | null
-    img?: string
-    created_at?: string
-}
-
+//sign in info
 export interface UserSignIn {
     email: string
     password: string
 }
 
+//docs
 export interface DocType {
     id: string
     user_id?: string
@@ -66,6 +70,8 @@ export interface DocType {
     release_year?: string
     file_path: string
 }
+
+//register info
 
 export interface PostFormData {
   body: string;

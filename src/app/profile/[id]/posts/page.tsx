@@ -29,7 +29,7 @@ export default async function page({ params }: { params: Promise<{ id: string }>
                             <Post key={i} docs={docs} auth_status={auth_status} post={post} />
                         )
                     }) :
-                        <h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
+                        <h2 className="text-center font-second font-semibold py-10">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
                 }
             </div>
         </>
