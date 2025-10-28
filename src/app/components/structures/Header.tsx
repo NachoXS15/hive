@@ -19,9 +19,9 @@ export default function Header({ profile, profileName }: { profile: User | null;
                     <nav className="hidden md:flex items-center gap-8 xl:gap-15 2xl:gap-20" style={{fontSize: '0.9em'}}>
                         {/* <Link href="/" className="font-second font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-1 rounded">Explorar</Link> */}
                         <Link href="/search/profiles" className="font-second flex items-center gap-2 font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-2 rounded"><User2 />Buscar Perfiles</Link>
-                        <label htmlFor="dropdown-search-open" className="font-second flex items-center gap-2 font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-2 rounded"><BookHeart />Buscar Documentos</label>
-                        <input type="checkbox" className="peer hidden" id="dropdown-search-open" />
-                        <DropdownMenuSearch />
+                        <Link href="/search/documents" className="font-second flex items-center gap-2 font-bold uppercase hover:text-yellow-main hover:bg-black-main transition cursor-pointer px-2 py-2 rounded"><BookHeart />Buscar Documentos</Link>
+                        {/* <input type="checkbox" className="peer hidden" id="dropdown-search-open" /> */}
+                        {/* <DropdownMenuSearch /> */}
                     </nav>
                     {
                         profile?.role == "authenticated" ? (
