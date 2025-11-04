@@ -48,7 +48,7 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 			{docsWithPosts && docsWithPosts.length > 0 && <DocPost doc={docsWithPosts[0]} />}
 			<div
 				id="post-footer"
-				className="rounded-lg mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-[40px] z-20 relative"
+				className="rounded-lg mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-10 z-20 relative"
 			>
 				{["Me gusta", "Comentar", "Compartir"].map((text) => (
 					<button

@@ -13,7 +13,7 @@ export default function ProfileSearchCard({name, title, id, username, color_img}
     return (
         <Link href={`/profile/${id}/posts`} className="w-full h-fit px-2 md:px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
             <div className="flex gap-3 items-center">
-                <div className={`h-10 w-10 md:min-w-18 md:min-h-18 rounded-full`} style={{backgroundColor: `#${color_img}`}}></div>
+                <div className={`h-10 w-10 md:min-w-18 md:min-h-18 rounded-full`} style={{backgroundColor: `${color_img}`}}></div>
                 <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                         <h2 className="text-regular md:text-xl font-bold">{name}</h2>
