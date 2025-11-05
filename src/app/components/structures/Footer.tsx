@@ -13,19 +13,17 @@ export default function Footer() {
                     <div>
                         <h3 className="font-medium text-2xl mb-4">Info.</h3>
                         <ul className="flex flex-col gap-3">
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Explorar</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar</span>
+                            <Link href="/" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</Link>
+                            <Link href="/about-us" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</Link>
+                            <Link href="/feed" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Feed</Link>
                         </ul>
                     </div>
                     <div>
                         <h3 className="font-medium text-2xl mb-4">Info.</h3>
                         <ul className="flex flex-col gap-3">
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Explorar</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar</span>
+                            <Link href="/search/profiles" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar Perfiles</Link>
+                            <Link href="/search/documents" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar Documentos</Link>
+                            <Link href="/donate" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Donaciones</Link>
                         </ul>
                     </div>
                     <div>
@@ -46,7 +44,7 @@ export default function Footer() {
                         <span className="hover:scale-110 cursor-pointer transition"><Twitter /></span>
                     </div>
                     <div>
-                        <p className="font-medium text-center md:text-end">Copyright &copy; 2025 | Hive - Ignacio Joaquín Pantoja - Paula Fuentes</p>
+                        <p className="font-medium text-center md:text-end">Copyright &copy; 2025 | hive. - Ignacio Joaquín Pantoja - Paula Fuentes</p>
                     </div>
                 </div>
             </section>
