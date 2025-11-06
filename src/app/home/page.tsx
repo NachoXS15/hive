@@ -37,14 +37,16 @@ export default async function page() {
             </main>
         ) : (
             <main className="flex items-center justify-center w-full h-fit">
-                <div className="w-full md:w-7/12 xl:w-9/12 2xl:w-7/12 h-fit flex flex-col items-center">
+                <div className="w-full md:w-9/12 xl:w-9/12 2xl:w-7/12 h-fit flex flex-col items-center">
                     <div className="w-full py-10 flex flex-col gap-5">
                         <h2 className="font-bold text-xl font-second text-center">Publicaciones Destacadas</h2>
-                        <div className="w-full grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                        <div className="w-full columns-1 md:columns-2 xl:columns-3 gap-3 space-y-3">
                         {
                             posts && posts.reverse().map((post, i) => {
                                 return (
-                                    <Post key={i} post={post} docs={docs} />
+                                    <div key={i} className="mb-3 break-inside-avoid-column overflow-hidden">
+                                        <Post post={post} docs={docs} />
+                                    </div>
                                 )
                             })
                         }
