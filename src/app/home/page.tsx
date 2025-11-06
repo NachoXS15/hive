@@ -12,7 +12,7 @@ export default async function page() {
     }
     const profile = loggedProfile.user ? await fetchUserById(loggedProfile.user.id) : null;
     const id = loggedProfile.user?.id
-    console.log(profile);
+    //console.log(profile);
     const posts = await fetchPosts();
     const docs = await fetchDocs();
     return (
