@@ -1,5 +1,6 @@
 import AuthPost from "@/app/components/structures/AuthPost";
 import { fetchDocsById, fetchPostsById } from "@/app/lib/data-server";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default async function page({ params }: { params: Promise<{ id: string }> }) {
@@ -7,12 +8,12 @@ export default async function page({ params }: { params: Promise<{ id: string }>
     const posts = await fetchPostsById(id)
     const docs = await fetchDocsById(id);
     const auth_status = "";
-    console.log(id);
     
 
     return (
         <main className="h-fit flex justify-center items-center">
-            <div className="w-full 2xl:w-3/6 xl:w-7/12 md:w-3/4 pt-5 pb-10 flex flex-col gap-5 font-second text-black-main">
+            <div className="w-full 2xl:w-3/6 xl:w-7/12 md:w-3/4 pt-5 pb-10 relative flex flex-col gap-5 font-second text-black-main">
+                <Link href="/admin" className="absolute hover:scale-105 transition cursor-pointer rounded-full p-2 hover:text-yellow-main hover:bg-black-main"><ArrowLeft /></Link>
                 <h2 className="font-bold text-center text-xl">Contenido de: {id}</h2>
                 <div className="w-full flex items-center">
                     <button className="w-full">

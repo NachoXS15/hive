@@ -22,7 +22,7 @@ export async function fetchUsers(){
 }
 
 //traer un solo usuario
-export async function fetchUserById(id: string){
+export async function fetchUserById(id?: string){
     try {
         const supabase = await createClient();
         const {data, error} = await supabase.from("profiles").select("*").eq("id", id).maybeSingle()

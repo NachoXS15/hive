@@ -5,6 +5,7 @@ export interface ProfileType {
     username?: string | null
     mail?: string | null
     img?: string
+    role?: string | null
     created_at?: string
     profile_img_color?: string
     user_public_info?: UserPublicInfo | undefined | null
@@ -17,6 +18,8 @@ export interface SimpleUserType {
     mail?: string | null
     img?: string
     created_at?: string
+    role?: string | null
+
 }
 
 type MinimalProfilePost = Pick<ProfileType, 'name' | 'profile_img_color' | 'id'>;

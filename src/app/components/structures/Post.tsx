@@ -68,7 +68,7 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 						if (docsWithPosts && docsWithPosts.length > 0) {
 							await deleteDoc([docsWithPosts[0].file_path], docsWithPosts[0].id);
 						}
-						revalidatePath("/perfil");
+						revalidatePath("/my-profile/posts");
 					}}
 				>
 					<button

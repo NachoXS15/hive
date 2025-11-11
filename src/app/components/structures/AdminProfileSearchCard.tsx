@@ -11,7 +11,7 @@ type Props = {
 
 export default function AdminProfileSearchCard({name, title, id, username, color_img}: Props) {
     return (
-        <Link href={`/profile/${id}/posts`} className="w-full h-fit px-2 md:px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
+        <div className="w-full h-fit px-2 md:px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
             <div className="flex gap-3 items-center">
                 <div className={`h-10 w-10 md:min-w-18 md:min-h-18 rounded-full`} style={{backgroundColor: `${color_img}`}}></div>
                 <div className="flex flex-col gap-1">
@@ -22,7 +22,7 @@ export default function AdminProfileSearchCard({name, title, id, username, color
                     <p className="text-xs md:text-md text-wrap">{title}</p>
                 </div>
             </div>
-            <Link href={`/admin/user/${id}/content/posts`} className="flex gap-2 rounded bg-blue-200 font-semibold text-xs items-center text-blue-700 px-2 py-1 hover:bg-blue-700 hover:text-blue-200"><User2 /><span className="hidden md:inline">Ver Contenido</span></Link>
-        </Link>
+            <Link href={`/admin/user/${id}/content/posts`} className="flex gap-2 rounded bg-blue-200 font-semibold text-md items-center text-blue-700 px-2 py-1 flex-nowrap hover:bg-blue-700 hover:text-blue-200"><User2 /><span className="hidden md:inline">Ver Contenido</span></Link>
+        </div>
     )
 }
