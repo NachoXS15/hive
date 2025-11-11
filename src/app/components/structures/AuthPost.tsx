@@ -51,9 +51,9 @@ export default function Post({ post, docs }: Props) {
 					"use server";
 					console.log(post.id);
 					await deletePost(post.id);
-					// if (docsWithPosts && docsWithPosts.length > 0) {
-					// 	await deleteDoc([docsWithPosts[0].file_path], docsWithPosts[0].id);
-					// }
+					if (docsWithPosts && docsWithPosts.length > 0) {
+						await deleteDoc([docsWithPosts[0].file_path], docsWithPosts[0].id);
+					}
 				}}
 			>
 				<button
