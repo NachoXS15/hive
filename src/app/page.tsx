@@ -21,7 +21,7 @@ export default function page() {
                     <p className="font-medium text-wrap px-7 leading-9">Creado por <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Ignacio Joaquín Pantoja</span> y <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Paula Fuentes</span></p>
                 </div>
             </main>
-            <footer className="w-full min-h-[600px] flex items-center justify-evenly text-yellow-main" style={{backgroundColor: "#121211"}}>
+            <footer className="w-full min-h-[600px] flex items-center justify-evenly text-yellow-main" style={{ backgroundColor: "#121211" }}>
                 <section className="w-full px-8 md:w-3/4 h-full py-10 gap-10 md:gap-20 flex flex-col justify-between">
                     <Link href="/home" className="w-fit font-main text-4xl font-black hover:scale-110 transition">
                         <Image src="/images/hive_logo_yellow.png" alt="" width={100} height={50} />
@@ -30,19 +30,17 @@ export default function page() {
                         <div>
                             <h3 className="font-medium text-2xl mb-4">Info.</h3>
                             <ul className="flex flex-col gap-3">
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</span>
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</span>
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Explorar</span>
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar</span>
+                                <Link href="/" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</Link>
+                                <Link href="/about-us" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</Link>
+                                <Link href="/feed" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Feed</Link>
                             </ul>
                         </div>
                         <div>
                             <h3 className="font-medium text-2xl mb-4">Info.</h3>
                             <ul className="flex flex-col gap-3">
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</span>
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</span>
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Explorar</span>
-                                <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar</span>
+                                <Link href="/search/profiles" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar Perfiles</Link>
+                                <Link href="/search/documents" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar Documentos</Link>
+                                <Link href="/donate" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Donaciones</Link>
                             </ul>
                         </div>
                         <div>
@@ -57,13 +55,13 @@ export default function page() {
                     </div>
                     <div className="flex flex-col md:flex-row gap-6 justify-between">
                         <div className="flex gap-10 md:gap-20">
-                            <span className="hover:scale-110 cursor-pointer transition"><Instagram color="#ffd836"/></span>
-                            <span className="hover:scale-110 cursor-pointer transition"><Facebook color="#ffd836"/></span>
-                            <span className="hover:scale-110 cursor-pointer transition"><Mail color="#ffd836"/></span>
-                            <span className="hover:scale-110 cursor-pointer transition"><Twitter color="#ffd836"/></span>
+                            <span className="hover:scale-110 cursor-pointer transition"><Instagram color="#ffd836" /></span>
+                            <span className="hover:scale-110 cursor-pointer transition"><Facebook color="#ffd836" /></span>
+                            <span className="hover:scale-110 cursor-pointer transition"><Mail color="#ffd836" /></span>
+                            <span className="hover:scale-110 cursor-pointer transition"><Twitter color="#ffd836" /></span>
                         </div>
                         <div>
-                            <p className="font-medium text-center md:text-end">Copyright &copy; 2025 | Hive - Ignacio Joaquín Pantoja - Paula Fuentes</p>
+                            <p className="font-medium text-center md:text-end">Copyright &copy; 2025 | hive. - Ignacio Joaquín Pantoja - Paula Fuentes</p>
                         </div>
                     </div>
                 </section>

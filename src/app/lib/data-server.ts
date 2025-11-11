@@ -101,7 +101,8 @@ export async function fetchSinglePost(id: string){
         .select(`
             *,
             profiles (
-                name
+                name,
+                profile_img_color
             )
         `)
         .eq("id", id)
