@@ -18,7 +18,6 @@ export default async function page() {
 
 	return (
 		<>
-
 			<div className="w-full pt-5 pb-10 flex flex-col gap-5 font-second text-black-main">
 				<div className="w-full flex items-center">
 					<button className="w-full">

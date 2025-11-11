@@ -16,7 +16,7 @@ export default async function page() {
                 <Image src="/images/hive_logo.png" width={80} height={30} alt="" />
             </header>
             <main className="w-full flex justify-center">
-                <section className="mt-10 w-full px-10 md:px-0 md:w-11/12 xl:w-9/12 2xl:w-7/12 flex flex-col justify-center items-center">
+                <section className="mt-10 w-full px-5 md:px-0 md:w-11/12 xl:w-9/12 2xl:w-7/12 flex flex-col justify-center items-center">
                     <h2 className="font-bold text-2xl underline">Sistema de Administración</h2>
                     <section className="my-5 w-full grid gap-3 md:grid-cols-2">
                         {profiles.map((prof, i) => (

@@ -29,10 +29,7 @@ export default function Footer() {
                     <div>
                         <h3 className="font-medium text-2xl mb-4">Info.</h3>
                         <ul className="flex flex-col gap-3">
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Explorar</span>
-                            <span className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Buscar</span>
+                            <Link href="/terms" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Términos y Condiciones</Link>
                         </ul>
                     </div>
                 </div>

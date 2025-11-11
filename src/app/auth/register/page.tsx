@@ -12,6 +12,7 @@ export default function Page() {
     const [passMatch, setPassMatch] = useState(true)
     const [departamento, setDepartamento] = useState("");
     const [carrera, setCarrera] = useState("");
+    const [termsCheck, setTermsCheck] = useState(false)
     
     const handleDeptChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const dept = e.target.value;
@@ -75,10 +76,15 @@ export default function Page() {
         if (password != confirmPassword) {
             console.error("Contraseñas no coinciden");
             setPassMatch(false)
-
             return;
         } else {
             console.log("Contraseñas coinciden");
+        }
+
+        if (!termsCheck) {
+            alert("Debe aceptar terminos y condiciones")
+            console.log("Debe aceptar terminos y condiciones");
+            return;
         }
 
         try {
@@ -125,7 +131,8 @@ export default function Page() {
                 <div className="flex items-center py-20 justify-center px-3 md:px-10 min-h-screen bg-gray-100 font-second" id="form">
                     <form onSubmit={handleSubmit} className="bg-white h-fit shadow-lg rounded-2xl p-6 md:p-8 w-full max-w-5xl">
                         <h2 className="text-2xl font-bold mb-8 text-center">Formulario de Registro</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8 mb-5">
+                            {/* columna 1 */}
                             <div>
                                 <h3 className="text-lg font-semibold mb-4 text-gray-700">Información Personal</h3>
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu Nombre</label>
@@ -138,7 +145,9 @@ export default function Page() {
                                 <input type="password" required name="password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Confirmá tu contraseña</label>
                                 <input type="password" required name="confirm-password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                
                             </div>
+                            {/* columna 2 */}
                             <div>
                                 <h3 className="text-lg font-semibold mb-4 text-gray-700">Información Profesional</h3>
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Disponibilidad</label>
@@ -180,6 +189,7 @@ export default function Page() {
                                         ))}
                                 </select>
                             </div>
+                            {/* columna 3 */}
                             <div>
                                 <h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
@@ -239,15 +249,17 @@ export default function Page() {
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Descripción (algo que quieras contar :D)</label>
                                 <textarea required name="desc" className="w-full resize-none h-36 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                             </div>
-
                         </section>
+                        <div className="my-5 m-auto text-center">
+                            <input type="checkbox" onChange={() => setTermsCheck(!termsCheck)} /> <label htmlFor="">Aceptar <Link href="/terms" className="text-blue-700 hover:underline">Términos y Condiciones</Link></label>
+                        </div>
                         <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
                             Registrar
                         </button>
                         {!passMatch && <h2 className="text-red-500 mt-5 font-semibold text-center">Error: Contraseñas no coindicen! Intente de nuevo.</h2>}
                     </form>
                 </div>
-            </main >
+            </main>
         </>
     )
 };

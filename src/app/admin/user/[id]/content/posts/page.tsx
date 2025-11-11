@@ -11,10 +11,10 @@ export default async function page({ params }: { params: Promise<{ id: string }>
     
 
     return (
-        <main className="h-fit flex justify-center items-center">
+        <main className="h-fit px-5 flex justify-center items-center">
             <div className="w-full 2xl:w-3/6 xl:w-7/12 md:w-3/4 pt-5 pb-10 relative flex flex-col gap-5 font-second text-black-main">
                 <Link href="/admin" className="absolute hover:scale-105 transition cursor-pointer rounded-full p-2 hover:text-yellow-main hover:bg-black-main"><ArrowLeft /></Link>
-                <h2 className="font-bold text-center text-xl">Contenido de: {id}</h2>
+                <h2 className="mt-10 md:mt-0 font-bold text-center text-xl">Contenido de: {id}</h2>
                 <div className="w-full flex items-center">
                     <button className="w-full">
                         <Link href={`/admin/user/${id}/content/posts`} className="w-full font-bold bg-black-main text-yellow-main text-xl py-2 px-3 md:px-5 rounded-lg font-second hover:cursor-pointer transition active:text-white">Publicaciones</Link>

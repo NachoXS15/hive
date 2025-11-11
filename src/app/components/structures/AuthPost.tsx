@@ -4,6 +4,7 @@ import { CircleMinus } from "lucide-react"
 import { deleteDoc, deletePost } from "@/app/lib/data-server"
 import Link from "next/link"
 import DocPost from "../ui/DocPost"
+import { revalidatePath } from "next/cache"
 type Props = {
 	post: PostType,
 	auth_status?: string | undefined
@@ -54,6 +55,7 @@ export default function Post({ post, docs }: Props) {
 					if (docsWithPosts && docsWithPosts.length > 0) {
 						await deleteDoc([docsWithPosts[0].file_path], docsWithPosts[0].id);
 					}
+					revalidatePath("/my-profile/posts");
 				}}
 			>
 				<button
