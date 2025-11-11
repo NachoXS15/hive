@@ -61,7 +61,7 @@ export default function CreatePost({ id, profile }: Props) {
             }else{
                 await createPostWithDocument(data, id)
             }
-            //window.location.reload();
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }

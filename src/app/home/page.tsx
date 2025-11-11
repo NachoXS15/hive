@@ -30,7 +30,7 @@ export default async function page() {
                                     <Post key={i} post={post} docs={docs} />
                                 )
                             }) :
-                            <h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
+                                <h2 className="text-center font-second font-semibold">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>
                         }
                     </div>
                 </div>
@@ -40,16 +40,19 @@ export default async function page() {
                 <div className="w-full md:w-9/12 xl:w-9/12 2xl:w-7/12 h-fit flex flex-col items-center">
                     <div className="w-full py-10 flex flex-col gap-5">
                         <h2 className="font-bold text-xl font-second text-center">Publicaciones Destacadas</h2>
-                        <div className="w-full columns-1 md:columns-2 xl:columns-3 gap-3 space-y-3">
-                        {
-                            posts && posts.reverse().map((post, i) => {
-                                return (
-                                    <div key={i} className="mb-3 break-inside-avoid-column overflow-hidden">
-                                        <Post post={post} docs={docs} />
-                                    </div>
-                                )
-                            })
-                        }
+                        <div className="w-full columns-1 md:columns-2 xl:columns-3 gap-3">
+                            {
+                                posts && posts.reverse().map((post, i) => {
+                                    return (
+                                        <div
+                                            key={i}
+                                            className="mb-3 break-inside-avoid-column overflow-hidden rounded-lg"
+                                        >
+                                            <Post post={post} docs={docs} />
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </div>
