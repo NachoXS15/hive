@@ -1,7 +1,7 @@
 // import Link from "next/link";
 // import BackgroundExport from "./components/Background";
 
-import { Home } from "lucide-react";
+import { Home, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Mail, Twitter } from "./components/ui/Icons";
@@ -19,7 +19,7 @@ export default function page() {
                     <p className="w-full md:w-2/4 text-start md:text-center font-medium px-5"><i>&quot;Hive&quot;</i> es una plataforma orientada a la comunidad universitaria de la UNLaR, creada con el proposito de brindar un espacio de repositorio para publicar documentos, trabajos prácticos o cualquier tipo de producción, con el fin de difundirlos.</p>
                     <hr className="border w-20 md:hidden block" />
                     <p className="font-medium text-wrap px-7 leading-9">Creado por <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Ignacio Joaquín Pantoja</span> y <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Paula Fuentes</span></p>
-                    <Link href="/home" className="ml-7 mt-2 md:ml-0 self-start md:self-center hover:text-black-main hover:bg-yellow-main border transition text-yellow-main bg-black-main rounded-lg px-3 py-2 flex items-center gap-2 text-xl"><Home />Ir a Inicio</Link>
+                    <Link href="/home" className="ml-7 mt-2 md:ml-0 self-start md:self-center hover:text-black-main hover:bg-yellow-main border transition text-yellow-main bg-black-main rounded-lg px-3 py-2 flex items-center gap-2"><Star />Comenzá a Explorar</Link>
                 </div>
             </main>
             <footer className="w-full min-h-[600px] flex items-center justify-evenly text-yellow-main" style={{ backgroundColor: "#121211" }}>

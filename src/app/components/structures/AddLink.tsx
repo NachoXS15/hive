@@ -21,6 +21,7 @@ export default function AddLink({id}: AddLinkProps) {
         setName("");
         setUrl("");
         setShowModal(false)
+        window.location.reload();
     }
 
     return (

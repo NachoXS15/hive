@@ -52,7 +52,7 @@ export default function CreatePost({ id, profile }: Props) {
             fileActive,
             fileName,
             file,
-            author: profile?.username,
+            author: profile?.name,
             degree: profile?.user_public_info?.degree
         }
         try {

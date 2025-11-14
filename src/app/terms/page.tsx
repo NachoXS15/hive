@@ -1,10 +1,11 @@
 import Image from "next/image"
 import Footer from "../components/structures/Footer"
+import Link from "next/link"
 export default function page() {
     return (
         <>
             <header className="w-full py-5 flex bg-yellow-main items-center justify-center">
-                <Image src="/images/hive_logo.png" width={80} height={30} alt="" />
+                <Link href="/" className="hover:scale-105 transition"><Image src="/images/hive_logo.png" width={80} height={30} alt="" /></Link>
             </header>
             <section className="font-second w-full md:w-3/5 px-5 flex flex-col gap-5 m-auto my-15">
                 <div className="mb-5">
@@ -38,12 +39,7 @@ export default function page() {
                 </div>
                 <hr className="w-20 border m-auto" />
                 <div>
-                    <h2 className="text-xl font-bold">5. Contenido de terceros</h2>
-                    <p>La Plataforma puede incluir contenido generado por otros usuarios o enlaces a sitios externos. Hive no se responsabiliza por dicho contenido ni por las acciones de terceros.</p>
-                </div>
-                <hr className="w-20 border m-auto" />
-                <div>
-                    <h2 className="text-xl font-bold">6. Nuestros derechos</h2>
+                    <h2 className="text-xl font-bold">5. Nuestros derechos</h2>
                     <p>Nos reservamos el derecho de:</p>
                     <ul>
                         <li>• Modificar, suspender o eliminar el servicio en cualquier momento.</li>
@@ -53,12 +49,12 @@ export default function page() {
                 </div>
                 <hr className="w-20 border m-auto" />
                 <div>
-                    <h2 className="text-xl font-bold">7. Limitación de Responsabilidad</h2>
+                    <h2 className="text-xl font-bold">6. Limitación de Responsabilidad</h2>
                     <p>La plataforma se ofrece &ldquo;tal cual&ldquo; y &ldquo;según disponibilidad&ldquo;. no garantiza que el servicio sea ininterrumpido, seguro o libre de errores. <br />En ningún caso seremos responsables de daños directos, indirectos o pérdida de datos derivados del uso del servicio.</p>
                 </div>
                 <hr className="w-20 border m-auto" />
                 <div>
-                    <h2 className="text-xl font-bold">8. Contacto</h2>
+                    <h2 className="text-xl font-bold">7. Contacto</h2>
                     <p>Por cualquier duda, contactarse al e-mail: <a href="mailto: hivearg80@gmail.com" className="text-blue-600 hover:underline">hivearg80@gmail.com</a></p>
                 </div>
             </section>
