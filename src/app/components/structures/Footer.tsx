@@ -15,7 +15,7 @@ export default function Footer() {
                         <ul className="flex flex-col gap-3">
                             <Link href="/" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Inicio</Link>
                             <Link href="/about-us" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Nosotros</Link>
-                            <Link href="/feed" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Feed</Link>
+                            <Link href="/home" className="hover:bg-black-main hover:text-yellow-main px-2 rounded">Feed</Link>
                         </ul>
                     </div>
                     <div>
