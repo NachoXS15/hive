@@ -7,7 +7,7 @@ import { postUser, postUserDB, postUserInfoDB } from "@/app/lib/data-client";
 import React, { useState } from "react";
 import { depts } from "@/app/lib/depts";
 export default function Page() {
-    const [selectedColor, setSelectedColor] = useState("#fff")
+    const [selectedColor, setSelectedColor] = useState("#000")
     const deptos: Record<string, string[]> = depts
     const [passMatch, setPassMatch] = useState(true)
     const [departamento, setDepartamento] = useState("");

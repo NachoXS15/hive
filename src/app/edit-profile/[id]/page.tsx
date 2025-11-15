@@ -24,7 +24,7 @@ export default async function page({
 				<div className="w-full grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-8">
 					<div>
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Información Personal</h3>
-						<label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu Nombre</label>
+						<label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu Nombre y Apellido</label>
 						<input type="text" required name="name" defaultValue={profile?.name ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 						<label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu mail</label>
 						<input type="text" required name="mail" defaultValue={profile?.mail ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
