@@ -33,3 +33,17 @@
   font-size: 0.9em;
 }
 
+@keyframes star-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.star-icon {
+  display: inline-block;
+  transform-origin: center;
+}
+
+
+.group:hover .star-icon {
+  animation: star-spin 1.2s cubic-bezier(0.15, 0.85, 0.25, 1);
+}
