@@ -3,6 +3,16 @@ import { ProfileType, UserPublicInfo, UserSignIn } from "../utils/definitions";
 import { PostFormData } from "../utils/definitions";
 
 export async function createPostWithDocument(formData: PostFormData, id: string | undefined) {
+
+    const fixFileName = (name: string) => {
+        return name
+            .normalize("NFD")                    // separa acentos
+            .replace(/[\u0300-\u036f]/g, "")     // elimina acentos
+            .replace(/ñ/g, "n")                  // ñ → n
+            .replace(/Ñ/g, "N")                  // Ñ → N
+            .replace(/\s+/g, "_")                // espacios → _
+            .replace(/[^a-zA-Z0-9._-]/g, "");    // elimina caracteres inválidos
+    };
     try {
         const userId = id;
         if(!formData.body || !id){
@@ -19,8 +29,8 @@ export async function createPostWithDocument(formData: PostFormData, id: string 
         }
         // 2️⃣ Crear documento si corresponde
         if (formData.fileActive) {
-
-            const filePath = `${id}/${formData.fileName}`
+            const fixedFileName = fixFileName(formData.fileName)
+            const filePath = `${id}/${fixedFileName}`
             if(!id || !filePath || !formData.file){
                 return "Faltan datos";
             }        
