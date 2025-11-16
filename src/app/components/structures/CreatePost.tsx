@@ -31,8 +31,8 @@ export default function CreatePost({ id, profile }: Props) {
 
     const handleRemoveFile = () => {
         setFileName("");
+        setFileActive(false)
         setFile(null);
-        // Si querés también resetear el input, podés hacerlo así:
         const input = document.getElementById("file-upload") as HTMLInputElement;
         if (input) input.value = "";
     };
