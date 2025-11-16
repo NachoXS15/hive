@@ -198,6 +198,7 @@ export default function Page() {
                                     <option value="Estudiante">Estudiante</option>
                                     <option value="Freelance">Freelance</option>
                                     <option value="Graduado">Graduado</option>
+                                    <option value="Profesor">Profesor</option>
                                     <option value="Posgrado">Posgrado</option>
                                 </select>
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Provincia</label>

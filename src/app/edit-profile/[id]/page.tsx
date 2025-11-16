@@ -54,6 +54,7 @@ export default async function page({
 							<option value="Estudiante">Estudiante</option>
 							<option value="Graduado">Graduado</option>
 							<option value="Posgrado">Posgrado</option>
+							<option value="Profesor">Profesor</option>
 						</select>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Provincia</label>
 						<select className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" name="province" defaultValue={profile?.user_public_info?.province ?? ""} id="province">
