@@ -27,7 +27,7 @@ export default function Footer() {
                     <div>
                         <h3 className="font-medium text-2xl mb-4">Info.</h3>
                         <ul className="flex flex-col gap-3">
-                            <Link href="/about-us" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Nosotros</Link>
+                            <Link href="/aboutus" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Nosotros</Link>
                             <Link href="/donate" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Donaciones</Link>
                             <Link href="/terms" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Términos y Condiciones</Link>
                         </ul>

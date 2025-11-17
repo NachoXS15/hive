@@ -1,26 +1,34 @@
-// import Link from "next/link";
-// import BackgroundExport from "./components/Background";
-
-import { Home, Star } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Mail, Twitter } from "./components/ui/Icons";
-
+import Image from 'next/image'
+import { Facebook, Instagram, Mail, Twitter } from "../components/ui/Icons";
 export default function page() {
     return (
         <>
-            <header className="bg-yellow-main w-full h-24 md:h-20 px-7 md:px-44 flex items-center justify-between">
-                <Image src="/images/hive_logo.png" alt="" width={100} height={50} />
-                <Link href="/home" className="p-3 bg-black-main text-yellow-main text-xl rounded-full hover:bg-yellow-main border-spacing-x-2.5 border-2 transition hover:text-black-main"><Home size={28} /></Link>
-            </header>
-            <main className="w-full pt-5 min-h-screen bg-yellow-main flex text-black-main flex-col  items-center justify-center">
-                <div className="flex flex-col items-center mb-20 gap-5 justify-center">
-                    <h2 className="text-6xl md:text-7xl px-3 xl:px-0 text-start md:text-center font-main">¡Un espacio para estudiantes como vos!</h2>
-                    <p className="w-full md:w-2/4 text-start md:text-center font-medium px-5"><i>&quot;Hive&quot;</i> es una plataforma orientada a la comunidad universitaria de la UNLaR, creada con el proposito de brindar un espacio de repositorio para publicar documentos, trabajos prácticos o cualquier tipo de producción, con el fin de difundirlos.</p>
-                    <hr className="border w-20 md:hidden block" />
-                    <p className="font-medium text-wrap px-7 leading-9">Creado por <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Ignacio Joaquín Pantoja</span> y <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Paula Fuentes</span></p>
-                    <Link href="/home" className="group ml-7 mt-2 md:ml-0 self-start md:self-center hover:text-black-main hover:bg-yellow-main border transition text-yellow-main bg-black-main rounded-lg px-3 py-2 flex items-center gap-2"><Star className="star-icon" />Comenzá a Explorar</Link>
-                </div>
+            <main className="bg-yellow-main w-full min-h-screen py-10 flex items-center justify-center flex-col gap-10">
+                <section className="h-full">
+                    <div className="flex justify-center flex-col items-center gap-3">
+                        <Image src="/images/hive_logo.png" alt="" width={80} height={30} />
+                        <h2 className="text-center font-main font-bold text-3xl mb-8 text-black-main">Equipo Desarrollador</h2>
+                    </div>
+                    <div className="flex items-center flex-col md:flex-row gap-8 md:gap-20 font-second">
+                        <div className="flex items-center flex-col">
+                            <div className="rounded-full w-40 h-40 mb-5 md:mb-7 bg-cover bg-center border-2 " style={{ backgroundImage: `url("/images/nacho.webp")` }}></div>
+                            <h2 className="font-bold text-xl mb-1">Ignacio Joaquín Pantoja</h2>
+                            <span>EPM 955</span>
+                            <p className="px-5 md:px-0 italic text-center">&ldquo;Crear Hive fue una experiencia llena de aprendizaje, <br  className="hidden md:block"/>un camino divertido pero a la vez llena de desafios. <br  className="hidden md:block"/>Totalmente orgulloso del objetivo alcanzado {"<3"}&ldquo;</p>
+                        </div>
+                        <div className="flex items-center flex-col">
+                            <div className="rounded-full w-40 h-40 mb-5 md:mb-7 bg-cover bg-bottom border-2 text-regular" style={{ backgroundImage: `url("/images/pauli.png")` }}></div>
+                            <h2 className="font-bold text-xl mb-1">Paula Fuentes</h2>
+                            <span>EPM 559</span>
+                            <p className="px-5 md:px-0 italic text-center">&ldquo;Este proyecto refleja en cada “click” el esfuerzo y compromiso diario<br  className="hidden md:block"/> de este dúo dinamita.Hive nos dejó su huella, estamos muy contestos<br  className="hidden md:block"/>  con lo logrado y los comentarios de usuarios :D <br  className="hidden md:block"/> {"<3"}&ldquo;</p>
+                        </div>
+                    </div>
+                </section>
+                <section className="h-full">
+                    <h2 className="text-center font-main font-bold text-3xl mb-8 text-black-main">Acerca del Proyecto</h2>
+                    <p className="text-center font-second leading-8 px-5"><span className="text-yellow-main bg-black-main px-3 py-1 rounded-lg">Hive</span> es un Proyecto creado para el Trabajo Final de Carrera de la <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-2 py-0.5 rounded-lg">Licenciatura en Diseño y Producción Multimedial</span>, <br /> lanzada por la <span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Universidad Nacional de La Rioja</span>, creada por el Equipo Desarrollador, teniendo a <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Ariel Alan Rivadulla</span> como <br />tutor disciplinar acomapañando y guiando el proceso en todo momento.</p>
+                </section>
             </main>
             <footer className="w-full min-h-[600px] flex items-center justify-evenly text-yellow-main" style={{ backgroundColor: "#121211" }}>
                 <section className="w-full px-8 md:w-3/4 h-full py-10 gap-10 md:gap-20 flex flex-col justify-between">
@@ -65,5 +73,5 @@ export default function page() {
                 </section>
             </footer>
         </>
-    );
+    )
 }
