@@ -15,7 +15,7 @@ export default function page() {
             </header>
             <main className="w-full pt-5 min-h-screen bg-yellow-main flex text-black-main flex-col  items-center justify-center">
                 <div className="flex flex-col items-center mb-20 gap-5 justify-center">
-                    <h2 className="text-6xl md:text-7xl px-3 xl:px-0 text-start md:text-center font-main">¡Un espacio para estudiantes como vos!</h2>
+                    <h2 className="text-6xl md:text-7xl px-3 xl:px-0 text-start md:text-center font-main">¡Un espacio para quienes quieren crecer!</h2>
                     <p className="w-full md:w-2/4 text-start md:text-center font-medium px-5"><i>&quot;Hive&quot;</i> es una plataforma orientada a la comunidad universitaria de la UNLaR, creada con el proposito de brindar un espacio de repositorio para publicar documentos, trabajos prácticos o cualquier tipo de producción, con el fin de difundirlos.</p>
                     <hr className="border w-20 md:hidden block" />
                     <p className="font-medium text-wrap px-7 leading-9">Creado por <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Ignacio Joaquín Pantoja</span> y <span className="text-yellow-main text-nowrap bg-black-main rounded-lg px-2 py-1">Paula Fuentes</span></p>
@@ -36,7 +36,7 @@ export default function page() {
                             </ul>
                         </div>
                         <div>
-                            <h3 className="font-medium text-2xl mb-4">Busquedas</h3>
+                            <h3 className="font-medium text-2xl mb-4">Búsquedas</h3>
                             <ul className="flex flex-col gap-3">
                                 <Link href="/search/profiles" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Buscar Perfiles</Link>
                                 <Link href="/search/documents" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Buscar Documentos</Link>
