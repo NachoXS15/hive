@@ -18,7 +18,7 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h3 className="font-medium text-2xl mb-4">Busquedas</h3>
+                        <h3 className="font-medium text-2xl mb-4">Búsquedas</h3>
                         <ul className="flex flex-col gap-3">
                             <Link href="/search/profiles" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Buscar Perfiles</Link>
                             <Link href="/search/documents" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Buscar Documentos</Link>

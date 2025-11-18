@@ -21,13 +21,13 @@ export default function page() {
                             <div className="rounded-full w-40 h-40 mb-5 md:mb-7 bg-cover bg-bottom border-2 text-regular" style={{ backgroundImage: `url("/images/pauli.png")` }}></div>
                             <h2 className="font-bold text-xl mb-1">Paula Fuentes</h2>
                             <span>EPM 559</span>
-                            <p className="px-5 md:px-0 italic text-center">&ldquo;Este proyecto refleja en cada “click” el esfuerzo y compromiso diario<br  className="hidden md:block"/> de este dúo dinamita.Hive nos dejó su huella, estamos muy contestos<br  className="hidden md:block"/>  con lo logrado y los comentarios de usuarios :D <br  className="hidden md:block"/> {"<3"}&ldquo;</p>
+                            <p className="px-5 md:px-0 italic text-center">&ldquo;Este proyecto refleja en cada “click” el esfuerzo y compromiso diario<br  className="hidden md:block"/> de este dúo dinamita.Hive nos dejó su huella, estamos muy contentos<br  className="hidden md:block"/>  con lo logrado y los comentarios de usuarios :D&ldquo;</p>
                         </div>
                     </div>
                 </section>
                 <section className="h-full">
                     <h2 className="text-center font-main font-bold text-3xl mb-8 text-black-main">Acerca del Proyecto</h2>
-                    <p className="text-center font-second leading-8 px-5"><span className="text-yellow-main bg-black-main px-3 py-1 rounded-lg">Hive</span> es un Proyecto creado para el Trabajo Final de Carrera de la <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-2 py-0.5 rounded-lg">Licenciatura en Diseño y Producción Multimedial</span>, <br /> lanzada por la <span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Universidad Nacional de La Rioja</span>, creada por el Equipo Desarrollador, teniendo a <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Ariel Alan Rivadulla</span> como <br />tutor disciplinar acomapañando y guiando el proceso en todo momento.</p>
+                    <p className="text-center font-second leading-8 px-5"><span className="text-yellow-main bg-black-main px-3 py-1 rounded-lg">Hive</span> es un Proyecto creado para el Trabajo Final de Carrera de la <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-2 py-0.5 rounded-lg">Licenciatura en Diseño y Producción Multimedial</span>, <br /> lanzada por la <span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Universidad Nacional de La Rioja</span>, creada por el Equipo Desarrollador, teniendo a <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Ariel Alan Rivadulla</span> como <br />tutor disciplinar acompañando y guiando el proceso en todo momento.</p>
                 </section>
             </main>
             <footer className="w-full min-h-[600px] flex items-center justify-evenly text-yellow-main" style={{ backgroundColor: "#121211" }}>
@@ -44,7 +44,7 @@ export default function page() {
                             </ul>
                         </div>
                         <div>
-                            <h3 className="font-medium text-2xl mb-4">Busquedas</h3>
+                            <h3 className="font-medium text-2xl mb-4">Búsquedas</h3>
                             <ul className="flex flex-col gap-3">
                                 <Link href="/search/profiles" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Buscar Perfiles</Link>
                                 <Link href="/search/documents" className="hover:bg-black-main hover:text-yellow-main active:bg-black-main active:text-yellow-main px-2 rounded">Buscar Documentos</Link>
