@@ -14,20 +14,20 @@ export default function page() {
                         <div className="flex items-center flex-col">
                             <div className="rounded-full w-40 h-40 mb-5 md:mb-7 bg-cover bg-center border-2 " style={{ backgroundImage: `url("/images/nacho.webp")` }}></div>
                             <h2 className="font-bold text-xl mb-1">Ignacio Joaquín Pantoja</h2>
-                            <span>EPM 955</span>
-                            <p className="px-5 md:px-0 italic text-center">&ldquo;Crear Hive fue una experiencia llena de aprendizaje, <br  className="hidden md:block"/>un camino divertido pero a la vez llena de desafios. <br  className="hidden md:block"/>Totalmente orgulloso del objetivo alcanzado {"<3"}&ldquo;</p>
+                            <span className="italic">EPM 955</span>
+                            <p className="text-regular px-5 md:px-0 italic text-center">&ldquo;Crear Hive fue una experiencia llena de aprendizaje, <br  className="hidden md:block"/>un camino divertido pero a la vez llena de desafios. <br  className="hidden md:block"/>Totalmente orgulloso del objetivo alcanzado {"<3"}&ldquo;</p>
                         </div>
                         <div className="flex items-center flex-col">
                             <div className="rounded-full w-40 h-40 mb-5 md:mb-7 bg-cover bg-bottom border-2 text-regular" style={{ backgroundImage: `url("/images/pauli.png")` }}></div>
                             <h2 className="font-bold text-xl mb-1">Paula Fuentes</h2>
-                            <span>EPM 559</span>
-                            <p className="px-5 md:px-0 italic text-center">&ldquo;Este proyecto refleja en cada “click” el esfuerzo y compromiso diario<br  className="hidden md:block"/> de este dúo dinamita.Hive nos dejó su huella, estamos muy contentos<br  className="hidden md:block"/>  con lo logrado y los comentarios de usuarios :D&ldquo;</p>
+                            <span className="italic">EPM 559</span>
+                            <p className="text-regular px-5 md:px-0 italic text-center">&ldquo;Este proyecto refleja en cada “click” el esfuerzo y compromiso diario<br  className="hidden md:block"/> de este dúo dinamita.Hive nos dejó su huella, estamos muy contentos<br  className="hidden md:block"/>  con lo logrado y los comentarios de usuarios :D&ldquo;</p>
                         </div>
                     </div>
                 </section>
                 <section className="h-full">
                     <h2 className="text-center font-main font-bold text-3xl mb-8 text-black-main">Acerca del Proyecto</h2>
-                    <p className="text-center font-second leading-8 px-5"><span className="text-yellow-main bg-black-main px-3 py-1 rounded-lg">Hive</span> es un Proyecto creado para el Trabajo Final de Carrera de la <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-2 py-0.5 rounded-lg">Licenciatura en Diseño y Producción Multimedial</span>, <br /> lanzada por la <span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Universidad Nacional de La Rioja</span>, creada por el Equipo Desarrollador, teniendo a <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Ariel Alan Rivadulla</span> como <br />tutor disciplinar acompañando y guiando el proceso en todo momento.</p>
+                    <p className="text-regular text-center font-second leading-8 px-5"><span className="text-yellow-main bg-black-main px-3 py-1 rounded-lg">Hive</span> es un Proyecto creado para el Trabajo Final de Carrera de la <br className="md:hidden" /><span className="text-nowrap text-yellow-main bg-black-main px-2 py-0.5 rounded-lg">Licenciatura en Diseño y Producción Multimedial</span>, <br /> lanzada por la <span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Universidad Nacional de La Rioja</span>, creada por el Equipo Desarrollador, teniendo a <br className="md:hidden" /><span className="text-yellow-main bg-black-main px-3 py-0.5 rounded-lg">Ariel Alan Rivadulla</span> como <br />tutor disciplinar acompañando y guiando el proceso en todo momento.</p>
                 </section>
             </main>
             <footer className="w-full min-h-[600px] flex items-center justify-evenly text-yellow-main" style={{ backgroundColor: "#121211" }}>

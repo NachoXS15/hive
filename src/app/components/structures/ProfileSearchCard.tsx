@@ -1,4 +1,4 @@
-import { User2 } from "lucide-react"
+import { School, User2 } from "lucide-react"
 import Link from "next/link"
 
 type Props = {
@@ -7,9 +7,10 @@ type Props = {
     id: string | undefined | null
     username?: string | undefined | null
     color_img?: | string | undefined | null
+    student_status?: string | undefined | null
 }
 
-export default function ProfileSearchCard({name, title, id, username, color_img}: Props) {
+export default function ProfileSearchCard({name, title, id, username, color_img, student_status}: Props) {
     return (
         <Link href={`/profile/${id}/posts`} className="w-full h-fit px-2 md:px-5 py-5 bg-slate-100 font-second rounded-lg flex items-center justify-between">
             <div className="flex gap-3 items-center">
@@ -18,6 +19,7 @@ export default function ProfileSearchCard({name, title, id, username, color_img}
                     <div className="flex items-center gap-2">
                         <h2 className="text-regular md:text-xl font-bold">{name}</h2>
                         <span className="bg-slate-200 rounded-lg px-3 py-1 text-xs font-semibold">@{username}</span>
+                        <span className="hidden bg-orange-200 md:flexflex items-center gap-2 rounded-lg px-3 py-1 text-xs text-orange-500 font-semibold"><School size={16} />{student_status}</span>
                     </div>
                     <p className="text-xs md:text-md text-wrap">{title}</p>
                 </div>

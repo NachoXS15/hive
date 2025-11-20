@@ -24,7 +24,7 @@ export default async function Profile({ id, auth_status }: Props) {
         birthdayFormatted = formatDate(profile?.user_public_info?.birthday)
     }
     return (
-        <article className="xl:bg-slate-50 font-second xl:shadow-xl py-7 rounded-lg xl:px-10 w-full 2xl:w-3/6 xl:w-7/12 md:w-3/4 h-fit">
+        <article className="md:bg-slate-50 font-second xl:shadow-xl py-7 rounded-lg md:px-10 w-full 2xl:w-3/6 xl:w-7/12 md:w-3/4 h-fit">
             <section className="w-full flex gap-8 md:gap-15 xl:gap-20 flex-col xl:flex-row items-center justify-between">
                 <div className="w-full h-fit xl:h-[180px] flex flex-col md:flex-row md:items-center md:gap-10">
                     <div className="flex flex-col items-center gap-2 mb-3 md:mb-5">
