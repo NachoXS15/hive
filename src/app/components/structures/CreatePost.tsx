@@ -146,13 +146,18 @@ export default function CreatePost({ id, profile }: Props) {
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Temática</label>
                                     <select required name="theme" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
                                         <option value="" disabled>Selecciona una Temática</option>
-                                        <option value="Tesis">Tesis</option>
-                                        <option value="Trabajo Final de Carrera">Trabajo Final de Carrera</option>
-                                        <option value="Apunte">Apunte</option>
-                                        <option value="Investigación">Investigación</option>
-                                        <option value="Trabajo Práctico">Trabajo Práctico</option>
-                                        <option value="Prod. Audiovisual">Prod. Audiovisual</option>
-                                        <option value="Recurso">Recurso</option>
+                                        <option value="Diseño Gráfico">Diseño Gráfico</option>
+                                        <option value="Programación o Software">Programación o Software</option>
+                                        <option value="Videojuegos">Videojuegos</option>
+                                        <option value="Fotografía">Fotografía</option>
+                                        <option value="Realización Audiovisual">Realización Audiovisual</option>
+                                        <option value="Informes Médicos">Informes Médicos</option>
+                                        <option value="Informe de Lectura">Informe de Lectura</option>
+                                        <option value="Proyectos de Investigación">Proyectos de Investigación</option>
+                                        <option value="Analisis Historicos">Analisis Historicos</option>
+                                        <option value="Criticas Literarias">Criticas Literarias</option>
+                                        <option value="Informe de Prácticas Profesionales">Informe de Prácticas Profesionales</option>
+                                        <option value="Informe de Prácticas Profesionales">Informe de Prácticas Profesionales</option>
                                         <option value="Otro">Otro</option>
                                     </select>
                                 </div>

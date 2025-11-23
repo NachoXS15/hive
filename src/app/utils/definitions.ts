@@ -72,6 +72,10 @@ export interface DocType {
     author?: string
     release_year?: string
     file_path: string
+    dept?: string
+    degree?: string
+    category?: string
+    theme?: string
 }
 
 //register info
