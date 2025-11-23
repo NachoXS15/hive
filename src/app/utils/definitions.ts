@@ -85,4 +85,7 @@ export interface PostFormData {
   degree?: string;
   file: File | null
   fileName: string
+  dept?: string
+  category: string
+  theme: string
 }

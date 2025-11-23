@@ -43,6 +43,8 @@ export default function CreatePost({ id, profile }: Props) {
         const body = formData.get("body") as string
         const title = formData.get("title") as string
         const release_year = formData.get("year") as string
+        const category = formData.get("category") as string
+        const theme = formData.get("theme") as string
         console.log(body, id);
 
         const data = {
@@ -53,12 +55,15 @@ export default function CreatePost({ id, profile }: Props) {
             fileName,
             file,
             author: profile?.name,
-            degree: profile?.user_public_info?.degree
+            degree: profile?.user_public_info?.degree,
+            dept: profile?.user_public_info?.dept,
+            category,
+            theme
         }
         try {
-            if(!id){
+            if (!id) {
                 console.log("no hay id");
-            }else{
+            } else {
                 await createPostWithDocument(data, id)
             }
             window.location.reload();
@@ -106,22 +111,55 @@ export default function CreatePost({ id, profile }: Props) {
                             </button>
                         </div>
                     )}
-                    
+
                 </label>
                 {
-                        fileActive && (
-                            <section className="w-full flex items-center gap-3">
+                    fileActive && (
+                        <section className="w-full">
+                            <div className="flex flex-items-center gap-3">
                                 <div className="w-1/2">
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Titulo</label>
                                     <input type="text" required name="title" defaultValue={fileName} className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 </div>
                                 <div className="w-1/2">
-                                    <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación o Realización</label>
                                     <input type="text" required name="year" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 </div>
-                            </section>
-                        )
-                    }
+                            </div>
+                            <div className="flex flex-items-center gap-3">
+                                <div className="w-1/2">
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Categoria</label>
+                                    <select required name="category" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
+                                        <option value="" disabled>Selecciona una Temática</option>
+                                        <option value="Tesis">Tesis</option>
+                                        <option value="Trabajo Final de Carrera">Trabajo Final de Carrera</option>
+                                        <option value="Apunte">Apunte</option>
+                                        <option value="Investigación">Investigación</option>
+                                        <option value="Trabajo Práctico">Trabajo Práctico</option>
+                                        <option value="Prod. Audiovisual">Prod. Audiovisual</option>
+                                        <option value="Prod. Propia">Prod. Propia</option>
+                                        <option value="Recurso">Recurso</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                </div>
+                                <div className="w-1/2">
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Temática</label>
+                                    <select required name="theme" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
+                                        <option value="" disabled>Selecciona una Temática</option>
+                                        <option value="Tesis">Tesis</option>
+                                        <option value="Trabajo Final de Carrera">Trabajo Final de Carrera</option>
+                                        <option value="Apunte">Apunte</option>
+                                        <option value="Investigación">Investigación</option>
+                                        <option value="Trabajo Práctico">Trabajo Práctico</option>
+                                        <option value="Prod. Audiovisual">Prod. Audiovisual</option>
+                                        <option value="Recurso">Recurso</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+                    )
+                }
                 <button className="w-full py-3 font-second font-black cursor-pointer bg-yellow-main  rounded-lg text-black-main hover:bg-black-main hover:text-yellow-main transition" style={{ fontSize: "0.9em" }}>¡Publicar!</button>
             </form>
         </article>

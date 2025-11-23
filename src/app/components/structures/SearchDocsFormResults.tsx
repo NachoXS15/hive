@@ -1,6 +1,6 @@
 'use client'
 
-// import { depts } from "@/app/lib/depts"
+import { depts } from "@/app/lib/depts"
 import { DocType } from "../../utils/definitions"
 import DocSearchCard from "./DocSearchCard"
 import { useMemo, useState } from "react"
@@ -12,27 +12,29 @@ type Props = {
 
 export default function SearchFormResults({ docs }: Props) {
 
-    const [query, setQuery] = useState<string>("")
     const [collapsedForm, setCollapsedForm] = useState(false)
-    // const [departamento, setDepartamento] = useState("");
-    // const [carrera, setCarrera] = useState("");
+    const [query, setQuery] = useState<string>("")
+    const [departamento, setDepartamento] = useState("");
+    const [carrera, setCarrera] = useState("");
     const [releaseYear, setReleaseYear] = useState("");
-    // const deptos: Record<string, string[]> = depts
+    const [theme, setTheme] = useState("")
+    const [category, setCategory] = useState("")
+    const deptos: Record<string, string[]> = depts
 
     const collapseForm = () => {
         setCollapsedForm(!collapsedForm)
     }
 
-    // const handleDepartamentoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    //     setDepartamento(e.target.value);
-    //     setCarrera("");
-    // };
+    const handleDepartamentoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setDepartamento(e.target.value);
+        setCarrera("");
+    };
 
     const limpiarFiltros = (e: React.FormEvent) => {
         e.preventDefault()
         setQuery("");
-        // setDepartamento("");
-        // setCarrera("");
+        setDepartamento("");
+        setCarrera("");
         setReleaseYear("")
     }
 
@@ -58,7 +60,7 @@ export default function SearchFormResults({ docs }: Props) {
                             <label htmlFor="" className="flex justify-between items-center">Titulo</label>
                             <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="search" placeholder="Escribe para comenzar a buscar..." className="w-full h-9 border border-slate-400 bg-slate-50 px-5 rounded-lg focus:outline-none focus:ring-0" />
                         </div> */}
-                        {/* <div className="w-full">
+                        <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-700">Departamento</label>
                             <select
                                 value={departamento}
@@ -93,7 +95,7 @@ export default function SearchFormResults({ docs }: Props) {
                                         </option>
                                     ))}
                             </select>
-                        </div> */}
+                        </div>
                         <div className="w-full px-3">
                             <label className="block mb-2 text-sm font-medium text-gray-700">Año de publicación</label>
                             <select
@@ -122,7 +124,7 @@ export default function SearchFormResults({ docs }: Props) {
                             <label htmlFor="" className="flex justify-between items-center">Titulo</label>
                             <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="search" placeholder="Escribe para comenzar a buscar..." className="w-full h-9 border border-slate-400 bg-slate-50 px-5 rounded-lg focus:outline-none focus:ring-0" />
                         </div>
-                        {/* <div className="w-full">
+                        <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-700">Departamento</label>
                             <select
                                 value={departamento}
@@ -157,9 +159,9 @@ export default function SearchFormResults({ docs }: Props) {
                                         </option>
                                     ))}
                             </select>
-                        </div> */}
+                        </div>
                         <div className="w-full">
-                            <label className="block mb-2 text-sm font-medium text-gray-700">Año de publicación</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Año de publicación o Realización</label>
                             <select
                                 value={releaseYear}
                                 onChange={(e) => setReleaseYear(e.target.value)}
@@ -177,6 +179,43 @@ export default function SearchFormResults({ docs }: Props) {
                                 <option value="2017">2017</option>
                                 <option value="2016">2016</option>
                                 <option value="2015">2015</option>
+                            </select>
+                        </div>
+                        <div className="w-full">
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Tipo de Documento</label>
+                            <select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            >
+                                <option value="" disabled>Selecciona un Tipo</option>
+                                <option value="Tesis">Tesis</option>
+                                <option value="Trabajo Final de Carrera">Trabajo Final de Carrera</option>
+                                <option value="Apunte">Apunte</option>
+                                <option value="Investigación">Investigación</option>
+                                <option value="Trabajo Práctico">Trabajo Práctico</option>
+                                <option value="Prod. Audiovisual">Prod. Audiovisual</option>
+                                <option value="Recurso">Recurso</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div className="w-full">
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Temática</label>
+                            <select
+                                value={theme}
+                                onChange={(e) => setTheme(e.target.value)}
+                                className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            >
+                                <option value="" disabled>Selecciona una Temática</option>
+                                <option value="Tesis">Tesis</option>
+                                <option value="Trabajo Final de Carrera">Trabajo Final de Carrera</option>
+                                <option value="Apunte">Apunte</option>
+                                <option value="Investigación">Investigación</option>
+                                <option value="Trabajo Práctico">Trabajo Práctico</option>
+                                <option value="Prod. Audiovisual">Prod. Audiovisual</option>
+                                <option value="Prod. Propia">Prod. Propia</option>
+                                <option value="Recurso">Recurso</option>
+                                <option value="Otro">Otro</option>
                             </select>
                         </div>
                         {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}

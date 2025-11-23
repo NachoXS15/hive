@@ -47,9 +47,12 @@ export async function createPostWithDocument(formData: PostFormData, id: string 
                     post_id: postData.id,
                     title: formData.title,
                     release_year: formData.release_year,
-                    degree: formData.degree,
                     author: formData.author,
-                    file_path: filePath
+                    file_path: filePath,
+                    dept: formData.dept,
+                    degree: formData.degree,
+                    category: formData.category,
+                    theme: formData.theme
                 },
             ]);
             if (docError) console.log(docError);;
