@@ -1,7 +1,8 @@
 import Link from "next/link";
 import login from "./actions";
 import Image from "next/image";
-export default async function page() {
+export default async function page({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+    const { error } = await searchParams
 
     return (
         <>
@@ -20,14 +21,15 @@ export default async function page() {
                             <h2 className="text-xl md:text-2xl font-black">Iniciar sesión</h2>
                             <hr className="border border-black-main/60 w-1/2 mt-2" />
                         </div>
+                        {error && <p className="text-red-600 font-semibold text-center px-5">E-mail o contraseña incorrectos. Intentá de nuevo.</p>}
                         <form action="" className="w-full flex flex-col gap-2 items-center">
                             <div className="flex flex-col gap-1 w-11/12 xl:w-9/12">
                                 <label htmlFor="" className="px-3 font-bold">Ingresá tu e-mail</label>
-                                <input type="email" name="email" className="h-10 rounded-full px-3 border border-black-main" />
+                                <input type="email" required name="email" className="h-10 rounded-full px-3 border border-black-main" />
                             </div>
                             <div className="flex flex-col gap-1 w-11/12 xl:w-9/12">
                                 <label htmlFor="" className="px-3 font-bold">Ingresá tu contraseña</label>
-                                <input type="password" name="password" className="h-10 rounded-full px-3 border border-black-main" />
+                                <input type="password" required name="password" className="h-10 rounded-full px-3 border border-black-main" />
                             </div>
                             <button formAction={login} className="hover:bg-yellow-main hover:text-black-main transition w-11/12 xl:w-9/12 mt-3 rounded-full h-9 bg-black-main text-yellow-main cursor-pointer">Acceder</button>
                         </form>

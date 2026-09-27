@@ -6,6 +6,7 @@ import Footer from "../../components/structures/Footer"
 import { fetchUserById } from "../../lib/data-server"
 import Profile from "../../components/structures/Profile"
 import { createClient } from "@/app/utils/supabase/server"
+import { redirect } from "next/navigation"
 
 type Props = {
   children: React.ReactNode
@@ -18,10 +19,12 @@ export default async function layout({ children, params }: Props) {
 	const supabase = await createClient();
 	const {id} = await params
 	const auth_status = "";
+	// Si el perfil no existe, 404
+	const viewedProfile = await fetchUserById(id)
+	if (!viewedProfile) {
+		redirect("/error/404")
+	}
 	const loggedProfile = (await supabase.auth.getUser()).data.user
-	if (!loggedProfile) {
-		console.log("no hay perfil");
-	}else{}
 	const logProfile = loggedProfile && await fetchUserById(loggedProfile?.id)
 	
 	return (

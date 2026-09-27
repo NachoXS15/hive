@@ -9,15 +9,14 @@ export default async function login(formData: FormData){
 
     const supabase = await createClient();
 
-    const {data, error} = await supabase.auth.signInWithPassword({
-        email: formData.get("email") as string,
+    const { error } = await supabase.auth.signInWithPassword({
+        email: (formData.get("email") as string ?? "").trim(),
         password: formData.get("password") as string
     })
     if(error){
-        console.log(error);
-        redirect('/error/404')
+        console.error("Error de login:", error.message);
+        redirect('/auth/login?error=credenciales')
     }
-    console.log(data);
-    revalidatePath('/home')
+    revalidatePath('/', 'layout')
     redirect('/home')
 }

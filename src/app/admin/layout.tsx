@@ -4,9 +4,11 @@ import { fetchUserById } from "../lib/data-server";
 
 export default async function layout({ children }: { children: React.ReactNode }) {
     const supabase = await createClient()
-    const user = await supabase.auth.getUser();
-    const profile = await fetchUserById(user.data.user?.id)
-    console.log(profile?.role);
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        redirect("/auth/login")
+    }
+    const profile = await fetchUserById(user.id)
     if (profile?.role !== "admin") {
         redirect("/error/403-admin")
     }

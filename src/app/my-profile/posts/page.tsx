@@ -31,7 +31,7 @@ export default async function page() {
 					</button>
 				</div>
 				{
-					posts && posts.length > 0 ? posts.reverse().map((post, i) => {
+					posts && posts.length > 0 ? posts.map((post, i) => {
 
 						return (
 							<Post key={i} docs={docs} auth_status={auth_status} post={post} />

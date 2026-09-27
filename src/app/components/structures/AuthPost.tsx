@@ -1,10 +1,9 @@
 import { DocType, PostType } from "../../utils/definitions"
 import { formatDate } from "../../utils/DateFormatterPost"
 import { CircleMinus } from "lucide-react"
-import { deleteDoc, deletePost } from "@/app/lib/data-server"
+import { deletePostAction } from "@/app/lib/actions"
 import Link from "next/link"
 import DocPost from "../ui/DocPost"
-import { revalidatePath } from "next/cache"
 type Props = {
 	post: PostType,
 	auth_status?: string | undefined
@@ -15,8 +14,6 @@ type Props = {
 export default function Post({ post, docs }: Props) {
 	const formatedDate = formatDate(post.created_at)
 	const docsWithPosts = docs?.filter(doc => doc.post_id == post.id)
-	console.log(post.id);
-	
 	return (
 		<article className="w-full h-fit flex flex-col font-second bg-slate-200 rounded-lg p-5 relative group">
 			{/* <Link
@@ -47,17 +44,7 @@ export default function Post({ post, docs }: Props) {
 			</div>
 
 			{docsWithPosts && docsWithPosts.length > 0 && <DocPost doc={docsWithPosts[0]} />}
-			<form
-				action={async () => {
-					"use server";
-					console.log(post.id);
-					await deletePost(post.id);
-					if (docsWithPosts && docsWithPosts.length > 0) {
-						await deleteDoc([docsWithPosts[0].file_path], docsWithPosts[0].id);
-					}
-					revalidatePath("/my-profile/posts");
-				}}
-			>
+			<form action={deletePostAction.bind(null, post.id)}>
 				<button
 					type="submit"
 					className="absolute -top-2 -right-2 hover:scale-110 cursor-pointer transition active:scale-105 z-30"

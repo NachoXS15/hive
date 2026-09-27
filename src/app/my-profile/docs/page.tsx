@@ -14,7 +14,6 @@ export default async function page() {
 	}
 	const id: string = user?.id ?? ""
 	const docs = await fetchDocsById(id);
-	console.log(docs);
 
 	return (
 		<>

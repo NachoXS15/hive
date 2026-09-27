@@ -4,6 +4,7 @@ import { User } from "@supabase/supabase-js";
 // import DropdownMenuSearch from "../ui/DropdownMenuSearch";
 import DropdownMenuProfile from "../ui/DropdownMenuProfile";
 import Image from "next/image";
+import { logoutAction } from "@/app/lib/actions";
 export default function Header({ profile, profileName }: { profile: User | null; profileName?: string | null}) {
 
     const nameInitials = profileName?.slice(0, 2).toUpperCase()
@@ -57,7 +58,9 @@ export default function Header({ profile, profileName }: { profile: User | null;
                                     <hr />
                                     <Link href="/my-profile/posts" className="flex items-center gap-2 font-medium active:scale-110 transition"><User2 />Mi Perfil</Link>
                                     {/* <Link href="/" className="flex items-center gap-2 font-medium active:scale-110 transition"><SettingsIcon />Configuración</Link> */}
-                                    <Link href="/auth/logout" className="flex items-center gap-2 font-medium active:scale-110 transition"><LogOut />Cerrar Sesión</Link>
+                                    <form action={logoutAction}>
+                                        <button type="submit" className="flex items-center gap-2 font-medium active:scale-110 transition cursor-pointer"><LogOut />Cerrar Sesión</button>
+                                    </form>
                                 </nav>
                             ) : (
                                 <nav className="w-full flex flex-col gap-4 p-5 font-medium">

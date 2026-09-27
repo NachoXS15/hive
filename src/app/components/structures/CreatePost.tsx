@@ -15,6 +15,8 @@ export default function CreatePost({ id, profile }: Props) {
     const [file, setFile] = useState<File | null>(null)
     const [fileName, setFileName] = useState("");
     const [fileActive, setFileActive] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -22,7 +24,6 @@ export default function CreatePost({ id, profile }: Props) {
             setFileActive(true)
             setFileName(files[0].name);
             setFile(files[0]);
-            console.log(files[0].name);
         } else {
             setFileName("");
             setFile(null);
@@ -43,7 +44,6 @@ export default function CreatePost({ id, profile }: Props) {
         const body = formData.get("body") as string
         const title = formData.get("title") as string
         const release_year = formData.get("year") as string
-        console.log(body, id);
 
         const data = {
             body,
@@ -55,21 +55,24 @@ export default function CreatePost({ id, profile }: Props) {
             author: profile?.name,
             degree: profile?.user_public_info?.degree
         }
-        try {
-            if(!id){
-                console.log("no hay id");
-            }else{
-                await createPostWithDocument(data, id)
-            }
-            window.location.reload();
-        } catch (error) {
-            console.log(error);
+        if (!id) {
+            setErrorMsg("Tenés que iniciar sesión para publicar.");
+            return;
         }
+        setLoading(true);
+        setErrorMsg("");
+        const result = await createPostWithDocument(data, id);
+        setLoading(false);
+        if (!result.success) {
+            setErrorMsg(result.message);
+            return;
+        }
+        window.location.reload();
     }
     return (
         <article className="w-full h-fit rounded-lg gap-3 mt-7">
             <form onSubmit={handleSubmit} action="" className="w-full h-fit flex flex-col gap-3">
-                <textarea name="body" id="" className="focus:outline-slate-700 min-h-28 bg-slate-200 rounded-lg p-3 resize-none" placeholder="¿Algo en lo que estes trabajado?" style={{ fontSize: "0.9em" }}></textarea>
+                <textarea name="body" required id="" className="focus:outline-slate-700 min-h-28 bg-slate-200 rounded-lg p-3 resize-none" placeholder="¿Algo en lo que estes trabajado?" style={{ fontSize: "0.9em" }}></textarea>
                 <label
                     htmlFor="file-upload"
                     className="h-15 flex flex-col items-center justify-center w-full border-2 border-dashed border-black-main rounded-lg cursor-pointer bg-slate-200 hover:bg-gray-100 transition relative"
@@ -122,7 +125,8 @@ export default function CreatePost({ id, profile }: Props) {
                             </section>
                         )
                     }
-                <button className="w-full py-3 font-second font-black cursor-pointer bg-yellow-main  rounded-lg text-black-main hover:bg-black-main hover:text-yellow-main transition" style={{ fontSize: "0.9em" }}>¡Publicar!</button>
+                {errorMsg && <p className="text-red-600 font-semibold text-center" style={{ fontSize: "0.9em" }}>{errorMsg}</p>}
+                <button disabled={loading} className="w-full py-3 font-second font-black cursor-pointer bg-yellow-main  rounded-lg text-black-main hover:bg-black-main hover:text-yellow-main transition disabled:opacity-60 disabled:cursor-wait" style={{ fontSize: "0.9em" }}>{loading ? "Publicando..." : "¡Publicar!"}</button>
             </form>
         </article>
     )

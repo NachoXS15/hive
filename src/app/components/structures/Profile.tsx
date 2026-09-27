@@ -11,14 +11,8 @@ type Props = {
 }
 
 export default async function Profile({ id, auth_status }: Props) {
-    console.log(id);
-
     const profile = await fetchFullUser(id);
     const links = await fetchLinksById(id);
-    console.log(links);
-    
-    console.log(profile);
-    
     let birthdayFormatted = "";
     if (profile?.user_public_info?.birthday) {
         birthdayFormatted = formatDate(profile?.user_public_info?.birthday)

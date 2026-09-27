@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
-import { DocType, LinksProfileType, PostType, ProfileType, SimpleUserType } from "../utils/definitions";
+import { unstable_rethrow } from "next/navigation";
+import { DocType, LinksProfileType, PostType, ProfileType, SimpleUserType, UserPublicInfo } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
 //traer info básica de todos los usuarios
@@ -17,6 +17,7 @@ export async function fetchUsers(){
         }
         return data as ProfileType[];
     } catch (error) {
+        unstable_rethrow(error);
         console.error(error);
     }
 }
@@ -31,6 +32,7 @@ export async function fetchUserById(id?: string){
         }
         return data as SimpleUserType;
     } catch (error) {
+        unstable_rethrow(error);
         console.error(error);
     }
 }
@@ -46,12 +48,14 @@ export async function fetchPosts(){
                 name,
                 profile_img_color
             )
-        `);
+        `)
+        .order("created_at", { ascending: false });
         if (error) {
             console.log(error.message);
         }
         return data as PostType[];
     } catch (error) {
+        unstable_rethrow(error);
         console.log(error);
     }
 }
@@ -64,6 +68,7 @@ export async function fetchDocs(){
         }
         return data as DocType[];
     } catch (error) {
+        unstable_rethrow(error);
         console.log(error);
     }
 }
@@ -82,12 +87,14 @@ export async function fetchPostsById(id: string){
                 profile_img_color
             )
         `)
-        .eq("user_id", id);
+        .eq("user_id", id)
+        .order("created_at", { ascending: false });
         if (error) {
             console.log(error.message);
         }
         return data as PostType[];
     } catch (error) {
+        unstable_rethrow(error);
         console.error(error);
     }
 }
@@ -101,6 +108,7 @@ export async function fetchSinglePost(id: string){
         .select(`
             *,
             profiles (
+                id,
                 name,
                 profile_img_color
             )
@@ -112,6 +120,7 @@ export async function fetchSinglePost(id: string){
         }
         return data as PostType;
     } catch (error) {
+        unstable_rethrow(error);
         console.error(error);
     }
 }
@@ -129,6 +138,7 @@ export async function fetchLinksById(id: string){
         }
         return data as LinksProfileType;
     } catch (error) {
+        unstable_rethrow(error);
         console.error(error);
     }
 }
@@ -172,78 +182,53 @@ export async function fetchFullUser(id: string): Promise<ProfileType | null> {
     return profile;
 }
 
-//actualizar info básica del usuario
-export  async function updateBasicUser({...data}: ProfileType, id: string){
-    try {
-        const supabase = await createClient();
-        const { error } = await supabase.from("profiles").update({...data}).eq("id", id.trim())
-    
-        if (error) {
-            console.error("Error en Supabase:", error.message)
-            redirect('/error')
-        }
-        console.log("Perfil actualizado");
-        
-    } catch (error) {   
-        console.log(error);
+//actualizar info básica del usuario (devuelve el mensaje de error, o null si salió bien)
+export async function updateBasicUser({...data}: ProfileType, id: string): Promise<string | null> {
+    const supabase = await createClient();
+    const { error } = await supabase.from("profiles").update({...data}).eq("id", id.trim())
+    if (error) {
+        console.error("Error en Supabase (profiles):", error.message)
+        return error.message
     }
-
+    return null
 }
 
-//actualizar info del usuario
-export async function updateInfoUser({...data}: ProfileType, id: string){
-    try {
-        const supabase = await createClient();
-        const { error } = await supabase.from("user_public_info").update({...data}).eq("user_id", id.trim())
-    
-        if (error) {
-            console.error("Error en Supabase:", error.message)
-            redirect('/error')
-        }
-        console.log("Perfil actualizado");
-        
-    } catch (error) {   
-        console.log(error);
+//actualizar info del usuario (devuelve el mensaje de error, o null si salió bien)
+export async function updateInfoUser({...data}: UserPublicInfo, id: string): Promise<string | null> {
+    const supabase = await createClient();
+    const { error } = await supabase.from("user_public_info").update({...data}).eq("user_id", id.trim())
+    if (error) {
+        console.error("Error en Supabase (user_public_info):", error.message)
+        return error.message
     }
-
+    return null
 }
 
 //eliminar posteo
-export async function deletePost(id: string){
-    try {
-        const supabase = await createClient();
-        const {error} = await supabase.from("posts").delete().eq("id", id).single();
-        if (error) {
-            console.log(error);
-        }else{
-            console.log("Post eliminado");
-        }
-    } catch (error) {
-        console.log(error);
+export async function deletePost(id: string): Promise<string | null> {
+    const supabase = await createClient();
+    const { error } = await supabase.from("posts").delete().eq("id", id);
+    if (error) {
+        console.error("Error al eliminar post:", error.message);
+        return error.message
     }
+    return null
 }
 
-export async function deleteDoc(path: string[], id: string){
-    try {
-        const supabase = await createClient();
-        //borrar de storage
-        const {error} = await supabase.storage.from("documents").remove(path);
-        if (error) {
-            console.log(error);
-        }else{
-            console.log("Post eliminado");
-        }
-        //borrar de db
-        const {error: tableError} = await supabase.from('docs').delete().eq("id", id).single();
-        if (tableError) {
-            console.error(tableError);
-        }
-        location.reload()
-    } catch (error) {
-        console.log(error);
+//eliminar documento: primero el archivo en storage, después la fila en la tabla "documents"
+export async function deleteDoc(paths: string[], id: string): Promise<string | null> {
+    const supabase = await createClient();
+    const { error } = await supabase.storage.from("documents").remove(paths);
+    if (error) {
+        console.error("Error al eliminar archivo:", error.message);
     }
+    const { error: tableError } = await supabase.from("documents").delete().eq("id", id);
+    if (tableError) {
+        console.error("Error al eliminar documento:", tableError.message);
+        return tableError.message
+    }
+    return null
 }
-
 
 export async function fetchDocsById(id: string){
     try {
@@ -257,6 +242,7 @@ export async function fetchDocsById(id: string){
         }
         return data as DocType[];
     } catch (error) {
+        unstable_rethrow(error);
         console.error(error);
     }
 }

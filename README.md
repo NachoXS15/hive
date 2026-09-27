@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <img src="public/images/hive_logo.png" alt="Hive" width="180" />
+</p>
 
-## Getting Started
+<h1 align="center">Hive</h1>
 
-First, run the development server:
+<p align="center">
+  <b>¡Un espacio para quienes quieran crecer!</b><br />
+  Plataforma para que la comunidad universitaria de la <b>UNLaR</b> publique y encuentre documentos, trabajos prácticos y producciones.
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<p align="center">
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" />
+  <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black" />
+  <img alt="Supabase" src="https://img.shields.io/badge/Supabase-Auth%20%7C%20DB%20%7C%20Storage-3ECF8E?logo=supabase&logoColor=white" />
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind%20CSS-4-38BDF8?logo=tailwindcss&logoColor=white" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" />
+</p>
+
+---
+
+## 📖 Sobre el proyecto
+
+**Hive** es un repositorio social: cada estudiante, graduado o docente tiene un perfil, puede compartir publicaciones con documentos PDF adjuntos y descubrir el trabajo de otras personas según su departamento y carrera.
+
+Es el Trabajo Final de Carrera de la **Licenciatura en Diseño y Producción Multimedial** de la Universidad Nacional de La Rioja, con la tutoría de Ariel Alan Rivadulla.
+
+## ✨ Funcionalidades
+
+### 👤 Cuentas y perfiles
+- **Registro completo**: datos personales, disponibilidad laboral, departamento y carrera de la UNLaR, estamento (estudiante, graduado, profesor, posgrado, freelance), provincia, fecha de nacimiento y una descripción.
+- **Validación de contraseña** con indicador de seguridad (mínimo 8 caracteres, una mayúscula y un número).
+- **Inicio y cierre de sesión** con Supabase Auth y sesión renovada automáticamente.
+- **Perfil público** con avatar de color personalizable, datos académicos y profesionales, "Acerca de mí" y enlaces.
+- **Enlaces a redes**: Facebook, Instagram, X/Twitter, LinkedIn y Portfolio/CV.
+- **Edición de perfil**: solo el dueño puede modificar sus datos.
+
+### 📝 Publicaciones y documentos
+- **Feed** con las publicaciones de toda la comunidad, de la más nueva a la más vieja.
+- **Crear publicaciones** con texto y un **PDF adjunto** opcional (título y año de publicación, hasta 20 MB).
+- **Vista de detalle** de cada publicación.
+- **Descarga segura** de documentos mediante enlaces firmados temporales.
+- **Eliminar publicaciones**: el autor (o un admin) borra el post junto con su documento.
+- Pestañas de **Publicaciones** y **Documentos** en cada perfil.
+
+### 🔎 Búsqueda
+- **Perfiles**: por nombre o usuario, estamento, departamento y carrera.
+- **Documentos**: por título o autor y año de publicación.
+
+### 🛡️ Administración
+- **Panel de administración** (solo rol `admin`) con el listado de usuarios.
+- Revisión y moderación del contenido (publicaciones y documentos) de cada usuario.
+
+### ℹ️ Páginas informativas
+- Landing, **Nosotros**, **Donaciones** y **Términos y Condiciones**.
+- Páginas de error propias (403, 404).
+
+## 🧱 Stack
+
+| Capa | Tecnología |
+| --- | --- |
+| Framework | [Next.js 16](https://nextjs.org) (App Router, Server Components, Server Actions, Proxy) |
+| UI | React 19, Tailwind CSS 4, [lucide-react](https://lucide.dev) |
+| Backend | [Supabase](https://supabase.com): Auth, Postgres y Storage |
+| Lenguaje | TypeScript |
+
+## 🗂️ Estructura
+
+```
+src/
+├── proxy.ts                 # Renueva la sesión y protege rutas privadas
+└── app/
+    ├── page.tsx             # Landing
+    ├── home/                # Feed y detalle de publicación
+    ├── auth/                # Login, registro, recuperación
+    ├── my-profile/          # Perfil propio (posts y documentos)
+    ├── edit-profile/[id]/   # Edición de perfil
+    ├── profile/[id]/        # Perfil público
+    ├── search/              # Búsqueda de perfiles y documentos
+    ├── admin/               # Panel de administración
+    ├── components/          # Componentes de UI y estructuras
+    ├── lib/                 # Acceso a datos y Server Actions
+    └── utils/               # Clientes de Supabase, tipos y helpers
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Cómo correrlo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Requisitos
+- Node.js 20 o superior y [pnpm](https://pnpm.io)
+- Un proyecto de Supabase con las tablas `profiles`, `user_public_info`, `user_links`, `posts` y `documents`, y un bucket de Storage llamado `documents`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pasos
 
-## Learn More
+```bash
+git clone <url-del-repo>
+cd hive
+pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Creá un archivo `.env.local` en la raíz:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://<tu-proyecto>.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<tu-anon-key>
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> ⚠️ Nunca subas claves privadas (como la `service_role`) al repositorio: los archivos `.env*` ya están en `.gitignore`.
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+La app queda disponible en [http://localhost:3000](http://localhost:3000).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Scripts
+
+| Comando | Descripción |
+| --- | --- |
+| `pnpm dev` | Servidor de desarrollo (Turbopack) |
+| `pnpm build` | Build de producción |
+| `pnpm start` | Sirve el build de producción |
+| `pnpm lint` | Revisa el código con ESLint |
+
+## 🛣️ Próximamente
+
+- [ ] Recuperación de contraseña por e-mail
+- [ ] Fotos de perfil
+- [ ] Seguir usuarios
+- [ ] Me gusta, comentarios y compartir
+- [ ] Donaciones por Mercado Pago y Cafecito
+
+## 👥 Autores
+
+- **Ignacio Joaquín Pantoja**
+- **Paula Fuentes**
+
+📧 Soporte: [hivearg80@gmail.com](mailto:hivearg80@gmail.com)
+
+---
+
+<p align="center">Hecho con 💛 en La Rioja, Argentina</p>

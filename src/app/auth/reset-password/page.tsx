@@ -23,7 +23,7 @@ export default function page() {
                     </form>
                     <div className="flex items-center flex-col gap-4">
                         <div className="flex flex-col items-center gap-1">
-                            <span><Link href="/recuperar-password" className="underline hover:cursor-pointer">Recuperarla acá</Link> o <Link href="/recuperar-password" className="underline hover:cursor-pointer">Registrate</Link></span>
+                            <span><Link href="/auth/login" className="underline hover:cursor-pointer">Volver al login</Link> o <Link href="/auth/register" className="underline hover:cursor-pointer">Registrate</Link></span>
                         </div>
                     </div>
                 </div>

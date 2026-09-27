@@ -14,14 +14,14 @@ export default function LinksComp({links, auth_status, id}: Props) {
 	
 	return (
 		<section className="mt-5">
-			<h2 className="font-bold text-xl font-second">Mis enlaces</h2>
+			<h2 className="font-bold text-xl font-second">{auth_status === "authenticated" ? "Mis enlaces" : "Enlaces"}</h2>
 			<div className="mt-3 w-full flex gap-4 flex-wrap">
-				{!links && <h2>No hay enlaces</h2>}
+				{!(links?.facebook || links?.instagram || links?.twitter || links?.portfolio_cv || links?.linkedin) && <p style={{ fontSize: "0.9em" }}>No hay enlaces.</p>}
 				{links?.facebook && <LinkBadge auth_status={auth_status} color="blue" link={links.facebook} red_social="Facebook" icon={<Facebook color="white" />} />}
 				{links?.instagram && <LinkBadge auth_status={auth_status} color="pink" link={links.instagram} red_social="Instagram" icon={<Instagram color="white" />} /> }
 				{links?.twitter && <LinkBadge auth_status={auth_status} color="slate" link={links.twitter} red_social="X/Twitter" icon={<Twitter color="white" />} />}
 				{links?.portfolio_cv && <LinkBadge auth_status={auth_status} color="red" link={links.portfolio_cv} red_social="Portfolio/CV" icon={<BriefcaseBusiness color="white" />} />}
-				{links?.linkedin && <LinkBadge auth_status={auth_status} color="green" link={links.portfolio_cv} red_social="LinkedIn" icon={<BriefcaseBusiness color="white" />} />}
+				{links?.linkedin && <LinkBadge auth_status={auth_status} color="green" link={links.linkedin} red_social="LinkedIn" icon={<BriefcaseBusiness color="white" />} />}
 				{auth_status === "authenticated" && id !== "" ? <AddLink id={id} /> : null}
 			</div>
 		</section>

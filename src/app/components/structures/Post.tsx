@@ -1,8 +1,7 @@
 import { DocType, PostType } from "../../utils/definitions"
 import { formatDate } from "../../utils/DateFormatterPost"
 import { CircleMinus } from "lucide-react"
-import { deleteDoc, deletePost } from "@/app/lib/data-server"
-import { revalidatePath } from "next/cache"
+import { deletePostAction } from "@/app/lib/actions"
 import Link from "next/link"
 import DocPost from "../ui/DocPost"
 type Props = {
@@ -61,16 +60,7 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 			</div>
 			{/* Botón de eliminar (solo si autenticado) */}
 			{auth_status === "authenticated" && (
-				<form
-					action={async () => {
-						"use server";
-						await deletePost(post.id);
-						if (docsWithPosts && docsWithPosts.length > 0) {
-							await deleteDoc([docsWithPosts[0].file_path], docsWithPosts[0].id);
-						}
-						revalidatePath("/my-profile/posts");
-					}}
-				>
+				<form action={deletePostAction.bind(null, post.id)}>
 					<button
 						type="submit"
 						className="absolute -top-2 -right-2 hover:scale-110 cursor-pointer transition active:scale-105 z-30"

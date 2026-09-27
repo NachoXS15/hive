@@ -25,11 +25,14 @@ export default function SearchFormResults({ profiles }: Props) {
     const deptos: Record<string, string[]> = depts
 
     const filteredProfiles = useMemo(() => {
+        // Un filtro vacío no excluye a nadie (aunque el perfil no tenga ese dato cargado)
+        const matches = (value: string | null | undefined, filter: string) =>
+            !filter || (value ?? "").toLocaleLowerCase().includes(filter.toLocaleLowerCase())
         return profiles.filter((profile) =>
-            profile.name?.toLocaleLowerCase().includes(query.toLowerCase()) &&
-            profile.user_public_info?.dept?.toLocaleLowerCase().includes(departamento.toLowerCase()) &&
-            profile.user_public_info?.degree?.toLocaleLowerCase().includes(carrera.toLowerCase()) &&
-            profile.user_public_info?.student_status?.toLocaleLowerCase().includes(estamento.toLowerCase())
+            (matches(profile.name, query) || matches(profile.username, query)) &&
+            matches(profile.user_public_info?.dept, departamento) &&
+            matches(profile.user_public_info?.degree, carrera) &&
+            matches(profile.user_public_info?.student_status, estamento)
         )
     }, [query, profiles, departamento, carrera, estamento])
 
@@ -55,14 +58,16 @@ export default function SearchFormResults({ profiles }: Props) {
                             <label className="block mb-2 text-sm font-medium text-gray-700">Estamento</label>
                             <select
                                 value={estamento}
-                                name="dept"
+                                name="student_status"
                                 onChange={(e) => setEstamento(e.target.value)}
                                 className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
                             >
                                 <option value="">Seleccioná un estamento</option>
                                 <option value="Estudiante">Estudiante</option>
                                 <option value="Graduado">Graduado</option>
-                                <option value="Docente">Docente</option>
+                                <option value="Posgrado">Posgrado</option>
+                                <option value="Profesor">Profesor</option>
+                                <option value="Freelance">Freelance</option>
 
                             </select>
                         </div>
@@ -110,6 +115,9 @@ export default function SearchFormResults({ profiles }: Props) {
                     {query || departamento || carrera || estamento ? <h2 className="font-bold">Perfiles encontrados</h2> : null}
                     {query || departamento || carrera || estamento ? <button onClick={(e) => limpiarFiltros(e)} className="w-fit self-start flex items-center gap-2 text-regular bg-red-500 text-white rounded-lg px-2 py-1"><Trash2 />Limpiar filtros</button> : ""}
                 </div>
+                {(query || departamento || carrera || estamento) && filteredProfiles.length === 0 && (
+                    <p className="text-center font-semibold py-5">No se encontraron perfiles con esos filtros.</p>
+                )}
                 {(query || departamento || carrera || estamento) && (
                     filteredProfiles.map((profile, i) => (
                         <ProfileSearchCard key={i} student_status={profile.user_public_info?.student_status} color_img={profile.profile_img_color} id={profile.id} username={profile.username} name={profile.name} title={profile.user_public_info?.degree} />

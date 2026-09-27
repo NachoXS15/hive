@@ -1,7 +1,6 @@
-'use server'
 import { fetchFullUser } from "@/app/lib/data-server";
-import { InferGetServerSidePropsType } from "next";
-import { getServerSideProps } from "next/dist/build/templates/pages";
+import { createClient } from "@/app/utils/supabase/server";
+import { redirect } from "next/navigation";
 import HandleSubmit from "./actions";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -11,11 +10,21 @@ import EditColor from "@/app/components/ui/EditColor";
 
 export default async function page({
 	params,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: { params: Promise<{ id: string }> }) {
 
 	const { id } = await params
-	const profile = await fetchFullUser(id)
-	const selectedColor = profile?.profile_img_color
+
+	// Solo el dueño puede ver el formulario de edición de su perfil
+	const supabase = await createClient()
+	const { data: { user } } = await supabase.auth.getUser()
+	if (!user) {
+		redirect("/auth/login")
+	}
+	if (user.id !== id) {
+		redirect(`/edit-profile/${user.id}`)
+	}
+
+	const profile = await fetchFullUser(user.id)
 	return (
 		<div className="flex items-center py-20 justify-center px-3 md:px-10 min-h-screen bg-gray-100 font-second" id="form">
 			<form className="bg-white shadow-lg rounded-2xl p-5 md:p-8 max-w-5xl">
@@ -39,7 +48,7 @@ export default async function page({
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Información Profesional</h3>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Disponibilidad</label>
 						<select required name="job_avaliable" defaultValue={profile?.user_public_info?.job_avaliable ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
-							<option value="" defaultValue="Seleccionar" disabled>Seleccionar</option>
+							<option value="" disabled>Seleccionar</option>
 							<option value="Disponible para trabajar">Disponible para trabajar</option>
 							<option value="Trabajando">Trabajando</option>
 							<option value="Freelance">Freelance</option>
@@ -50,8 +59,9 @@ export default async function page({
 						<h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
 						<label className="block mb-2 text-sm font-medium text-gray-700">Estado de Estudiante</label>
 						<select required name="student_status" defaultValue={profile?.user_public_info?.student_status ?? ""} className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-							<option value="" defaultValue="Seleccionar" disabled>Seleccionar</option>
+							<option value="" disabled>Seleccionar</option>
 							<option value="Estudiante">Estudiante</option>
+							<option value="Freelance">Freelance</option>
 							<option value="Graduado">Graduado</option>
 							<option value="Posgrado">Posgrado</option>
 							<option value="Profesor">Profesor</option>
@@ -87,7 +97,6 @@ export default async function page({
 						<input required name="birthday" defaultValue={profile?.user_public_info?.birthday ?? ""} type="date" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
 					</div>
 				</div>
-				<input type="hidden" name="id" defaultValue={profile?.id} />
 				<section className="flex flex-col md:flex-row items-center gap-5">
 					<div className="w-full xl:w-1/2 flex flex-col">
 						<div className="flex md:items-center mb-2  gap-2">

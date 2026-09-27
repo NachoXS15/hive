@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { postUser, postUserDB, postUserInfoDB } from "@/app/lib/data-client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { depts } from "@/app/lib/depts";
 export default function Page() {
     const [selectedColor, setSelectedColor] = useState("#000")
@@ -15,6 +16,9 @@ export default function Page() {
     const [termsCheck, setTermsCheck] = useState(false)
     const [passStrength, setPassStrength] = useState<string>("")
     const [passColor, setPassColor] = useState<string>("")
+    const [errorMsg, setErrorMsg] = useState<string>("")
+    const [loading, setLoading] = useState(false)
+    const router = useRouter()
 
     const handleDeptChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const dept = e.target.value;
@@ -33,6 +37,7 @@ export default function Page() {
     const handlePassStrength = (pass: string) => {
         if (pass == "") {
             setPassStrength("");
+            return;
         }
 
         const hasMinLength = pass.length >= 8;
@@ -61,6 +66,7 @@ export default function Page() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setPassMatch(true);
+        setErrorMsg("");
         const formData = new FormData(e.currentTarget);
         //column1
         const name = formData.get("name")?.toString();
@@ -83,61 +89,43 @@ export default function Page() {
 
 
 
-        console.log({
-            name,
-            mail,
-            username,
-            password,
-            confirmPassword,
-            job_avaliable,
-            degree,
-            dept,
-            profile_img_color,
-            desc,
-            student_status,
-            province,
-            birthday,
-        });
 
         if (!name || !mail || !username || !password || !confirmPassword || !student_status || !job_avaliable || !degree || !dept || !desc || !province || !birthday) {
-            console.error("Todos los campos son obligatorios");
+            setErrorMsg("Todos los campos son obligatorios.");
             return;
         }
 
         if (password != confirmPassword) {
-            console.error("Contraseñas no coinciden");
             setPassMatch(false)
             return;
-        } else {
-            console.log("Contraseñas coinciden");
         }
 
         if (!termsCheck) {
-            alert("Debe aceptar terminos y condiciones")
-            console.log("Debe aceptar terminos y condiciones");
+            setErrorMsg("Debés aceptar los términos y condiciones.");
             return;
         }
 
         if (passStrength != "Fuerte") {
-            alert("Contraseña no segura");
-            console.log("Contraseña no segura");
+            setErrorMsg("La contraseña no es segura: usá al menos 8 caracteres, una mayúscula y un número.");
             return;
         }
 
+        setLoading(true);
         try {
-            await postUser({
-                email: mail as string,
-                password: password as string,
+            const { user } = await postUser({
+                email: mail,
+                password,
             });
+            const userId = user!.id;
 
-            await postUserDB({
+            await postUserDB(userId, {
                 name,
                 mail,
                 username,
                 profile_img_color
             });
 
-            await postUserInfoDB({
+            await postUserInfoDB(userId, {
                 job_avaliable,
                 degree,
                 dept,
@@ -146,9 +134,13 @@ export default function Page() {
                 province,
                 birthday,
             });
-            window.location.href = "/auth/login";
+            router.push("/auth/login");
         } catch (error) {
-            console.log("Error: ", error);
+            console.error("Error en el registro:", error);
+            const message = error instanceof Error ? error.message : "";
+            setErrorMsg(`No se pudo completar el registro. ${message}`.trim());
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -175,11 +167,11 @@ export default function Page() {
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu Nombre y Apellido</label>
                                 <input type="text" required name="name" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu mail</label>
-                                <input type="text" required name="mail" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                <input type="email" required name="mail" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu usuario</label>
                                 <input type="text" required name="user" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 <label className="block mb-2 text-sm font-medium text-gray-700">Ingresá tu contraseña</label>
-                                <input type="password" required name="password" onChange={(e) => handlePassStrength(e.target.value)} placeholder="Debe incluir mayus., minus., y número y 8 caracteres." className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                <input type="password" required name="password" onChange={(e) => handlePassStrength(e.target.value)} placeholder="Mínimo 8 caracteres, una mayúscula y un número." className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 {passStrength && <span className="text-sm">Seguridad de la contraseña: <span className={`text-sm font-semibold ${passColor}`}>{passStrength}</span></span>}
                             <label className="block mb-2 mt-5 text-sm font-medium text-gray-700">Confirmá tu contraseña</label>
                             <input type="password" required name="confirm-password" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
@@ -188,8 +180,8 @@ export default function Page() {
                         <div>
                             <h3 className="text-lg font-semibold mb-4 text-gray-700">Información Profesional</h3>
                             <label className="block mb-2 text-sm font-medium text-gray-700">Disponibilidad</label>
-                            <select required name="job_avaliable" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
-                                <option value="" defaultValue="Seleccionar" disabled>Seleccionar</option>
+                            <select required name="job_avaliable" defaultValue="" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
+                                <option value="" disabled>Seleccionar</option>
                                 <option value="Disponible para trabajar">Disponible para trabajar</option>
                                 <option value="Trabajando">Trabajando</option>
                             </select>
@@ -198,6 +190,7 @@ export default function Page() {
                                 value={departamento}
                                 onChange={handleDeptChange}
                                 name="dept"
+                                required
                                 className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                             >
                                 <option value="">-- Selecciona un departamento --</option>
@@ -213,6 +206,7 @@ export default function Page() {
                                 onChange={handleCarreraChange}
                                 disabled={!departamento}
                                 name="degree"
+                                required
                                 className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                             >
                                 <option value="">
@@ -230,8 +224,8 @@ export default function Page() {
                         <div>
                             <h3 className="text-lg font-semibold mb-4 text-gray-700">Educación</h3>
                             <label className="block mb-2 text-sm font-medium text-gray-700">Universidad</label>
-                            <select required name="student_status" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                                <option value="" defaultValue="Seleccionar" disabled>Estado de Estudiante</option>
+                            <select required name="student_status" defaultValue="" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                <option value="" disabled>Estado de Estudiante</option>
                                 <option value="Estudiante">Estudiante</option>
                                 <option value="Freelance">Freelance</option>
                                 <option value="Graduado">Graduado</option>
@@ -239,7 +233,8 @@ export default function Page() {
                                 <option value="Posgrado">Posgrado</option>
                             </select>
                             <label className="block mb-2 text-sm font-medium text-gray-700">Provincia</label>
-                            <select className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" name="province" id="province">
+                            <select required defaultValue="" className="w-full mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" name="province" id="province">
+                                <option value="" disabled>Seleccionar</option>
                                 <option value="Buenos Aires">Buenos Aires</option>
                                 <option value="Catamarca">Catamarca</option>
                                 <option value="Chaco">Chaco</option>
@@ -291,9 +286,10 @@ export default function Page() {
                 <div className="my-5 m-auto text-center">
                     <input type="checkbox" onChange={() => setTermsCheck(!termsCheck)} /> <label htmlFor="">Aceptar <Link href="/terms" className="text-blue-700 hover:underline">Términos y Condiciones</Link></label>
                 </div>
-                <button type="submit" className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer">
-                    Registrar
+                <button type="submit" disabled={loading} className="mt-10 w-full py-2 text-yellow-main bg-black-main font-semibold rounded-lg hover:bg-yellow-main hover:text-black-main transition cursor-pointer disabled:opacity-60 disabled:cursor-wait">
+                    {loading ? "Registrando..." : "Registrar"}
                 </button>
+                {errorMsg && <h2 className="text-red-500 mt-5 font-semibold text-center">{errorMsg}</h2>}
                 {!passMatch && <h2 className="text-red-500 mt-5 font-semibold text-center">Error: Contraseñas no coindicen! Intente de nuevo.</h2>}
             </form>
         </div >

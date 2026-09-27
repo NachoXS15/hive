@@ -36,10 +36,19 @@ export default function SearchFormResults({ docs }: Props) {
         setReleaseYear("")
     }
 
+    // Años desde el actual hasta 2015
+    const years = useMemo(() => {
+        const current = new Date().getFullYear()
+        return Array.from({ length: current - 2015 + 1 }, (_, i) => String(current - i))
+    }, [])
+
     const filteredDocs = useMemo(() => {
+        // Un filtro vacío no excluye documentos (aunque no tengan título o año cargado)
+        const matches = (value: string | null | undefined, filter: string) =>
+            !filter || (value ?? "").toLocaleLowerCase().includes(filter.toLocaleLowerCase())
         return docs.filter((doc) =>
-            doc.title?.toLocaleLowerCase().includes(query.toLowerCase()) &&
-            doc.release_year?.toLocaleLowerCase().includes(releaseYear.toLowerCase())
+            (matches(doc.title, query) || matches(doc.author, query)) &&
+            matches(doc.release_year, releaseYear)
             //agregar otros filtros
         )
     }, [query, docs, releaseYear])
@@ -102,17 +111,7 @@ export default function SearchFormResults({ docs }: Props) {
                                 className="w-full h-9 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
                             >
                                 <option value="" disabled>Selecciona un año</option>
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                                <option value="2017">2017</option>
-                                <option value="2016">2016</option>
-                                <option value="2015">2015</option>
+                                {years.map((y) => <option key={y} value={y}>{y}</option>)}
                             </select>
                         </div>
                         {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}
@@ -166,17 +165,7 @@ export default function SearchFormResults({ docs }: Props) {
                                 className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
                             >
                                 <option value="" disabled>Selecciona un año</option>
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                                <option value="2017">2017</option>
-                                <option value="2016">2016</option>
-                                <option value="2015">2015</option>
+                                {years.map((y) => <option key={y} value={y}>{y}</option>)}
                             </select>
                         </div>
                         {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}
@@ -200,7 +189,7 @@ export default function SearchFormResults({ docs }: Props) {
                         </div>
                     </div>
                 ) : (
-                    <h2 className="text-center font-bold font-second text-xl mb-5"></h2>
+                    <h2 className="text-center font-bold font-second text-xl mb-5">No se encontraron documentos.</h2>
                 )}
             </div>
         </main >

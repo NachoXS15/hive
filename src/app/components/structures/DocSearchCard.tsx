@@ -1,3 +1,5 @@
+'use client'
+
 import { DocType } from "@/app/utils/definitions"
 import { supabaseClient } from "@/app/utils/supabase/client"
 import { ArrowUpRightFromSquare } from "lucide-react"
@@ -18,6 +20,7 @@ export default function DocSearchCard({ doc }: Props) {
         if (error) {
             console.log(error);
             alert("No se pudo descargar archivo");
+            return;
         }
         if (data?.signedUrl) {
             window.open(data.signedUrl, '_blank');
@@ -26,7 +29,7 @@ export default function DocSearchCard({ doc }: Props) {
     
     return (
         <>
-            <div onClick={handleDownload} className="flex overflow-hidden bg-slate-300 z-40 mt-3 rounded-lg flex-col px-5 w-full gap-2 h-60 justify-between py-3">
+            <div onClick={handleDownload} className="cursor-pointer flex overflow-hidden bg-slate-300 z-40 mt-3 rounded-lg flex-col px-5 w-full gap-2 h-60 justify-between py-3">
                 <div className="w-full rounded-lg bg-orange-300 h-11/12"></div>
                 <div className="flex flex-col">
                     <h2 className="font-bold">{doc?.title}</h2>
@@ -34,9 +37,9 @@ export default function DocSearchCard({ doc }: Props) {
                 </div>
                 <div className="flex items-center justify-between">
                     <span className="bg-black-main text-yellow-main text-regular px-3 py-0.5 rounded-full">{doc?.release_year}</span>
-                    <button onClick={handleDownload} className="hover:text-yellow-main hover:bg-black-main p-2 rounded-full transition cursor-pointer">
+                    <span className="hover:text-yellow-main hover:bg-black-main p-2 rounded-full transition cursor-pointer">
                         <ArrowUpRightFromSquare size={20} />
-                    </button>
+                    </span>
                 </div>
             </div>
         </>

@@ -1,6 +1,10 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+// Rutas que requieren sesión iniciada. El resto del sitio (feed, perfiles
+// públicos, búsquedas, páginas informativas) es accesible sin login.
+const PROTECTED_PREFIXES = ['/my-profile', '/edit-profile', '/admin']
+
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
@@ -37,14 +41,21 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith('/login')
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
+  const { pathname } = request.nextUrl
+  const isProtected = PROTECTED_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  )
+
+  if (!user && isProtected) {
     const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+    url.pathname = '/auth/login'
+    url.search = ''
+    const redirectResponse = NextResponse.redirect(url)
+    // conservar las cookies que Supabase pudo haber actualizado
+    supabaseResponse.cookies.getAll().forEach((cookie) =>
+      redirectResponse.cookies.set(cookie)
+    )
+    return redirectResponse
   }
 
   return supabaseResponse

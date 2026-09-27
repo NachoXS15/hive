@@ -19,12 +19,12 @@ export default function ProfileSearchCard({name, title, id, username, color_img,
                     <div className="flex items-center gap-2">
                         <h2 className="text-regular md:text-xl font-bold">{name}</h2>
                         <span className="bg-slate-200 rounded-lg px-3 py-1 text-xs font-semibold">@{username}</span>
-                        <span className="hidden bg-orange-200 md:flexflex items-center gap-2 rounded-lg px-3 py-1 text-xs text-orange-500 font-semibold"><School size={16} />{student_status}</span>
+                        <span className="hidden bg-orange-200 md:flex items-center gap-2 rounded-lg px-3 py-1 text-xs text-orange-500 font-semibold"><School size={16} />{student_status}</span>
                     </div>
                     <p className="text-xs md:text-md text-wrap">{title}</p>
                 </div>
             </div>
-            <Link href={`/profile/${id}/posts`} className="flex gap-2 rounded bg-blue-200 font-semibold text-md items-center text-blue-700 px-2 py-1 hover:bg-blue-700 hover:text-blue-200"><User2 /><span className="hidden md:inline">Ver perfil</span></Link>
+            <span className="flex gap-2 rounded bg-blue-200 font-semibold text-md items-center text-blue-700 px-2 py-1 hover:bg-blue-700 hover:text-blue-200"><User2 /><span className="hidden md:inline">Ver perfil</span></span>
         </Link>
     )
 }

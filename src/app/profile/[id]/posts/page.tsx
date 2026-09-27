@@ -8,7 +8,6 @@ export default async function page({ params }: { params: Promise<{ id: string }>
     const posts = await fetchPostsById(id)
     const docs = await fetchDocsById(id);
     const auth_status = "";
-    console.log(id);
     
 
     return (
@@ -23,7 +22,7 @@ export default async function page({ params }: { params: Promise<{ id: string }>
                     </button>
                 </div>
                 {
-                    posts && posts.length > 0 ? posts.reverse().map((post, i) => {
+                    posts && posts.length > 0 ? posts.map((post, i) => {
 
                         return (
                             <Post key={i} docs={docs} auth_status={auth_status} post={post} />

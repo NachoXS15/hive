@@ -59,7 +59,7 @@ export default function AddLink({id}: AddLinkProps) {
                                     <option value="twitter">Twitter</option>
                                     <option value="instagram">Instagram</option>
                                     <option value="linkedin">LinkedIn</option>
-                                    <option value="porftolio_cv">Porftolio/CV</option>
+                                    <option value="portfolio_cv">Portfolio/CV</option>
                                 </select>
                             </div>
                             <div>

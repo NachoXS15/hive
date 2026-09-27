@@ -1,13 +1,11 @@
 import Post from "@/app/components/structures/Post";
 import ArrowBack from "@/app/components/ui/ArrowBack";
 import { fetchSinglePost } from "@/app/lib/data-server";
-import { getServerSideProps } from "next/dist/build/templates/pages";
 import { redirect } from "next/navigation";
-import { InferGetServerSidePropsType } from "next/types";
 
 export default async function page({
     params,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: { params: Promise<{ id: string }> }) {
     const { id } = await params
     const post = await fetchSinglePost(id)
     if (!post) {

@@ -19,13 +19,14 @@ export default function DocProfile({ doc }: Props) {
         if (error) {
             console.log(error);
             alert("No se pudo descargar archivo");
+            return;
         }
         if (data?.signedUrl) {
             window.open(data.signedUrl, '_blank');
         }
     }
     return (
-        <div onClick={handleDownload} className="active:scale-105 transition bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
+        <div onClick={handleDownload} className="cursor-pointer active:scale-105 transition bg-slate-300 z-40 mt-3 rounded-lg px-5 w-full flex justify-between items-center py-3">
             <div className="flex items-center gap-3">
                 <FileText size={30} />
                 <div className="flex flex-col">
@@ -33,10 +34,10 @@ export default function DocProfile({ doc }: Props) {
                     <span className="text-xs md:text-regular">Año de publicación: <span>{doc?.release_year}</span></span>
                 </div>
             </div>
-            <button onClick={handleDownload} className="hover:scale-105 transition cursor-pointer rounded-full p-2 hover:text-yellow-main hover:bg-black-main">
+            <span className="hover:scale-105 transition cursor-pointer rounded-full p-2 hover:text-yellow-main hover:bg-black-main">
                 {/* <span className="hidden md:inline">Descargar</span> */}
                 <ArrowUpRightFromSquare size={20} />
-            </button>
+            </span>
         </div>
     )
 }

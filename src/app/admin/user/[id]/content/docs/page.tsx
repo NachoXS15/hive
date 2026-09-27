@@ -1,23 +1,14 @@
 import DocProfile from "@/app/components/ui/DocProfile"
 import { fetchDocsById } from "@/app/lib/data-server";
-import { createClient } from "@/app/utils/supabase/server";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link"
-import { redirect } from "next/navigation";
 
-export default async function page() {
-
-    const supabase = await createClient();
-    const { data: { user }, error } = await supabase.auth.getUser();
-    if (error) {
-        redirect("/error/403")
-    }
-    const id: string = user?.id ?? ""
+export default async function page({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
     const docs = await fetchDocsById(id);
-    console.log(docs);
     return (
         <main className="h-fit px-5 flex justify-center items-center">
-            <div className="w-full 2xl:w-3/6 xl:w-7/12 md:w-3/4 pt-5 pb-10 flex flex-col gap-5 font-second text-black-main">
+            <div className="w-full 2xl:w-3/6 xl:w-7/12 md:w-3/4 pt-5 pb-10 relative flex flex-col gap-5 font-second text-black-main">
                 <Link href="/admin" className="absolute hover:scale-105 transition cursor-pointer rounded-full p-2 hover:text-yellow-main hover:bg-black-main"><ArrowLeft /></Link>
                 <h2 className="mt-10 md:mt-0 font-bold text-center text-xl">Contenido de: {id}</h2>
                 <div className="w-full flex items-center">
@@ -36,7 +27,7 @@ export default async function page() {
                                 <DocProfile doc={doc} key={i} />
                             )
                         }) :
-                            <h2 className="text-center font-second font-semibold py-10">Todavia no compartiste ningún documento.<br />¡No tengas vergüenza! :D</h2>
+                            <h2 className="text-center font-second font-semibold py-10">Este usuario no compartió documentos todavía.</h2>
                     }
                 </div>
             </div>

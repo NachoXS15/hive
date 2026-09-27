@@ -24,7 +24,7 @@ export default async function page({ params }: { params: Promise<{ id: string }>
                     </button>
                 </div>
                 {
-                    posts && posts.length > 0 ? posts.reverse().map((post, i) => {
+                    posts && posts.length > 0 ? posts.map((post, i) => {
 
                         return (
                             <AuthPost key={i} docs={docs} auth_status={auth_status} post={post} />
