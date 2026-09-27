@@ -4,6 +4,7 @@ import { CircleMinus, FileText } from "lucide-react";
 import { useState } from "react";
 import { createPostWithDocument } from "@/app/lib/data-client";
 import { ProfileType } from "@/app/utils/definitions";
+import { DOC_CATEGORIES, DOC_THEMES } from "@/app/lib/doc-options";
 
 type Props = {
     id: string | undefined
@@ -44,6 +45,8 @@ export default function CreatePost({ id, profile }: Props) {
         const body = formData.get("body") as string
         const title = formData.get("title") as string
         const release_year = formData.get("year") as string
+        const category = formData.get("category") as string
+        const theme = formData.get("theme") as string
 
         const data = {
             body,
@@ -117,7 +120,7 @@ export default function CreatePost({ id, profile }: Props) {
                 {
                     fileActive && (
                         <section className="w-full">
-                            <div className="flex flex-items-center gap-3">
+                            <div className="flex items-center gap-3">
                                 <div className="w-1/2">
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Titulo</label>
                                     <input type="text" required name="title" defaultValue={fileName} className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
@@ -126,9 +129,26 @@ export default function CreatePost({ id, profile }: Props) {
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación o Realización</label>
                                     <input type="text" required name="year" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 </div>
-                            </section>
-                        )
-                    }
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="w-1/2">
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Categoría</label>
+                                    <select required name="category" defaultValue="" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
+                                        <option value="" disabled>Seleccioná una categoría</option>
+                                        {DOC_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                                    </select>
+                                </div>
+                                <div className="w-1/2">
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Temática</label>
+                                    <select required name="theme" defaultValue="" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
+                                        <option value="" disabled>Seleccioná una temática</option>
+                                        {DOC_THEMES.map((t) => <option key={t} value={t}>{t}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+                    )
+                }
                 {errorMsg && <p className="text-red-600 font-semibold text-center" style={{ fontSize: "0.9em" }}>{errorMsg}</p>}
                 <button disabled={loading} className="w-full py-3 font-second font-black cursor-pointer bg-yellow-main  rounded-lg text-black-main hover:bg-black-main hover:text-yellow-main transition disabled:opacity-60 disabled:cursor-wait" style={{ fontSize: "0.9em" }}>{loading ? "Publicando..." : "¡Publicar!"}</button>
             </form>

@@ -1,6 +1,7 @@
 'use client'
 
 import { depts } from "@/app/lib/depts"
+import { DOC_CATEGORIES, DOC_THEMES } from "@/app/lib/doc-options"
 import { DocType } from "../../utils/definitions"
 import DocSearchCard from "./DocSearchCard"
 import { useMemo, useState } from "react"
@@ -36,6 +37,8 @@ export default function SearchFormResults({ docs }: Props) {
         setDepartamento("");
         setCarrera("");
         setReleaseYear("")
+        setCategory("")
+        setTheme("")
     }
 
     // Años desde el actual hasta 2015
@@ -45,13 +48,16 @@ export default function SearchFormResults({ docs }: Props) {
     }, [])
 
     const filteredDocs = useMemo(() => {
-        // Un filtro vacío no excluye documentos (aunque no tengan título o año cargado)
+        // Un filtro vacío no excluye documentos (aunque no tengan ese dato cargado)
         const matches = (value: string | null | undefined, filter: string) =>
             !filter || (value ?? "").toLocaleLowerCase().includes(filter.toLocaleLowerCase())
         return docs.filter((doc) =>
             (matches(doc.title, query) || matches(doc.author, query)) &&
-            matches(doc.release_year, releaseYear)
-            //agregar otros filtros
+            matches(doc.release_year, releaseYear) &&
+            matches(doc.category, category) &&
+            matches(doc.theme, theme) &&
+            matches(doc.dept, departamento) &&
+            matches(doc.degree, carrera)
         )
     }, [query, docs, releaseYear, theme, carrera, category, departamento])
 
@@ -117,7 +123,29 @@ export default function SearchFormResults({ docs }: Props) {
                                 {years.map((y) => <option key={y} value={y}>{y}</option>)}
                             </select>
                         </div>
-                        {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}
+                        <div className="w-full">
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Tipo de Documento</label>
+                            <select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            >
+                                <option value="" disabled>Selecciona un Tipo</option>
+                                {DOC_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                            </select>
+                        </div>
+                        <div className="w-full">
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Temática</label>
+                            <select
+                                value={theme}
+                                onChange={(e) => setTheme(e.target.value)}
+                                className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            >
+                                <option value="" disabled>Selecciona una Temática</option>
+                                {DOC_THEMES.map((t) => <option key={t} value={t}>{t}</option>)}
+                            </select>
+                        </div>
+                        {query || releaseYear || departamento || category || theme || carrera ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500 hover:bg-white border border-red-500 hover:text-red-500">Limpiar Filtros</button> : null}
                     </form>
                     {/* formulario en pc */}
                     <form action="" className={`hidden xl:flex flex-col mb-7 gap-3`}>
@@ -172,7 +200,29 @@ export default function SearchFormResults({ docs }: Props) {
                                 {years.map((y) => <option key={y} value={y}>{y}</option>)}
                             </select>
                         </div>
-                        {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}
+                        <div className="w-full">
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Tipo de Documento</label>
+                            <select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            >
+                                <option value="" disabled>Selecciona un Tipo</option>
+                                {DOC_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                            </select>
+                        </div>
+                        <div className="w-full">
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Temática</label>
+                            <select
+                                value={theme}
+                                onChange={(e) => setTheme(e.target.value)}
+                                className="w-full h-10 rounded-lg border border-slate-400 bg-slate-50 flex justify-between items-center px-5"
+                            >
+                                <option value="" disabled>Selecciona una Temática</option>
+                                {DOC_THEMES.map((t) => <option key={t} value={t}>{t}</option>)}
+                            </select>
+                        </div>
+                        {query || releaseYear || departamento || category || theme || carrera ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500 hover:bg-white border border-red-500 hover:text-red-500">Limpiar Filtros</button> : null}
                     </form>
                 </div>
                 <div className="xl:hidden px-7 w-full mt-5">
