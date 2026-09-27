@@ -1,6 +1,6 @@
 'use client'
 
-// import { depts } from "@/app/lib/depts"
+import { depts } from "@/app/lib/depts"
 import { DocType } from "../../utils/definitions"
 import DocSearchCard from "./DocSearchCard"
 import { useMemo, useState } from "react"
@@ -12,27 +12,29 @@ type Props = {
 
 export default function SearchFormResults({ docs }: Props) {
 
-    const [query, setQuery] = useState<string>("")
     const [collapsedForm, setCollapsedForm] = useState(false)
-    // const [departamento, setDepartamento] = useState("");
-    // const [carrera, setCarrera] = useState("");
+    const [query, setQuery] = useState<string>("")
+    const [departamento, setDepartamento] = useState("");
+    const [carrera, setCarrera] = useState("");
     const [releaseYear, setReleaseYear] = useState("");
-    // const deptos: Record<string, string[]> = depts
+    const [theme, setTheme] = useState("")
+    const [category, setCategory] = useState("")
+    const deptos: Record<string, string[]> = depts
 
     const collapseForm = () => {
         setCollapsedForm(!collapsedForm)
     }
 
-    // const handleDepartamentoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    //     setDepartamento(e.target.value);
-    //     setCarrera("");
-    // };
+    const handleDepartamentoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setDepartamento(e.target.value);
+        setCarrera("");
+    };
 
     const limpiarFiltros = (e: React.FormEvent) => {
         e.preventDefault()
         setQuery("");
-        // setDepartamento("");
-        // setCarrera("");
+        setDepartamento("");
+        setCarrera("");
         setReleaseYear("")
     }
 
@@ -51,23 +53,24 @@ export default function SearchFormResults({ docs }: Props) {
             matches(doc.release_year, releaseYear)
             //agregar otros filtros
         )
-    }, [query, docs, releaseYear])
+    }, [query, docs, releaseYear, theme, carrera, category, departamento])
 
 
     return (
         <main className="w-full min-h-[700px] font-second flex flex-col xl:flex-row justify-between items-center">
-            <div className="w-full h-full  xl:w-3/12">
-                <div className="w-full xl:py-6 xl:min-h-[700px] px-7 md:w-full bg-slate-200 text-regular">
+            <div className="w-full h-full xl:w-3/12">
+                <div className={`w-full xl:py-6 xl:min-h-[700px] px-7 md:w-full bg-slate-200 text-regular`}>
                     <div className="w-full flex items-center px-3 xl:px-0 justify-between py-5">
                         <h2 className="font-bold text-xl">Filtros</h2>
                         <button onClick={collapseForm} className="xl:hidden">{collapsedForm ? <ArrowUp /> : <ArrowDown />}</button>
                     </div>
-                    <form action="" className={`${collapsedForm ? "flex" : "hidden"} xl:hidden flex-col mb-7 gap-3`}>
+                    {/* formulario en celular */}
+                    <form action="" className={`${collapsedForm ? "flex" : "hidden"} xl:hidden flex-col mb-7 pb-7 gap-3`}>
                         {/* <div className="w-full">
                             <label htmlFor="" className="flex justify-between items-center">Titulo</label>
                             <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="search" placeholder="Escribe para comenzar a buscar..." className="w-full h-9 border border-slate-400 bg-slate-50 px-5 rounded-lg focus:outline-none focus:ring-0" />
                         </div> */}
-                        {/* <div className="w-full">
+                        <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-700">Departamento</label>
                             <select
                                 value={departamento}
@@ -102,8 +105,8 @@ export default function SearchFormResults({ docs }: Props) {
                                         </option>
                                     ))}
                             </select>
-                        </div> */}
-                        <div className="w-full px-3">
+                        </div>
+                        <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-700">Año de publicación</label>
                             <select
                                 value={releaseYear}
@@ -116,12 +119,13 @@ export default function SearchFormResults({ docs }: Props) {
                         </div>
                         {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}
                     </form>
+                    {/* formulario en pc */}
                     <form action="" className={`hidden xl:flex flex-col mb-7 gap-3`}>
                         <div className="w-full">
                             <label htmlFor="" className="flex justify-between items-center">Titulo</label>
                             <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="search" placeholder="Escribe para comenzar a buscar..." className="w-full h-9 border border-slate-400 bg-slate-50 px-5 rounded-lg focus:outline-none focus:ring-0" />
                         </div>
-                        {/* <div className="w-full">
+                        <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-700">Departamento</label>
                             <select
                                 value={departamento}
@@ -156,9 +160,9 @@ export default function SearchFormResults({ docs }: Props) {
                                         </option>
                                     ))}
                             </select>
-                        </div> */}
+                        </div>
                         <div className="w-full">
-                            <label className="block mb-2 text-sm font-medium text-gray-700">Año de publicación</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-700">Año de publicación o Realización</label>
                             <select
                                 value={releaseYear}
                                 onChange={(e) => setReleaseYear(e.target.value)}
@@ -171,7 +175,7 @@ export default function SearchFormResults({ docs }: Props) {
                         {query || releaseYear ? <button onClick={limpiarFiltros} className="w-full py-2 text-white rounded-lg mt-3 bg-red-500">Limpiar Filtros</button> : null}
                     </form>
                 </div>
-                <div className="xl:hidden w-full px-10 mt-5">
+                <div className="xl:hidden px-7 w-full mt-5">
                     <label htmlFor="" className="flex justify-between items-center text-sm">Titulo</label>
                     <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="search" placeholder="Escribe para comenzar a buscar..." className="w-full h-9 border border-slate-400 bg-slate-50 px-5 rounded-lg focus:outline-none focus:ring-0" />
                 </div>

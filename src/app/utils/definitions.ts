@@ -72,6 +72,10 @@ export interface DocType {
     author?: string
     release_year?: string
     file_path: string
+    dept?: string
+    degree?: string
+    category?: string
+    theme?: string
 }
 
 //register info
@@ -85,4 +89,7 @@ export interface PostFormData {
   degree?: string;
   file: File | null
   fileName: string
+  dept?: string
+  category: string
+  theme: string
 }

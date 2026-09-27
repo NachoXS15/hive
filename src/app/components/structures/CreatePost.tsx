@@ -53,7 +53,10 @@ export default function CreatePost({ id, profile }: Props) {
             fileName,
             file,
             author: profile?.name,
-            degree: profile?.user_public_info?.degree
+            degree: profile?.user_public_info?.degree,
+            dept: profile?.user_public_info?.dept,
+            category,
+            theme
         }
         if (!id) {
             setErrorMsg("Tenés que iniciar sesión para publicar.");
@@ -109,17 +112,18 @@ export default function CreatePost({ id, profile }: Props) {
                             </button>
                         </div>
                     )}
-                    
+
                 </label>
                 {
-                        fileActive && (
-                            <section className="w-full flex items-center gap-3">
+                    fileActive && (
+                        <section className="w-full">
+                            <div className="flex flex-items-center gap-3">
                                 <div className="w-1/2">
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Titulo</label>
                                     <input type="text" required name="title" defaultValue={fileName} className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 </div>
                                 <div className="w-1/2">
-                                    <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación o Realización</label>
                                     <input type="text" required name="year" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 </div>
                             </section>
