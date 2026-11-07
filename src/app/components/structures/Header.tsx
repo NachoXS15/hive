@@ -3,6 +3,8 @@ import Link from "next/link";
 import { User } from "@supabase/supabase-js";
 // import DropdownMenuSearch from "../ui/DropdownMenuSearch";
 import DropdownMenuProfile from "../ui/DropdownMenuProfile";
+import Notifications, { NotificationsBellFallback } from "./Notifications";
+import { Suspense } from "react";
 import Image from "next/image";
 import { logoutAction } from "@/app/lib/actions";
 export default function Header({ profile, profileName }: { profile: User | null; profileName?: string | null}) {
@@ -24,28 +26,42 @@ export default function Header({ profile, profileName }: { profile: User | null;
                         {/* <input type="checkbox" className="peer hidden" id="dropdown-search-open" /> */}
                         {/* <DropdownMenuSearch /> */}
                     </nav>
-                    {
-                        profile?.role == "authenticated" ? (
-                            <>
-                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-11 h-11 hover:cursor-pointer font-bold select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">{nameInitials}</label>
-                                <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
-                                <DropdownMenuProfile profile={profile} />
-                                <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
-                                    <Menu size={24} />
-                                </label>
-                            </>
-                        ) : (
-                            <>
-                                <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-11 h-11 hover:cursor-pointer font-bold select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition"><User2 /></label>
-                                <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
-                                <DropdownMenuProfile profile={profile} />
-                                <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
-                                    <Menu size={24} />
-                                </label>
-                            </>
-                        )
+                    <div className="flex items-center gap-3">
+                        {
+                            profile?.role == "authenticated" ? (
+                                <>
+                                    {/* el menú se posiciona respecto de este contenedor: sale justo debajo del botón */}
+                                    <div className="relative hidden md:block">
+                                        <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-11 h-11 hover:cursor-pointer font-bold select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition">{nameInitials}</label>
+                                        <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
+                                        <DropdownMenuProfile profile={profile} />
+                                    </div>
+                                    <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
+                                        <Menu size={24} />
+                                    </label>
+                                </>
+                            ) : (
+                                <>
+                                    {/* el menú se posiciona respecto de este contenedor: sale justo debajo del botón */}
+                                    <div className="relative hidden md:block">
+                                        <label htmlFor="dropdown-menu-open" className="hidden md:flex items-center justify-center text-yellow-main bg-black-main rounded-full w-11 h-11 hover:cursor-pointer font-bold select-none hover:text-black-main hover:bg-yellow-main hover:border-2 border-black-main transition"><User2 /></label>
+                                        <input type="checkbox" className="peer hidden" id="dropdown-menu-open" />
+                                        <DropdownMenuProfile profile={profile} />
+                                    </div>
+                                    <label className="md:hidden inline-block cursor-pointer" htmlFor="navbar-open">
+                                        <Menu size={24} />
+                                    </label>
+                                </>
+                            )
 
-                    }
+                        }
+                        {profile?.role == "authenticated" && (
+                            <Suspense fallback={<NotificationsBellFallback />}>
+                                <Notifications userId={profile.id} />
+                            </Suspense>
+                        )}
+                    </div>
+
                 </header>
                 <div className="md:hidden peer-checked:block hidden text-regular z-50 w-full absolute bg-black-main text-yellow-main top-17" id="menu-open">
                     <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">

@@ -1,6 +1,6 @@
 import CreatePost from "../components/structures/CreatePost";
 import Post from "../components/structures/Post";
-import { fetchDocs, fetchFullUser, fetchPosts } from "../lib/data-server";
+import { fetchDocs, fetchFullUser, fetchPosts, fetchViewerLikes } from "../lib/data-server";
 import { createClient } from "../utils/supabase/server";
 
 export default async function page() {
@@ -12,6 +12,8 @@ export default async function page() {
     //console.log(profile);
     const posts = await fetchPosts();
     const docs = await fetchDocs();
+    const { likedPostIds } = await fetchViewerLikes();
+    const likedIds = new Set(likedPostIds);
     return (
         loggedProfile.user?.role == "authenticated" ? (
             <main className="flex items-center justify-center w-full h-fit xl:px-10">
@@ -21,10 +23,10 @@ export default async function page() {
                     <div className="w-full py-10 flex flex-col gap-5">
                         <h2 className="font-bold text-xl font-second">Publicaciones</h2>
                         {
-                            posts && posts.length > 0 ? posts.map((post, i) => {
+                            posts && posts.length > 0 ? posts.map((post) => {
 
                                 return (
-                                    <Post key={i} post={post} docs={docs} />
+                                    <Post key={post.id} post={post} docs={docs} liked={likedIds.has(post.id)} isLoggedIn />
                                 )
                             }) :
                                 <h2 className="text-center font-second font-semibold">Todavía no hay publicaciones. ¡Sé el primero en compartir algo! :D</h2>
@@ -39,10 +41,10 @@ export default async function page() {
                         <h2 className="font-bold text-xl font-second text-center">Publicaciones Destacadas</h2>
                         <div className="w-full columns-1 md:columns-2 xl:columns-3 gap-3">
                             {
-                                posts && posts.map((post, i) => {
+                                posts && posts.map((post) => {
                                     return (
                                         <div
-                                            key={i}
+                                            key={post.id}
                                             className="mb-3 break-inside-avoid-column overflow-hidden rounded-lg"
                                         >
                                             <Post post={post} docs={docs} />

@@ -1,5 +1,5 @@
 import Post from "@/app/components/structures/Post";
-import { fetchDocsById,  fetchPostsById } from "@/app/lib/data-server";
+import { fetchDocsById, fetchPostsById, fetchViewerLikes } from "@/app/lib/data-server";
 import Link from "next/link";
 
 
@@ -8,6 +8,8 @@ export default async function page({ params }: { params: Promise<{ id: string }>
     const posts = await fetchPostsById(id)
     const docs = await fetchDocsById(id);
     const auth_status = "";
+    const { userId, likedPostIds } = await fetchViewerLikes();
+    const likedIds = new Set(likedPostIds);
     
 
     return (
@@ -22,10 +24,10 @@ export default async function page({ params }: { params: Promise<{ id: string }>
                     </button>
                 </div>
                 {
-                    posts && posts.length > 0 ? posts.map((post, i) => {
+                    posts && posts.length > 0 ? posts.map((post) => {
 
                         return (
-                            <Post key={i} docs={docs} auth_status={auth_status} post={post} />
+                            <Post key={post.id} docs={docs} auth_status={auth_status} post={post} liked={likedIds.has(post.id)} isLoggedIn={userId !== null} />
                         )
                     }) :
                         <h2 className="text-center font-second font-semibold py-10">Este usuario no ha compartido nada. <br />Esperemos se anime :D</h2>

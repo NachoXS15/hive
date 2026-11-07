@@ -1,17 +1,23 @@
 import { DocType, PostType } from "../../utils/definitions"
 import { formatDate } from "../../utils/DateFormatterPost"
-import { CircleMinus } from "lucide-react"
+import { CircleMinus, MessageCircle } from "lucide-react"
 import { deletePostAction } from "@/app/lib/actions"
 import Link from "next/link"
 import DocPost from "../ui/DocPost"
+import LikeButton from "../ui/LikeButton"
+import ShareButton from "../ui/ShareButton"
 type Props = {
 	post: PostType,
 	auth_status?: string | undefined
 	pathname?: string
 	docs?: DocType[] | undefined
+	liked?: boolean // el usuario logueado ya le dio me gusta
+	isLoggedIn?: boolean
 }
 
-export default function Post({ post, auth_status, pathname, docs }: Props) {
+const footerButton = "w-1/3 h-full flex items-center justify-center gap-2 text-sm hover:cursor-pointer hover:bg-slate-500 hover:text-slate-50 transition"
+
+export default function Post({ post, auth_status, pathname, docs, liked = false, isLoggedIn = false }: Props) {
 	const formatedDate = formatDate(post.created_at)
 	const docsWithPosts = docs?.filter(doc => doc.post_id == post.id)
 	
@@ -47,16 +53,26 @@ export default function Post({ post, auth_status, pathname, docs }: Props) {
 			{docsWithPosts && docsWithPosts.length > 0 && <DocPost doc={docsWithPosts[0]} />}
 			<div
 				id="post-footer"
-				className="rounded-lg mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-10 z-20 relative"
+				className="@container rounded-lg mt-5 bg-slate-300 border-t-2 border-t-slate-200 w-full flex items-center h-10 z-20 relative overflow-hidden"
 			>
-				{["Me gusta", "Comentar", "Compartir"].map((text) => (
-					<button
-						key={text}
-						className="hover:cursor-pointer hover:bg-slate-500 hover:text-slate-50 transition w-1/3 border-r border-r-slate-400 bg-slate-300 h-full"
-					>
-						{text}
-					</button>
-				))}
+				<LikeButton
+					postId={post.id}
+					liked={liked}
+					count={post.likes_count}
+					isLoggedIn={isLoggedIn}
+					className={`${footerButton} border-r border-r-slate-400`}
+				/>
+				<Link
+					href={`/home/post/${post.id}#comentarios`}
+					className={`${footerButton} border-r border-r-slate-400`}
+					title="Comentar"
+					aria-label={`Comentar (${post.comments_count})`}
+				>
+					<MessageCircle size={18} />
+					<span className="hidden @xs:inline">Comentar</span>
+					{post.comments_count > 0 && <span className="font-semibold">{post.comments_count}</span>}
+				</Link>
+				<ShareButton postId={post.id} className={footerButton} />
 			</div>
 			{/* Botón de eliminar (solo si autenticado) */}
 			{auth_status === "authenticated" && (
