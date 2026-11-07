@@ -5,7 +5,9 @@ import LinkButton from "./LinkButton";
 import { logoutAction } from "@/app/lib/actions";
 export default function DropdownMenuProfile({ profile }: { profile: User | null }) {
     return (
-        <div className="hidden peer-checked:block z-50 w-52 absolute rounded-2xl bg-black-main text-yellow-main top-20 right-20" id="menu-open">
+        <div className="hidden peer-checked:block z-50 w-52 absolute right-0 top-[calc(100%+0.75rem)] rounded-2xl bg-black-main text-yellow-main origin-top-right animate-zoom-in animate-duration-200 motion-reduce:animate-none" id="menu-open">
+            {/* flechita que apunta al botón de usuario */}
+            <span aria-hidden className="absolute -top-1.5 right-4 w-3 h-3 rotate-45 bg-black-main"></span>
             <div className="w-full bg-semi-black bg-opacity-20 h-fit z-50">
                 <nav className="w-full flex flex-col gap-1 p-3 font-medium">
                     {

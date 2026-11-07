@@ -53,8 +53,43 @@ export interface PostType{
     user_id: string
     body: string
     created_at: string
-    likes: number
+    likes?: number | null // columna vieja de posts, sin uso: el conteo sale de post_likes
     profiles: MinimalProfilePost
+    likes_count: number
+    comments_count: number
+}
+
+//Comentarios
+
+export const COMMENT_MAX_LENGTH = 1000
+
+export interface CommentType {
+    id: string
+    post_id: string
+    user_id: string
+    body: string
+    created_at: string
+    profiles: MinimalProfilePost | null
+}
+
+//Notificaciones
+
+export type NotificationKind = "like" | "comment"
+
+export interface NotificationType {
+    id: string
+    kind: NotificationKind
+    post_id: string
+    created_at: string
+    read_at: string | null
+    actor: MinimalProfilePost | null // quién dio me gusta o comentó
+    post_excerpt: string | null // comienzo del texto del post
+    comment_excerpt: string | null // comienzo del comentario (solo si kind = "comment")
+}
+
+export interface NotificationsData {
+    notifications: NotificationType[] // las más recientes
+    unreadCount: number // total sin leer (puede ser más que las que vienen en la lista)
 }
 
 //sign in info

@@ -1,5 +1,5 @@
 import { unstable_rethrow } from "next/navigation";
-import { DocType, LinksProfileType, PostType, ProfileType, SimpleUserType, UserPublicInfo } from "../utils/definitions";
+import { CommentType, DocType, LinksProfileType, NotificationKind, NotificationsData, NotificationType, PostType, ProfileType, SimpleUserType, UserPublicInfo } from "../utils/definitions";
 import { createClient } from "../utils/supabase/server"
 
 //traer info básica de todos los usuarios
@@ -37,23 +37,47 @@ export async function fetchUserById(id?: string){
     }
 }
 
+// Columnas de un post para el feed: autor + cantidad de me gusta y comentarios.
+// "!posts_user_id_fkey" fija la relación con profiles (el autor del post), por si
+// en el futuro aparece otro camino posts <-> profiles y la API no sabe cuál usar.
+const POST_SELECT = `
+    *,
+    profiles!posts_user_id_fkey (
+        id,
+        name,
+        profile_img_color
+    ),
+    post_likes ( count ),
+    post_comments ( count )
+` as const;
+
+type PostRow = Omit<PostType, "likes_count" | "comments_count"> & {
+    post_likes?: { count: number }[] | null
+    post_comments?: { count: number }[] | null
+}
+
+function toPost({ post_likes, post_comments, ...post }: PostRow): PostType {
+    return {
+        ...post,
+        likes_count: post_likes?.[0]?.count ?? 0,
+        comments_count: post_comments?.[0]?.count ?? 0,
+    };
+}
+
+function toPosts(data: unknown): PostType[] {
+    return ((data ?? []) as PostRow[]).map(toPost);
+}
+
 //traer todos los posts
 export async function fetchPosts(){
     try {
         const supabase = await createClient();
-        const {data, error} = await supabase.from("posts").select(`
-            *,
-            profiles (
-                id,
-                name,
-                profile_img_color
-            )
-        `)
+        const {data, error} = await supabase.from("posts").select(POST_SELECT)
         .order("created_at", { ascending: false });
         if (error) {
             console.log(error.message);
         }
-        return data as PostType[];
+        return toPosts(data);
     } catch (error) {
         unstable_rethrow(error);
         console.log(error);
@@ -79,20 +103,13 @@ export async function fetchPostsById(id: string){
         const supabase = await createClient();
         const { data, error } = await supabase
         .from("posts")
-        .select(`
-            *,
-            profiles (
-                id,
-                name,
-                profile_img_color
-            )
-        `)
+        .select(POST_SELECT)
         .eq("user_id", id)
         .order("created_at", { ascending: false });
         if (error) {
             console.log(error.message);
         }
-        return data as PostType[];
+        return toPosts(data);
     } catch (error) {
         unstable_rethrow(error);
         console.error(error);
@@ -105,20 +122,13 @@ export async function fetchSinglePost(id: string){
         const supabase = await createClient();
         const { data, error } = await supabase
         .from("posts")
-        .select(`
-            *,
-            profiles (
-                id,
-                name,
-                profile_img_color
-            )
-        `)
+        .select(POST_SELECT)
         .eq("id", id)
         .maybeSingle();
         if (error) {
             console.log(error.message);
         }
-        return data as PostType;
+        return data ? toPost(data as PostRow) : null;
     } catch (error) {
         unstable_rethrow(error);
         console.error(error);
@@ -244,6 +254,144 @@ export async function fetchDocsById(id: string){
     } catch (error) {
         unstable_rethrow(error);
         console.error(error);
+    }
+}
+
+// Quién está mirando la página y a qué posts les dio "me gusta".
+// Para un visitante devuelve userId null y la lista vacía.
+export async function fetchViewerLikes(): Promise<{ userId: string | null; likedPostIds: string[] }> {
+    try {
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+            return { userId: null, likedPostIds: [] };
+        }
+        const { data, error } = await supabase
+            .from("post_likes")
+            .select("post_id")
+            .eq("user_id", user.id);
+        if (error) {
+            console.log(error.message);
+        }
+        return {
+            userId: user.id,
+            likedPostIds: (data ?? []).map((row) => row.post_id as string),
+        };
+    } catch (error) {
+        unstable_rethrow(error);
+        console.error(error);
+        return { userId: null, likedPostIds: [] };
+    }
+}
+
+//traer los comentarios de un post (del más nuevo al más viejo)
+export async function fetchComments(postId: string): Promise<CommentType[]> {
+    try {
+        const supabase = await createClient();
+        const { data, error } = await supabase
+            .from("post_comments")
+            .select(`
+                id,
+                post_id,
+                user_id,
+                body,
+                created_at,
+                profiles (
+                    id,
+                    name,
+                    profile_img_color
+                )
+            `)
+            .eq("post_id", postId)
+            .order("created_at", { ascending: false });
+        if (error) {
+            console.log(error.message);
+            return [];
+        }
+        return (data ?? []) as unknown as CommentType[];
+    } catch (error) {
+        unstable_rethrow(error);
+        console.error(error);
+        return [];
+    }
+}
+
+const NOTIFICATIONS_LIMIT = 20;
+const EXCERPT_LENGTH = 140;
+
+type NotificationRow = {
+    id: string
+    kind: NotificationKind
+    post_id: string
+    created_at: string
+    read_at: string | null
+    actor: NotificationType["actor"]
+    posts: { body: string | null } | null
+    post_comments: { body: string | null } | null
+}
+
+// Recorta un texto para mostrarlo como extracto ("…" si es largo)
+function toExcerpt(text: string | null | undefined): string | null {
+    if (!text) return null;
+    const clean = text.replace(/\s+/g, " ").trim();
+    return clean.length > EXCERPT_LENGTH ? `${clean.slice(0, EXCERPT_LENGTH).trimEnd()}…` : clean;
+}
+
+//traer las notificaciones de un usuario (las últimas 20) y cuántas tiene sin leer
+// "actor:profiles!notifications_actor_id_fkey" porque la tabla tiene dos FK a profiles
+export async function fetchNotifications(userId: string): Promise<NotificationsData> {
+    try {
+        const supabase = await createClient();
+        const [list, unread] = await Promise.all([
+            supabase
+                .from("notifications")
+                .select(`
+                    id,
+                    kind,
+                    post_id,
+                    created_at,
+                    read_at,
+                    actor:profiles!notifications_actor_id_fkey (
+                        id,
+                        name,
+                        profile_img_color
+                    ),
+                    posts ( body ),
+                    post_comments ( body )
+                `)
+                .eq("recipient_id", userId)
+                .order("created_at", { ascending: false })
+                .limit(NOTIFICATIONS_LIMIT),
+            supabase
+                .from("notifications")
+                .select("id", { count: "exact", head: true })
+                .eq("recipient_id", userId)
+                .is("read_at", null),
+        ]);
+        if (list.error) {
+            console.log(list.error.message);
+        }
+        if (unread.error) {
+            console.log(unread.error.message);
+        }
+        const rows = (list.data ?? []) as unknown as NotificationRow[];
+        return {
+            notifications: rows.map((row) => ({
+                id: row.id,
+                kind: row.kind,
+                post_id: row.post_id,
+                created_at: row.created_at,
+                read_at: row.read_at,
+                actor: row.actor,
+                post_excerpt: toExcerpt(row.posts?.body),
+                comment_excerpt: toExcerpt(row.post_comments?.body),
+            })),
+            unreadCount: unread.count ?? 0,
+        };
+    } catch (error) {
+        unstable_rethrow(error);
+        console.error(error);
+        return { notifications: [], unreadCount: 0 };
     }
 }
 
