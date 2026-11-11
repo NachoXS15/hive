@@ -14,6 +14,14 @@ export const DOC_CATEGORIES = [
     "Otro",
 ];
 
+// Años que se pueden elegir para un documento: del actual hacia atrás hasta 2015
+const DOC_FIRST_YEAR = 2015;
+
+export function docYears(): string[] {
+    const current = new Date().getFullYear();
+    return Array.from({ length: current - DOC_FIRST_YEAR + 1 }, (_, i) => String(current - i));
+}
+
 export const DOC_THEMES = [
     "Diseño Gráfico",
     "Programación o Software",
