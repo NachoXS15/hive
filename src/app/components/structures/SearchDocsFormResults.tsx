@@ -1,7 +1,7 @@
 'use client'
 
 import { depts } from "@/app/lib/depts"
-import { DOC_CATEGORIES, DOC_THEMES } from "@/app/lib/doc-options"
+import { DOC_CATEGORIES, DOC_THEMES, docYears } from "@/app/lib/doc-options"
 import { DocType } from "../../utils/definitions"
 import DocSearchCard from "./DocSearchCard"
 import { useMemo, useState } from "react"
@@ -41,11 +41,7 @@ export default function SearchFormResults({ docs }: Props) {
         setTheme("")
     }
 
-    // Años desde el actual hasta 2015
-    const years = useMemo(() => {
-        const current = new Date().getFullYear()
-        return Array.from({ length: current - 2015 + 1 }, (_, i) => String(current - i))
-    }, [])
+    const years = useMemo(() => docYears(), [])
 
     const filteredDocs = useMemo(() => {
         // Un filtro vacío no excluye documentos (aunque no tengan ese dato cargado)

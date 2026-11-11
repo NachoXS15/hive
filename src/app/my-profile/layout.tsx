@@ -6,6 +6,7 @@ import { fetchFullUser } from "../lib/data-server";
 import Profile from "../components/structures/Profile";
 import Footer from "../components/structures/Footer";
 import CreatePost from "../components/structures/CreatePost";
+import ScrollToTopOnEnter from "../components/misc/ScrollToTopOnEnter";
 
 export default async function layout({ children }: { children: React.ReactNode }) {
     const supabase = await createClient();
@@ -29,6 +30,8 @@ export default async function layout({ children }: { children: React.ReactNode }
 				</section>
             </main>
             <Footer />
+            {/* Al final, para que corra después del scroll automático de Next */}
+            <ScrollToTopOnEnter />
         </>
     )
 }

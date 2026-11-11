@@ -4,12 +4,15 @@ import { CircleMinus, FileText } from "lucide-react";
 import { useState } from "react";
 import { createPostWithDocument } from "@/app/lib/data-client";
 import { ProfileType } from "@/app/utils/definitions";
-import { DOC_CATEGORIES, DOC_THEMES } from "@/app/lib/doc-options";
+import { DOC_CATEGORIES, DOC_THEMES, docYears } from "@/app/lib/doc-options";
 
 type Props = {
     id: string | undefined
     profile: ProfileType | null
 }
+
+// "Apunte final.pdf" → "Apunte final" (para sugerir el título del documento)
+const sinExtensionPdf = (nombre: string) => nombre.replace(/\.pdf$/i, "")
 
 export default function CreatePost({ id, profile }: Props) {
 
@@ -123,11 +126,14 @@ export default function CreatePost({ id, profile }: Props) {
                             <div className="flex items-center gap-3">
                                 <div className="w-1/2">
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Titulo</label>
-                                    <input type="text" required name="title" defaultValue={fileName} className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                    <input type="text" required name="title" defaultValue={sinExtensionPdf(fileName)} className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
                                 </div>
                                 <div className="w-1/2">
                                     <label className="block mb-2 text-sm font-medium text-gray-700">Año de Publicación o Realización</label>
-                                    <input type="text" required name="year" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500" />
+                                    <select required name="year" defaultValue="" className="w-full bg-slate-200 mb-2 px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-main focus:ring-yellow-500">
+                                        <option value="" disabled>Seleccioná un año</option>
+                                        {docYears().map((y) => <option key={y} value={y}>{y}</option>)}
+                                    </select>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
